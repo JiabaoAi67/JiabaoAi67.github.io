@@ -41,16 +41,23 @@
 
         .bio-text { flex: 2; }
         
-        /* 头像样式修改：确保图片比例正确 */
-        .bio-photo { flex: 1; text-align: right; }
+        /* --- 修改开始：头像位置调整 --- */
+        .bio-photo { 
+            flex: 1; 
+            text-align: right; 
+            /* 这里添加了右边距，把头像往左挤 */
+            padding-right: 60px; 
+        }
+
         .bio-photo img {
             width: 200px; 
             height: 200px; 
-            object-fit: cover; /* 确保图片不被拉伸，自动裁剪填满 */
+            object-fit: cover; 
             border-radius: 50%; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 4px solid #fff; /* 加个白边更好看 */
+            border: 4px solid #fff; 
         }
+        /* --- 修改结束 --- */
 
         h1 { font-size: 2.5rem; margin-bottom: 10px; color: #000; }
         h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
@@ -126,6 +133,9 @@
         @media (max-width: 768px) {
             .header-section { flex-direction: column-reverse; align-items: center; text-align: center; }
             .bio-photo img { width: 150px; height: 150px; margin-bottom: 20px; }
+            
+            /* --- 修改：手机上取消右边距，保持居中 --- */
+            .bio-photo { padding-right: 0; }
         }
     </style>
 </head>
