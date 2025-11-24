@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiabao Ai | Speech & Language Processing</title>
+    <style>
+        /* CSS 样式部分 - 这里控制网页长什么样 */
+        :root {
+            --primary-color: #2c3e50; /* 深蓝文字 */
+            --accent-color: #3498db; /* 链接颜色 */
+            --bg-color: #fcfcfc;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 头部：自我介绍 + 照片 */
+        .header-section {
+            display: flex;
+            align-items: flex-start; /* 顶部对齐 */
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 40px;
+        }
+
+        .bio-text {
+            flex: 2;
+        }
+
+        .bio-photo {
+            flex: 1;
+            text-align: right;
+        }
+
+        .bio-photo img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%; /* 圆形头像，如果想要方形删掉这行 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #000; }
+        h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+        h3 { font-size: 1.2rem; margin-bottom: 5px; color: #333; }
+        
+        .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 20px; display: block;}
+
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* 教育经历样式 */
+        .edu-item { margin-bottom: 15px; }
+        .edu-year { font-weight: bold; color: #555; min-width: 100px; display: inline-block; }
+
+        /* 兴趣标签 */
+        .tag {
+            display: inline-block;
+            background: #eef2f5;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+
+        /* 项目列表样式 */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-card {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            border: 1px solid #eee;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 左边文字，右边GIF，或者左GIF右文字，这里设定为 左图右文 */
+        .project-gif {
+            flex: 0 0 300px; /* 固定宽度 */
+            background: #000;
+        }
+
+        .project-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保证填满 */
+            display: block;
+        }
+
+        .project-info {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 768px) {
+            .header-section { flex-direction: column-reverse; align-items: center; text-align: center; }
+            .bio-photo img { width: 150px; height: 150px; margin-bottom: 20px; }
+            .project-card { flex-direction: column; }
+            .project-gif { flex: auto; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header-section">
+        <div class="bio-text">
+            <h1>Jiabao Ai (艾家宝)</h1>
+            <span class="subtitle">MSc in Speech and Language Processing</span>
+            
+            <p>
+                Hi, I am currently a researcher specializing in <b>Speech Synthesis</b>. 
+                My passion lies in making machines speak with human-like expressiveness using 
+                <b>Probabilistic</b> and <b>Generative Models</b>.
+            </p>
+
+            <div style="margin-top: 20px; margin-bottom: 20px;">
+                <span class="tag">🎙️ Speech Synthesis</span>
+                <span class="tag">🎲 Probabilistic Models</span>
+                <span class="tag">🧠 Generative AI</span>
+            </div>
+
+            <div class="education">
+                <div class="edu-item">
+                    <span class="edu-year">2024 - 2025</span>
+                    <b>University of Sheffield</b>, UK <br>
+                    MSc in Computer Science with Speech and Language Processing<br>
+                    <span style="color: #d35400; font-weight: bold;">Distinction</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-year">2020 - 2024</span>
+                    <b>Guangxi University</b>, China <br>
+                    B.Eng. in Computer Science
+                </div>
+            </div>
+            
+            <br>
+            <p>
+                <a href="mailto:你的邮箱@gmail.com">Email</a> / 
+                <a href="https://github.com/JiabaoAi67" target="_blank">GitHub</a> / 
+                <a href="#">LinkedIn</a>
+            </p>
+        </div>
+
+        <div class="bio-photo">
+            <img src="assets/profile.jpg" alt="Jiabao Ai">
+        </div>
+    </div>
+
+    <h2>Projects</h2>
+    
+    <div class="project-list">
+        
+        <a href="https://你的demo网站链接1.com" target="_blank" class="project-card">
+            <div class="project-gif">
+                <img src="assets/project1.gif" alt="Project Demo">
+            </div>
+            <div class="project-info">
+                <span class="project-title">Expressive TTS with Diffusion Models ↗</span>
+                <p>
+                    A probabilistic approach to generate emotional speech. This model uses a diffusion process to iteratively refine the mel-spectrogram.
+                </p>
+                <span class="tag">PyTorch</span> <span class="tag">Diffusion</span>
+            </div>
+        </a>
+
+        <a href="https://你的demo网站链接2.com" target="_blank" class="project-card">
+            <div class="project-gif">
+                <img src="assets/project2.gif" alt="Project Demo">
+            </div>
+            <div class="project-info">
+                <span class="project-title">Real-time Voice Conversion ↗</span>
+                <p>
+                    Converting source speaker identity to target speaker while preserving linguistic content using VAEs.
+                </p>
+                <span class="tag">VAE</span> <span class="tag">GAN</span>
+            </div>
+        </a>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 50px; color: #aaa; font-size: 0.8rem;">
+        &copy; 2025 Jiabao Ai. Hosted on GitHub Pages.
+    </div>
+
+</div>
+
+</body>
+</html>
