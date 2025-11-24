@@ -9,8 +9,7 @@
         :root {
             --primary-color: #2c3e50;
             --accent-color: #3498db;
-            --bg-color: #fcfcfc;
-            --card-bg: #ffffff;
+            --bg-color: #fcfcfc; /* 整体背景灰白色 */
         }
 
         body {
@@ -28,7 +27,7 @@
             padding: 40px 20px;
         }
 
-        /* --- 头部样式保持不变 --- */
+        /* --- 头部样式 --- */
         .header-section {
             display: flex;
             align-items: flex-start;
@@ -47,7 +46,7 @@
         }
 
         h1 { font-size: 2.5rem; margin-bottom: 10px; color: #000; }
-        h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+        h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
         
         .tag {
             display: inline-block; background: #eef2f5; padding: 4px 10px;
@@ -60,49 +59,54 @@
         a { color: var(--accent-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        /* --- 项目列表样式 (已修改) --- */
+        /* --- 项目列表样式 (已修改：去卡片化) --- */
         .project-list {
             display: flex;
             flex-direction: column;
-            gap: 40px; /* 增加项目之间的间距 */
+            gap: 50px; /* 增加项目之间的间距，因为没有卡片边界了 */
         }
 
         .project-card {
             display: flex;
-            flex-direction: column; /* 【核心修改】改为垂直排列：上视频，下文字 */
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            border: 1px solid #eee;
+            flex-direction: column;
+            /* 【核心修改】去掉了背景色、边框、阴影和圆角 */
+            background: transparent; 
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            
             text-decoration: none; /* 去掉链接下划线 */
             color: inherit;
         }
-
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        
+        /* 去掉了鼠标悬停的上浮效果 */
 
         /* 视频容器 */
         .project-media {
             width: 100%;
-            background: #000;
+            /* 如果希望视频有圆角，可以把下面注释取消 */
+            /* border-radius: 8px; overflow: hidden; */
+            background: transparent; /* 确保视频背景透明 */
             display: flex;
-            flex-direction: column; /* 让两个视频上下堆叠 */
+            flex-direction: column;
         }
 
-        /* 视频样式 */
         .project-media video {
             width: 100%;
             display: block;
             margin: 0;
-            /* 如果想让两个视频之间有点缝隙，可以加 margin-bottom: 2px; */
+            /* 可选：两个视频之间的微小间距 */
+            margin-bottom: 4px; 
+        }
+        
+        /* 去掉最后一个视频的底部间距 */
+        .project-media video:last-child {
+            margin-bottom: 0;
         }
 
         .project-info {
-            padding: 25px; /* 稍微增加一点内边距 */
+            /* 调整内边距，因为没有卡片边界了，不需要那么宽 */
+            padding: 20px 5px 0 5px; 
         }
 
         .project-title {
@@ -110,8 +114,14 @@
             font-weight: bold;
             margin-bottom: 10px;
             display: block;
-            color: #2c3e50;
+            color: #000; /* 标题颜色加深一点 */
         }
+        
+        /* 鼠标悬停在整个项目区域时，标题变色提示可点击 */
+        .project-card:hover .project-title {
+             color: var(--accent-color);
+        }
+
 
         /* 手机适配 */
         @media (max-width: 768px) {
@@ -172,12 +182,10 @@
             <div class="project-media">
                 <video autoplay loop muted playsinline>
                     <source src="assets/teaser_jump.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
                 </video>
 
                 <video autoplay loop muted playsinline>
-                    <source src="assets/jump.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    <source src="assets/teaser.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -190,9 +198,9 @@
             </div>
         </a>
 
-    </div>
+        </div>
 
-    <div style="text-align: center; margin-top: 50px; color: #aaa; font-size: 0.8rem;">
+    <div style="text-align: center; margin-top: 80px; color: #aaa; font-size: 0.8rem;">
         &copy; 2025 Jiabao Ai. Hosted on GitHub Pages.
     </div>
 
