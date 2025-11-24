@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jiabao Ai | Speech & Language Processing</title>
     <style>
-        /* CSS 样式部分 - 这里控制网页长什么样 */
+        /* CSS 样式部分 */
         :root {
-            --primary-color: #2c3e50; /* 深蓝文字 */
-            --accent-color: #3498db; /* 链接颜色 */
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
             --bg-color: #fcfcfc;
             --card-bg: #ffffff;
         }
@@ -22,17 +22,16 @@
             padding: 0;
         }
 
-        /* 布局容器 */
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* 头部：自我介绍 + 照片 */
+        /* --- 头部样式保持不变 --- */
         .header-section {
             display: flex;
-            align-items: flex-start; /* 顶部对齐 */
+            align-items: flex-start;
             justify-content: space-between;
             gap: 40px;
             margin-bottom: 60px;
@@ -40,63 +39,45 @@
             padding-bottom: 40px;
         }
 
-        .bio-text {
-            flex: 2;
-        }
-
-        .bio-photo {
-            flex: 1;
-            text-align: right;
-        }
-
+        .bio-text { flex: 2; }
+        .bio-photo { flex: 1; text-align: right; }
         .bio-photo img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%; /* 圆形头像，如果想要方形删掉这行 */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 200px; height: 200px; object-fit: cover;
+            border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         h1 { font-size: 2.5rem; margin-bottom: 10px; color: #000; }
         h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
-        h3 { font-size: 1.2rem; margin-bottom: 5px; color: #333; }
         
-        .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 20px; display: block;}
-
+        .tag {
+            display: inline-block; background: #eef2f5; padding: 4px 10px;
+            border-radius: 4px; font-size: 0.9rem; margin-right: 5px; margin-bottom: 5px; color: #4a5568;
+        }
+        
+        .edu-item { margin-bottom: 15px; }
+        .edu-year { font-weight: bold; color: #555; min-width: 100px; display: inline-block; }
+        
         a { color: var(--accent-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        /* 教育经历样式 */
-        .edu-item { margin-bottom: 15px; }
-        .edu-year { font-weight: bold; color: #555; min-width: 100px; display: inline-block; }
-
-        /* 兴趣标签 */
-        .tag {
-            display: inline-block;
-            background: #eef2f5;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            color: #4a5568;
-        }
-
-        /* 项目列表样式 */
+        /* --- 项目列表样式 (已修改) --- */
         .project-list {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 40px; /* 增加项目之间的间距 */
         }
 
         .project-card {
             display: flex;
+            flex-direction: column; /* 【核心修改】改为垂直排列：上视频，下文字 */
             background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: transform 0.2s;
             border: 1px solid #eee;
+            text-decoration: none; /* 去掉链接下划线 */
+            color: inherit;
         }
 
         .project-card:hover {
@@ -104,37 +85,38 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* 左边文字，右边GIF，或者左GIF右文字，这里设定为 左图右文 */
-        .project-gif {
-            flex: 0 0 300px; /* 固定宽度 */
+        /* 视频容器 */
+        .project-media {
+            width: 100%;
             background: #000;
+            display: flex;
+            flex-direction: column; /* 让两个视频上下堆叠 */
         }
 
-        .project-gif img {
+        /* 视频样式 */
+        .project-media video {
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* 保证填满 */
             display: block;
+            margin: 0;
+            /* 如果想让两个视频之间有点缝隙，可以加 margin-bottom: 2px; */
         }
 
         .project-info {
-            padding: 20px;
-            flex: 1;
+            padding: 25px; /* 稍微增加一点内边距 */
         }
 
         .project-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 10px;
             display: block;
+            color: #2c3e50;
         }
 
         /* 手机适配 */
         @media (max-width: 768px) {
             .header-section { flex-direction: column-reverse; align-items: center; text-align: center; }
             .bio-photo img { width: 150px; height: 150px; margin-bottom: 20px; }
-            .project-card { flex-direction: column; }
-            .project-gif { flex: auto; height: 200px; }
         }
     </style>
 </head>
@@ -172,7 +154,7 @@
             <br>
             <p>
                 <a href="mailto:jbai4514@gmail.com">Email</a> / 
-                <a href="https://github.com/JiabaoAi67" target="_blank">GitHub</a> / 
+                <a href="https://github.com/JiabaoAi67" target="_blank">GitHub</a>
             </p>
         </div>
 
@@ -186,18 +168,28 @@
     <div class="project-list">
         
         <a href="https://你的demo网站链接1.com" target="_blank" class="project-card">
-            <div class="project-gif">
-                <img src="assets/project1.gif" alt="Project Demo">
+            
+            <div class="project-media">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/teaser_jump.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <video autoplay loop muted playsinline>
+                    <source src="assets/jump.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
+
             <div class="project-info">
-                <span class="project-title">Coupling Temporal Structure and Spectral Content via Trans-dimensional
-Jump Diffusion for TTS ↗</span>
+                <span class="project-title">Coupling Temporal Structure and Spectral Content via Trans-dimensional Jump Diffusion for TTS ↗</span>
                 <p>
-                    A probabilistic approach to model duration and pectral Content in one process for TTS
+                    A probabilistic approach to model duration and spectral content in one process for TTS.
                 </p>
                 <span class="tag">Jump diffusion</span> <span class="tag">Probabilistic modeling</span>
             </div>
         </a>
+
     </div>
 
     <div style="text-align: center; margin-top: 50px; color: #aaa; font-size: 0.8rem;">
