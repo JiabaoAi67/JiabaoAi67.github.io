@@ -41,23 +41,27 @@
 
         .bio-text { flex: 2; }
         
-        /* --- 修改开始：头像位置调整 --- */
-        .bio-photo { 
-            flex: 1; 
-            text-align: right; 
-            /* 这里添加了右边距，把头像往左挤 */
-            padding-right: 60px; 
-        }
-
+        .bio-photo { flex: 1; text-align: right; }
+        
+        /* --- 修改重点在这里 --- */
         .bio-photo img {
             width: 200px; 
             height: 200px; 
             object-fit: cover; 
+            
+            /* object-position: X% Y%;
+               X 控制左右，Y 控制上下。
+               默认是 50% 50% (居中)。
+               
+               想让【人头向左移】：把第一个数字改大 (例如 65% 或 80%)
+               想让【人头向右移】：把第一个数字改小 (例如 30% 或 20%)
+            */
+            object-position: 65% center; 
+
             border-radius: 50%; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border: 4px solid #fff; 
         }
-        /* --- 修改结束 --- */
 
         h1 { font-size: 2.5rem; margin-bottom: 10px; color: #000; }
         h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
@@ -133,9 +137,6 @@
         @media (max-width: 768px) {
             .header-section { flex-direction: column-reverse; align-items: center; text-align: center; }
             .bio-photo img { width: 150px; height: 150px; margin-bottom: 20px; }
-            
-            /* --- 修改：手机上取消右边距，保持居中 --- */
-            .bio-photo { padding-right: 0; }
         }
     </style>
 </head>
