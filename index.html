@@ -9,7 +9,8 @@
         :root {
             --primary-color: #2c3e50;
             --accent-color: #3498db;
-            --bg-color: #fcfcfc; /* 整体背景灰白色 */
+            --bg-color: #fcfcfc;
+            --card-bg: #ffffff;
         }
 
         body {
@@ -46,7 +47,7 @@
         }
 
         h1 { font-size: 2.5rem; margin-bottom: 10px; color: #000; }
-        h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+        h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
         
         .tag {
             display: inline-block; background: #eef2f5; padding: 4px 10px;
@@ -59,54 +60,48 @@
         a { color: var(--accent-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        /* --- 项目列表样式 (已修改：去卡片化) --- */
+        /* --- 项目列表样式 --- */
         .project-list {
             display: flex;
             flex-direction: column;
-            gap: 50px; /* 增加项目之间的间距，因为没有卡片边界了 */
+            gap: 40px;
         }
 
         .project-card {
             display: flex;
             flex-direction: column;
-            /* 【核心修改】去掉了背景色、边框、阴影和圆角 */
-            background: transparent; 
-            border: none;
-            box-shadow: none;
-            border-radius: 0;
-            
-            text-decoration: none; /* 去掉链接下划线 */
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            border: 1px solid #eee;
+            text-decoration: none;
             color: inherit;
         }
-        
-        /* 去掉了鼠标悬停的上浮效果 */
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
         /* 视频容器 */
         .project-media {
             width: 100%;
-            /* 如果希望视频有圆角，可以把下面注释取消 */
-            /* border-radius: 8px; overflow: hidden; */
-            background: transparent; /* 确保视频背景透明 */
+            background: #000;
             display: flex;
             flex-direction: column;
         }
 
+        /* 视频样式 */
         .project-media video {
             width: 100%;
             display: block;
             margin: 0;
-            /* 可选：两个视频之间的微小间距 */
-            margin-bottom: 4px; 
-        }
-        
-        /* 去掉最后一个视频的底部间距 */
-        .project-media video:last-child {
-            margin-bottom: 0;
         }
 
         .project-info {
-            /* 调整内边距，因为没有卡片边界了，不需要那么宽 */
-            padding: 20px 5px 0 5px; 
+            padding: 25px;
         }
 
         .project-title {
@@ -114,14 +109,8 @@
             font-weight: bold;
             margin-bottom: 10px;
             display: block;
-            color: #000; /* 标题颜色加深一点 */
+            color: #2c3e50;
         }
-        
-        /* 鼠标悬停在整个项目区域时，标题变色提示可点击 */
-        .project-card:hover .project-title {
-             color: var(--accent-color);
-        }
-
 
         /* 手机适配 */
         @media (max-width: 768px) {
@@ -169,7 +158,8 @@
         </div>
 
         <div class="bio-photo">
-            <img src="assets/profile.jpg" alt="Jiabao Ai">
+            <!-- Placeholder image for demo -->
+            <img src="https://via.placeholder.com/200" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0iIzU1NSI+UHJvZmlsZTwvdGV4dD48L3N2Zz4='" alt="Jiabao Ai">
         </div>
     </div>
 
@@ -177,15 +167,16 @@
     
     <div class="project-list">
         
-        <a href="https://你的demo网站链接1.com" target="_blank" class="project-card">
+        <a href="#" class="project-card">
             
             <div class="project-media">
-                <video autoplay loop muted playsinline>
+                <!-- Removed 'autoplay' from HTML to let JS handle synchronization -->
+                <video loop muted playsinline>
                     <source src="assets/teaser_jump.mp4" type="video/mp4">
                 </video>
 
-                <video autoplay loop muted playsinline>
-                    <source src="assets/teaser.mp4" type="video/mp4">
+                <video loop muted playsinline>
+                    <source src="assets/jump.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -198,13 +189,52 @@
             </div>
         </a>
 
-        </div>
+    </div>
 
-    <div style="text-align: center; margin-top: 80px; color: #aaa; font-size: 0.8rem;">
+    <div style="text-align: center; margin-top: 50px; color: #aaa; font-size: 0.8rem;">
         &copy; 2025 Jiabao Ai. Hosted on GitHub Pages.
     </div>
 
 </div>
+
+<!-- JavaScript to Synchronize Videos -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all project media containers
+        const mediaContainers = document.querySelectorAll('.project-media');
+
+        mediaContainers.forEach(container => {
+            const videos = container.querySelectorAll('video');
+            
+            if (videos.length === 0) return;
+
+            // 1. Initially pause all videos to prevent out-of-sync loading
+            videos.forEach(v => v.pause());
+
+            // 2. Create a promise for each video to ensure it has enough data to play
+            const promises = Array.from(videos).map(video => {
+                return new Promise(resolve => {
+                    if (video.readyState >= 3) {
+                        // readyState 3 means HAVE_FUTURE_DATA (can play)
+                        resolve();
+                    } else {
+                        // Wait for the 'canplay' event
+                        video.addEventListener('canplay', resolve, {once: true});
+                    }
+                });
+            });
+
+            // 3. When all videos in this card are ready, play them together
+            Promise.all(promises).then(() => {
+                videos.forEach(v => {
+                    v.currentTime = 0; // Reset to start
+                    v.muted = true;    // Ensure muted (required for autoplay)
+                    v.play().catch(e => console.error("Autoplay failed:", e));
+                });
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
