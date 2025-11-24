@@ -43,19 +43,13 @@
         
         .bio-photo { flex: 1; text-align: right; }
         
-        /* --- 修改重点在这里 --- */
+        /* --- 头像样式 --- */
         .bio-photo img {
             width: 200px; 
             height: 200px; 
             object-fit: cover; 
             
-            /* object-position: X% Y%;
-               X 控制左右，Y 控制上下。
-               默认是 50% 50% (居中)。
-               
-               想让【人头向左移】：把第一个数字改大 (例如 65% 或 80%)
-               想让【人头向右移】：把第一个数字改小 (例如 30% 或 20%)
-            */
+            /* 之前调整的头像左移设置保留 */
             object-position: 65% center; 
 
             border-radius: 50%; 
@@ -70,9 +64,6 @@
             display: inline-block; background: #eef2f5; padding: 4px 10px;
             border-radius: 4px; font-size: 0.9rem; margin-right: 5px; margin-bottom: 5px; color: #4a5568;
         }
-        
-        .edu-item { margin-bottom: 15px; }
-        .edu-year { font-weight: bold; color: #555; min-width: 100px; display: inline-block; }
         
         /* 链接样式 */
         .contact-links a { 
@@ -147,32 +138,19 @@
     <div class="header-section">
         <div class="bio-text">
             <h1>Jiabao Ai</h1>            
+            
             <p>
+                I am a student at the <b>University of Sheffield</b>, studying <b>Computer Science with Speech and Language Processing</b>.
+            </p>
+            <p style="margin-top: -10px;">
                 My research interests lie in <b>Probabilistic Generative Modelling</b> for <b>Speech Synthesis</b>.
             </p>
-
             <div style="margin-top: 20px; margin-bottom: 20px;">
                 <span class="tag">🎙️ Speech Synthesis</span>
                 <span class="tag">🎲 Probabilistic Models</span>
                 <span class="tag">🧠 Generative AI</span>
             </div>
 
-            <div class="education">
-                <div class="edu-item">
-                    <span class="edu-year">2024 - 2025</span>
-                    <b>University of Sheffield</b>, UK <br>
-                    MSc in Computer Science with Speech and Language Processing<br>
-                    <div style="font-size: 90%; font-style: italic;">
-                        Distinction<br>
-                        International Merit Scholarship
-                    </div>
-                <div class="edu-item">
-                    <span class="edu-year">2020 - 2024</span>
-                    <b>Guangxi University</b>, China <br>
-                    B.Eng. in Computer Science
-                </div>
-            </div>
-            
             <br>
             
             <div class="contact-links">
