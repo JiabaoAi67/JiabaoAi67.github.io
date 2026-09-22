@@ -15,13 +15,13 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 ## Page contents
 
 - Abstract and a six-row architecture overview.
-- Separate 32-step and four-step WER panels for the three equal-size partial loops, with both datasets and directly labeled means. Mobile uses a stacked figure.
+- Directly selectable WER, SIM-o, and UTMOS figures. Every metric shows all six models on both datasets at 32 and 4 steps, with labeled means. Mobile uses a stacked figure. Baseline and full-loop bars are gray; the three equal-size partial loops retain distinct colors.
 - Six reproducibly selected Seed-TTS examples. Each displays all six models at both 32 and 4 steps: adjacent columns on desktop, labeled players stacked within each model on mobile.
-- A complete six-model table of WER at both budgets, parameters, inference allocation, recorded training allocation, and sampling RTF. Speaker similarity, UTMOS, and measurement details are available below it.
+- A complete six-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters, inference allocation, recorded training allocation, and sampling RTF remain visible. Training measurement details are available below it.
 
 ## Files and protocols
 
-`data/results.json` contains aggregate quality, fixed-seed curves, and resources. Both the page's WER figure and tables use the same multi-seed quality means: four inference seeds for Seed-TTS and three for LibriSpeech-PC. Single-seed curves remain in the data for reference but are not mixed into the displayed comparison.
+`data/results.json` contains aggregate quality, fixed-seed curves, and resources. The page's three quality figures and table use the same multi-seed quality means: four inference seeds for Seed-TTS and three for LibriSpeech-PC. Single-seed curves remain in the data for reference but are not mixed into the displayed comparison.
 
 `data/samples.json` contains texts, reference voices, output paths, selection details, and per-clip objective metrics. Audio uses seed 0 for every model, 500k-update EMA checkpoints, Euler sampling, CFG 2, and sway −1. Six examples are selected by fixed hash within target-duration terciles, two per group with distinct prompts, before reading model quality metrics. The fixed sample order includes failures and counterexamples. These examples are not a human listening test.
 

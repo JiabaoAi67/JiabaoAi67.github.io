@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="550" height="2130" viewBox="0 0 550 2130" role="img" aria-labelledby="title desc">
+<title id="title">SIM-o ↑: all six models at 32 and four sampling steps</title>
+<desc id="desc">Speaker similarity, SIM-o, for all six models: Baseline, Loop 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, at 32 and four sampling steps on Seed-TTS and LibriSpeech-PC. Higher is better. All panels use a zero-to-0.65 axis. Among Prefix, Middle, and Suffix, Suffix has the highest 32-step mean on both datasets. All six execute 18 block calls per evaluation; Prefix, Middle, and Suffix have 108.4 million parameters each.</desc>
+<style>text {font-family: Arial, Helvetica, sans-serif; font-variant-numeric: tabular-nums;}</style>
+<rect width="550" height="2130" fill="white"/>
+<g transform="translate(20,18)"><text x="8" y="32" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">Seed-TTS test-en</text>
+<text x="8" y="82" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">32 steps</text>
+<text x="500" y="82" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">SIM-o ↑ · 0–0.65</text>
+<line x1="145.000" x2="145.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="237.308" x2="237.308" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="237.30769230769232" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.2</text>
+<line x1="329.615" x2="329.615" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="329.61538461538464" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.4</text>
+<line x1="421.923" x2="421.923" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="421.9230769230769" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.6</text>
+<g data-dataset="seedtts" data-steps="32" data-model="baseline" data-metric="sim">
+<text x="8" y="146" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<rect x="145" y="123" width="261.529" height="30" fill="#59636f"/>
+<text x="414.52941524219693" y="146" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.567</text>
+</g>
+<g data-dataset="seedtts" data-steps="32" data-model="full2" data-metric="sim">
+<text x="8" y="190" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
+<rect x="145" y="167" width="259.218" height="30" fill="#8d97a1"/>
+<text x="412.2184177270092" y="190" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.562</text>
+</g>
+<g data-dataset="seedtts" data-steps="32" data-model="full3" data-metric="sim">
+<text x="8" y="234" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="211" width="256.857" height="30" fill="#b6bdc6"/>
+<text x="409.8566015262022" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.557</text>
+</g>
+<g data-dataset="seedtts" data-steps="32" data-model="prefix" data-metric="sim">
+<text x="8" y="292" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="269" width="259.896" height="30" fill="#15877f"/>
+<text x="412.8961484747543" y="292" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.563</text>
+</g>
+<g data-dataset="seedtts" data-steps="32" data-model="middle" data-metric="sim">
+<text x="8" y="336" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="313" width="261.366" height="30" fill="#b98223"/>
+<text x="414.3656703562885" y="336" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.566</text>
+</g>
+<g data-dataset="seedtts" data-steps="32" data-model="suffix" data-metric="sim">
+<text x="8" y="380" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="357" width="262.859" height="30" fill="#d56655"/>
+<text x="415.8585824869864" y="380" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.570</text>
+</g>
+<line x1="8" x2="500" y1="255" y2="255" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="486" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
+<text x="500" y="486" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">SIM-o ↑ · 0–0.65</text>
+<line x1="145.000" x2="145.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="237.308" x2="237.308" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="237.30769230769232" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.2</text>
+<line x1="329.615" x2="329.615" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="329.61538461538464" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.4</text>
+<line x1="421.923" x2="421.923" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="421.9230769230769" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.6</text>
+<g data-dataset="seedtts" data-steps="4" data-model="baseline" data-metric="sim">
+<text x="8" y="550" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<rect x="145" y="527" width="230.057" height="30" fill="#59636f"/>
+<text x="383.0570863186475" y="550" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.498</text>
+</g>
+<g data-dataset="seedtts" data-steps="4" data-model="full2" data-metric="sim">
+<text x="8" y="594" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
+<rect x="145" y="571" width="229.132" height="30" fill="#8d97a1"/>
+<text x="382.13170480422207" y="594" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.496</text>
+</g>
+<g data-dataset="seedtts" data-steps="4" data-model="full3" data-metric="sim">
+<text x="8" y="638" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="615" width="228.282" height="30" fill="#b6bdc6"/>
+<text x="381.281930609376" y="638" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.495</text>
+</g>
+<g data-dataset="seedtts" data-steps="4" data-model="prefix" data-metric="sim">
+<text x="8" y="696" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="673" width="228.579" height="30" fill="#15877f"/>
+<text x="381.5793984076535" y="696" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.495</text>
+</g>
+<g data-dataset="seedtts" data-steps="4" data-model="middle" data-metric="sim">
+<text x="8" y="740" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="717" width="229.075" height="30" fill="#b98223"/>
+<text x="382.0746126899694" y="740" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.496</text>
+</g>
+<g data-dataset="seedtts" data-steps="4" data-model="suffix" data-metric="sim">
+<text x="8" y="784" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="761" width="230.253" height="30" fill="#d56655"/>
+<text x="383.25298679044164" y="784" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.499</text>
+</g>
+<line x1="8" x2="500" y1="659" y2="659" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="899" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">At 32 steps, among Prefix / Middle / Suffix</text>
+<text x="8" y="935" font-size="25" font-weight="650" fill="#24313a" text-anchor="start">Suffix has the highest SIM-o</text>
+<text x="8" y="972" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 4 inference seeds</text></g>
+<g transform="translate(20,1038)"><text x="8" y="32" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">LibriSpeech-PC</text>
+<text x="8" y="82" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">32 steps</text>
+<text x="500" y="82" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">SIM-o ↑ · 0–0.65</text>
+<line x1="145.000" x2="145.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="237.308" x2="237.308" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="237.30769230769232" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.2</text>
+<line x1="329.615" x2="329.615" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="329.61538461538464" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.4</text>
+<line x1="421.923" x2="421.923" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
+<text x="421.9230769230769" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.6</text>
+<g data-dataset="lspc" data-steps="32" data-model="baseline" data-metric="sim">
+<text x="8" y="146" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<rect x="145" y="123" width="273.422" height="30" fill="#59636f"/>
+<text x="426.42217313202644" y="146" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.592</text>
+</g>
+<g data-dataset="lspc" data-steps="32" data-model="full2" data-metric="sim">
+<text x="8" y="190" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
+<rect x="145" y="167" width="276.879" height="30" fill="#8d97a1"/>
+<text x="429.87880235941736" y="190" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.600</text>
+</g>
+<g data-dataset="lspc" data-steps="32" data-model="full3" data-metric="sim">
+<text x="8" y="234" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="211" width="273.487" height="30" fill="#b6bdc6"/>
+<text x="426.48749507296145" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.593</text>
+</g>
+<g data-dataset="lspc" data-steps="32" data-model="prefix" data-metric="sim">
+<text x="8" y="292" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="269" width="262.831" height="30" fill="#15877f"/>
+<text x="415.8308638933372" y="292" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.569</text>
+</g>
+<g data-dataset="lspc" data-steps="32" data-model="middle" data-metric="sim">
+<text x="8" y="336" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="313" width="268.846" height="30" fill="#b98223"/>
+<text x="421.8462761439331" y="336" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.583</text>
+</g>
+<g data-dataset="lspc" data-steps="32" data-model="suffix" data-metric="sim">
+<text x="8" y="380" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="357" width="273.797" height="30" fill="#d56655"/>
+<text x="426.79693654069933" y="380" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.593</text>
+</g>
+<line x1="8" x2="500" y1="255" y2="255" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="486" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
+<text x="500" y="486" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">SIM-o ↑ · 0–0.65</text>
+<line x1="145.000" x2="145.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="237.308" x2="237.308" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="237.30769230769232" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.2</text>
+<line x1="329.615" x2="329.615" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="329.61538461538464" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.4</text>
+<line x1="421.923" x2="421.923" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
+<text x="421.9230769230769" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0.6</text>
+<g data-dataset="lspc" data-steps="4" data-model="baseline" data-metric="sim">
+<text x="8" y="550" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<rect x="145" y="527" width="200.042" height="30" fill="#59636f"/>
+<text x="353.04160345451464" y="550" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.433</text>
+</g>
+<g data-dataset="lspc" data-steps="4" data-model="full2" data-metric="sim">
+<text x="8" y="594" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
+<rect x="145" y="571" width="205.034" height="30" fill="#8d97a1"/>
+<text x="358.0337615763561" y="594" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.444</text>
+</g>
+<g data-dataset="lspc" data-steps="4" data-model="full3" data-metric="sim">
+<text x="8" y="638" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="615" width="210.599" height="30" fill="#b6bdc6"/>
+<text x="363.5985435174538" y="638" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.456</text>
+</g>
+<g data-dataset="lspc" data-steps="4" data-model="prefix" data-metric="sim">
+<text x="8" y="696" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="673" width="191.382" height="30" fill="#15877f"/>
+<text x="344.3821720996515" y="696" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.415</text>
+</g>
+<g data-dataset="lspc" data-steps="4" data-model="middle" data-metric="sim">
+<text x="8" y="740" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="717" width="205.535" height="30" fill="#b98223"/>
+<text x="358.53541753491186" y="740" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.445</text>
+</g>
+<g data-dataset="lspc" data-steps="4" data-model="suffix" data-metric="sim">
+<text x="8" y="784" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="761" width="195.289" height="30" fill="#d56655"/>
+<text x="348.2885814791956" y="784" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">0.423</text>
+</g>
+<line x1="8" x2="500" y1="659" y2="659" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="899" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">At 32 steps, among Prefix / Middle / Suffix</text>
+<text x="8" y="935" font-size="25" font-weight="650" fill="#24313a" text-anchor="start">Suffix has the highest SIM-o</text>
+<text x="8" y="972" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 3 inference seeds</text></g>
+<line x1="28" x2="520" y1="1020" y2="1020" stroke="#e3e7e9"/>
+<text x="28" y="2073" font-size="18" font-weight="400" fill="#5e6871" text-anchor="start">All six: 18 block calls per evaluation</text>
+<text x="28" y="2103" font-size="18" font-weight="400" fill="#5e6871" text-anchor="start">Prefix / Middle / Suffix: 108.4M parameters</text>
+</svg>

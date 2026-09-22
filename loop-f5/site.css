@@ -11,6 +11,12 @@ button,a,select,summary{-webkit-tap-highlight-color:transparent}
 .container{width:min(100% - 48px,1000px);margin-inline:auto}
 .publication-header{text-align:center;padding-top:66px;padding-bottom:12px}
 h1{font-size:clamp(32px,3.7vw,48px);font-weight:650;line-height:1.17;letter-spacing:-1.3px;margin:0 auto 23px;max-width:960px}
+.publication-authors{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 23px;font-size:19px;line-height:1.5;margin:0 auto 16px}
+.publication-authors span{white-space:nowrap}
+.publication-authors sup{font-size:11px;margin-left:3px}
+.publication-affiliations{font-size:14px;line-height:1.6;color:#555;margin:0 auto 20px}
+.publication-affiliations p{margin:3px 0}
+.publication-affiliations sup{font-size:10px}
 .publication-subtitle{color:#626262;font-size:18px;line-height:1.55;max-width:730px;margin:0 auto 22px}
 .publication-links{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
 .publication-links a{background:#363636;color:#fff;font-size:14px;border-radius:22px;padding:7px 18px;line-height:1.5}
@@ -41,6 +47,13 @@ figcaption{margin-top:15px}
 .partial-start{border-top:1px solid var(--line)}
 .placement-figure{max-width:920px;margin:auto}
 .placement-figure img{width:100%;height:auto;display:block}
+.metric-selector{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(100%,580px);margin:0 auto 22px}
+.metric-selector button{border:0;border-bottom:2px solid #dedede;background:white;color:#666;padding:9px 4px 11px;cursor:pointer;font-size:14px;line-height:1.4}
+.metric-selector button strong{display:block;font-size:16px;font-weight:600}
+.metric-selector button span{display:block;font-size:11px;margin-top:5px}
+.metric-selector button[aria-pressed="true"]{border-color:#333;color:#222}
+.metric-selector button:hover{background:#f7f7f7}
+.metric-finding{max-width:820px;margin:0 auto 20px;font-size:14px;line-height:1.75;color:#555;text-align:center}
 .sample-picker{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
 .sample-picker label{font-size:14px;font-weight:600}
 .sample-picker select{background:#fff;border:1px solid #ccc;border-radius:4px;padding:7px 30px 7px 11px;font-size:14px;max-width:100%}
@@ -104,6 +117,12 @@ summary{cursor:pointer}
   .publication-header{padding-top:42px;padding-bottom:3px}
   h1{font-size:32px;letter-spacing:-.7px;line-height:1.2}
   .desktop-break{display:none}
+  .publication-authors{font-size:17px;gap:7px 16px}
+  .publication-affiliations{font-size:12px}
+  .metric-selector{gap:7px}
+  .metric-selector button strong{font-size:14px}
+  .metric-selector button span{font-size:10px}
+  .metric-finding{text-align:left;font-size:13px}
   .publication-subtitle{font-size:15px;max-width:390px}
   .publication-links{gap:7px}
   .publication-links a{font-size:12px;padding:7px 14px}

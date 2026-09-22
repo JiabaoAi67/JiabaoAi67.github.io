@@ -11,7 +11,23 @@
     {id:'middle',label:'Middle',formula:'3 + 6 × 2 + 3',params:108.360548,unique:12,color:'#b98223',sequence:[1,2,3,4,5,6,7,8,9,4,5,6,7,8,9,10,11,12]},
     {id:'suffix',label:'Suffix',formula:'6 + 6 × 2',params:108.360548,unique:12,color:'#d56655',sequence:[1,2,3,4,5,6,7,8,9,10,11,12,7,8,9,10,11,12]},
   ];
+  const metrics = {
+    wer: {label:'WER',name:'Word error rate',direction:'↓',digits:2,asset:'placement-budget',lower:true,
+      definition:'Mean utterance WER (%) measures transcription errors; lower is better.',
+      axis:'Axes start at zero: 0–3% at 32 steps, 0–20% at four steps.',
+      finding:'At four steps, Suffix has 3.44 / 5.97 percentage points higher WER than Prefix on Seed-TTS / LibriSpeech-PC. Middle has the lowest 32-step WER on both datasets.'},
+    sim: {label:'SIM-o',name:'Speaker similarity',direction:'↑',digits:3,asset:'placement-budget-sim',lower:false,
+      definition:'SIM-o measures speaker similarity; higher is better.',
+      axis:'All panels use the same zero-based 0–0.65 axis.',
+      finding:'At 32 steps, Suffix has the highest speaker similarity among the partial loops on both datasets. Loop 9 × 2 has the highest overall 32-step SIM-o on LibriSpeech-PC.'},
+    utmos: {label:'UTMOS',name:'Predicted naturalness',direction:'↑',digits:2,asset:'placement-budget-utmos',lower:false,
+      definition:'UTMOS predicts naturalness; higher is better. It is an automatic score, not human MOS.',
+      axis:'All panels use the same zero-based 0–5 axis.',
+      finding:'Prefix has the highest four-step UTMOS on both datasets. At 32 steps, Suffix leads on Seed-TTS and Prefix on LibriSpeech-PC. These are automatic predictions, not human listening scores.'}
+  };
   let samples = null;
+  let qualityData = null;
+  let qualityMetric = 'wer';
   function pauseAll() { $$('audio').forEach((audio) => audio.pause()); }
   document.addEventListener('play', (event) => {
     if (event.target.tagName === 'AUDIO') $$('audio').forEach((audio) => { if (audio !== event.target) audio.pause(); });
@@ -43,19 +59,36 @@
     }));
   }
   function renderResults(data) {
+    const metric = metrics[qualityMetric];
     const cols = [['seedtts','32'],['seedtts','4'],['lspc','32'],['lspc','4']];
-    const best = cols.map(([dataset,steps]) => Math.min(...models.map((m) => Number(data.quality[dataset][steps][m.id].wer.toFixed(2)))));
+    const best = cols.map(([dataset,steps]) => (metric.lower ? Math.min : Math.max)(...models.map((m) => Number(data.quality[dataset][steps][m.id][qualityMetric].toFixed(metric.digits)))));
+    $('#seedtts-metric-heading').textContent = `Seed-TTS ${metric.label} ${metric.direction}`;
+    $('#lspc-metric-heading').textContent = `LibriSpeech-PC ${metric.label} ${metric.direction}`;
+    $('#results-caption').textContent = `All six models: ${metric.name} on Seed-TTS and LibriSpeech-PC at 32 and 4 steps, parameters, peak allocated memory, and sampling real-time factor.`;
+    $('#quality-table-note').textContent = `${metric.definition} Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: ${metric.lower ? 'lowest' : 'highest'} displayed mean in each quality column, including ties. All quality results use 500k-update EMA checkpoints.`;
     $('#results-rows').innerHTML = models.map((m) => {
       const r = data.resources[m.id];
-      const values = cols.map(([dataset,steps],i) => {const value = data.quality[dataset][steps][m.id].wer.toFixed(2);return `<td>${Number(value) === best[i] ? `<strong>${value}</strong>` : value}</td>`;}).join('');
+      const values = cols.map(([dataset,steps],i) => {const value = data.quality[dataset][steps][m.id][qualityMetric].toFixed(metric.digits);return `<td>${Number(value) === best[i] ? `<strong>${value}</strong>` : value}</td>`;}).join('');
       return `<tr class="${rowClass(m)}" data-model="${m.id}"><th scope="row">${m.label}</th><td>${m.params.toFixed(1)}</td>${values}<td>${r.inference_mb.toFixed(1)}</td><td>${r.training_allocated_gib.toFixed(2)}</td><td>${r.rtf.toFixed(4)}</td></tr>`;
     }).join('');
-    $('#quality-tables').innerHTML = '<div class="metric-tables">' + [['seedtts','Seed-TTS'],['lspc','LibriSpeech-PC']].map(([dataset,label]) => `<div class="scroll-region" tabindex="0" role="region" aria-label="${label} speaker similarity and predicted quality"><table class="results-table"><caption>${label}</caption><thead><tr><th scope="col" rowspan="2">Model</th><th scope="colgroup" colspan="2">32 steps</th><th scope="colgroup" colspan="2">4 steps</th></tr><tr><th scope="col">SIM-o ↑</th><th scope="col">UTMOS ↑</th><th scope="col">SIM-o ↑</th><th scope="col">UTMOS ↑</th></tr></thead><tbody>${models.map((m) => `<tr class="${rowClass(m)}"><th scope="row">${m.label}</th>${['32','4'].map((steps) => `<td>${data.quality[dataset][steps][m.id].sim.toFixed(3)}</td><td>${data.quality[dataset][steps][m.id].utmos.toFixed(2)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('') + '</div>';
     $('#training-rows').innerHTML = models.map((m) => {const r = data.resources[m.id];return `<tr class="${rowClass(m)}"><th scope="row">${m.label}</th><td>${esc(r.training_gpu)}</td><td>${r.training_allocated_gib.toFixed(2)}</td><td>${r.training_reserved_gib.toFixed(2)}</td><td>${r.seconds_per_update.toFixed(4)}</td></tr>`;}).join('');
+  }
+  function selectQualityMetric(key) {
+    if (!Object.hasOwn(metrics, key)) return;
+    qualityMetric = key;
+    const metric = metrics[key];
+    $$('[data-quality-metric]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.qualityMetric === key)));
+    $('#quality-figure-source').srcset = `assets/figures/${metric.asset}-mobile.svg?v=3`;
+    $('#quality-figure-image').src = `assets/figures/${metric.asset}.svg?v=3`;
+    $('#quality-figure-image').alt = `${metric.name} for all six models: Baseline, Loop 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. ${metric.finding} Exact means are also available in the comparison table below.`;
+    $('#metric-finding').textContent = metric.finding;
+    $('#quality-figure-caption').textContent = `${metric.definition} Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. ${metric.axis} All six models execute 18 block calls per network evaluation; only the three partial loops share the same 108.4M parameter count.`;
+    if (qualityData) renderResults(qualityData);
   }
   async function readJSON(path) { const response = await fetch(path); if (!response.ok) throw new Error(`${path}: ${response.status}`); return response.json(); }
   function showError(selector, message, error) { const el = $(selector); el.hidden = false; el.textContent = message; console.error(error); }
   renderArchitecture();
+  $$('[data-quality-metric]').forEach((button) => button.addEventListener('click', () => selectQualityMetric(button.dataset.qualityMetric)));
   $('#sample-select').addEventListener('change', (event) => renderSample(Number(event.target.value)));
   readJSON('data/samples.json').then((data) => {
     if (!data.samples?.length) throw new Error('No samples in manifest');
@@ -63,5 +96,5 @@
     $('#sample-select').innerHTML = data.samples.map((sample,index) => `<option value="${index}">${String(index + 1).padStart(2,'0')} · ${esc(sample.length_group[0].toUpperCase() + sample.length_group.slice(1))} sentence</option>`).join('');
     renderSample(0);
   }).catch((error) => showError('#audio-load-error', 'The audio examples could not load. Please reload the page, or open the sample manifest below.', error));
-  readJSON('data/results.json').then(renderResults).catch((error) => showError('#results-load-error', 'The results table could not load. Please reload the page, or open the result data below.', error));
+  readJSON('data/results.json').then((data) => { qualityData = data; renderResults(data); }).catch((error) => showError('#results-load-error', 'The results table could not load. Please reload the page, or open the result data below.', error));
 })();
