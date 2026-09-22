@@ -1,0 +1,698 @@
+{
+  "version": 1,
+  "dataset": "Seed-TTS test-en",
+  "selection": {
+    "method": "Two utterances from each natural-target-duration tercile, ranked by SHA256(salt + \"|\" + dataset ID), with six distinct prompt recordings. Selected before reading model metrics; no output-quality filtering.",
+    "salt": "loop-f5-demo-20260922",
+    "count": 6,
+    "population": 1088,
+    "bins": [
+      {
+        "name": "short",
+        "population": 362,
+        "min_seconds": 1.312333,
+        "max_seconds": 3.643667,
+        "selected": 2
+      },
+      {
+        "name": "medium",
+        "population": 363,
+        "min_seconds": 3.645208,
+        "max_seconds": 4.80025,
+        "selected": 2
+      },
+      {
+        "name": "long",
+        "population": 363,
+        "min_seconds": 4.8035,
+        "max_seconds": 9.169,
+        "selected": 2
+      }
+    ]
+  },
+  "protocol": {
+    "checkpoint_updates": 500000,
+    "weights": "EMA",
+    "seed": 0,
+    "solver": "Euler",
+    "cfg": 2,
+    "sway": -1,
+    "steps": [
+      4,
+      32
+    ],
+    "sample_rate": 24000,
+    "audio_processing": "Unmodified evaluation WAVs."
+  },
+  "metric_units": {
+    "wer": "percent; per-utterance automatic ASR WER",
+    "sim": "WavLM speaker-embedding cosine similarity",
+    "utmos": "Automatic quality prediction; not human MOS"
+  },
+  "models": [
+    {
+      "id": "baseline",
+      "label": "Baseline",
+      "params_m": 157.965668,
+      "layout": "18 × 1"
+    },
+    {
+      "id": "full2",
+      "label": "Full ×2",
+      "params_m": 83.557988,
+      "layout": "9 × 2"
+    },
+    {
+      "id": "full3",
+      "label": "Full ×3",
+      "params_m": 58.755428,
+      "layout": "6 × 3"
+    },
+    {
+      "id": "prefix",
+      "label": "Prefix",
+      "params_m": 108.360548,
+      "layout": "6 × 2 + 6"
+    },
+    {
+      "id": "middle",
+      "label": "Middle",
+      "params_m": 108.360548,
+      "layout": "3 + 6 × 2 + 3"
+    },
+    {
+      "id": "suffix",
+      "label": "Suffix",
+      "params_m": 108.360548,
+      "layout": "6 + 6 × 2"
+    }
+  ],
+  "samples": [
+    {
+      "id": "sample-01",
+      "source_id": "common_voice_en_30232728-common_voice_en_30232725",
+      "text": "Failure would mean automatic eviction.",
+      "length_group": "short",
+      "reference": {
+        "src": "assets/audio/sample-01/reference.wav",
+        "duration_seconds": 5.637333,
+        "text": "The economic activity of the Pampas district is not oriented to tourism."
+      },
+      "outputs": {
+        "4": {
+          "baseline": {
+            "src": "assets/audio/sample-01/baseline-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.5327845215797424,
+            "utmos": 2.1995866298675537
+          },
+          "full2": {
+            "src": "assets/audio/sample-01/full2-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.3979495167732239,
+            "utmos": 2.4436495304107666
+          },
+          "full3": {
+            "src": "assets/audio/sample-01/full3-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.43136364221572876,
+            "utmos": 2.099505662918091
+          },
+          "prefix": {
+            "src": "assets/audio/sample-01/prefix-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.4554045796394348,
+            "utmos": 2.48953914642334
+          },
+          "middle": {
+            "src": "assets/audio/sample-01/middle-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.4322205185890198,
+            "utmos": 2.543182373046875
+          },
+          "suffix": {
+            "src": "assets/audio/sample-01/suffix-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.3939160704612732,
+            "utmos": 1.8933424949645996
+          }
+        },
+        "32": {
+          "baseline": {
+            "src": "assets/audio/sample-01/baseline-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.48271438479423523,
+            "utmos": 2.8935658931732178
+          },
+          "full2": {
+            "src": "assets/audio/sample-01/full2-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.46032947301864624,
+            "utmos": 3.3310275077819824
+          },
+          "full3": {
+            "src": "assets/audio/sample-01/full3-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.5330569744110107,
+            "utmos": 3.177840232849121
+          },
+          "prefix": {
+            "src": "assets/audio/sample-01/prefix-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.5393602252006531,
+            "utmos": 3.077620506286621
+          },
+          "middle": {
+            "src": "assets/audio/sample-01/middle-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.45344075560569763,
+            "utmos": 3.1795201301574707
+          },
+          "suffix": {
+            "src": "assets/audio/sample-01/suffix-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.41353726387023926,
+            "utmos": 3.621750593185425
+          }
+        }
+      }
+    },
+    {
+      "id": "sample-02",
+      "source_id": "common_voice_en_19540120-common_voice_en_19540122",
+      "text": "He originally studied architecture at the University of Cape Town.",
+      "length_group": "short",
+      "reference": {
+        "src": "assets/audio/sample-02/reference.wav",
+        "duration_seconds": 3.445833,
+        "text": "Activation typically spreads to all the other units connected to it."
+      },
+      "outputs": {
+        "4": {
+          "baseline": {
+            "src": "assets/audio/sample-02/baseline-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5396069288253784,
+            "utmos": 1.6865925788879395
+          },
+          "full2": {
+            "src": "assets/audio/sample-02/full2-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5472343564033508,
+            "utmos": 3.315905809402466
+          },
+          "full3": {
+            "src": "assets/audio/sample-02/full3-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5966143608093262,
+            "utmos": 2.9763171672821045
+          },
+          "prefix": {
+            "src": "assets/audio/sample-02/prefix-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5259464979171753,
+            "utmos": 2.876567840576172
+          },
+          "middle": {
+            "src": "assets/audio/sample-02/middle-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5388767719268799,
+            "utmos": 2.96877121925354
+          },
+          "suffix": {
+            "src": "assets/audio/sample-02/suffix-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5260822772979736,
+            "utmos": 4.050539016723633
+          }
+        },
+        "32": {
+          "baseline": {
+            "src": "assets/audio/sample-02/baseline-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.6241576075553894,
+            "utmos": 4.109043598175049
+          },
+          "full2": {
+            "src": "assets/audio/sample-02/full2-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.6104271411895752,
+            "utmos": 3.852665901184082
+          },
+          "full3": {
+            "src": "assets/audio/sample-02/full3-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.5925915241241455,
+            "utmos": 4.137031555175781
+          },
+          "prefix": {
+            "src": "assets/audio/sample-02/prefix-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.6014081239700317,
+            "utmos": 4.168381690979004
+          },
+          "middle": {
+            "src": "assets/audio/sample-02/middle-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.7012832760810852,
+            "utmos": 3.925550937652588
+          },
+          "suffix": {
+            "src": "assets/audio/sample-02/suffix-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.6922149062156677,
+            "utmos": 4.312444686889648
+          }
+        }
+      }
+    },
+    {
+      "id": "sample-03",
+      "source_id": "common_voice_en_19622969-common_voice_en_19622970",
+      "text": "He makes the frames himself, those being part of the painting.",
+      "length_group": "medium",
+      "reference": {
+        "src": "assets/audio/sample-03/reference.wav",
+        "duration_seconds": 4.005333,
+        "text": "The woman kisses his head and says, Happy Halloween dear."
+      },
+      "outputs": {
+        "4": {
+          "baseline": {
+            "src": "assets/audio/sample-03/baseline-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5717931985855103,
+            "utmos": 3.114689350128174
+          },
+          "full2": {
+            "src": "assets/audio/sample-03/full2-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5420318841934204,
+            "utmos": 3.357391119003296
+          },
+          "full3": {
+            "src": "assets/audio/sample-03/full3-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5015392303466797,
+            "utmos": 3.5243618488311768
+          },
+          "prefix": {
+            "src": "assets/audio/sample-03/prefix-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5528804659843445,
+            "utmos": 3.5791308879852295
+          },
+          "middle": {
+            "src": "assets/audio/sample-03/middle-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5251166820526123,
+            "utmos": 3.266080617904663
+          },
+          "suffix": {
+            "src": "assets/audio/sample-03/suffix-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5406757593154907,
+            "utmos": 3.1600849628448486
+          }
+        },
+        "32": {
+          "baseline": {
+            "src": "assets/audio/sample-03/baseline-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.6244938373565674,
+            "utmos": 3.6465377807617188
+          },
+          "full2": {
+            "src": "assets/audio/sample-03/full2-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.636162281036377,
+            "utmos": 3.546947717666626
+          },
+          "full3": {
+            "src": "assets/audio/sample-03/full3-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.6161614060401917,
+            "utmos": 4.056588649749756
+          },
+          "prefix": {
+            "src": "assets/audio/sample-03/prefix-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.6053755879402161,
+            "utmos": 3.879164695739746
+          },
+          "middle": {
+            "src": "assets/audio/sample-03/middle-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.6598341464996338,
+            "utmos": 3.9970321655273438
+          },
+          "suffix": {
+            "src": "assets/audio/sample-03/suffix-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.6636666059494019,
+            "utmos": 4.058320045471191
+          }
+        }
+      }
+    },
+    {
+      "id": "sample-04",
+      "source_id": "common_voice_en_19972684-common_voice_en_19972807",
+      "text": "Many reviewers compared its style to that of the \"Mario Kart\" series.",
+      "length_group": "medium",
+      "reference": {
+        "src": "assets/audio/sample-04/reference.wav",
+        "duration_seconds": 5.28,
+        "text": "His daughter Marcia pursued poetry, while his son Hilary Masters became a novelist."
+      },
+      "outputs": {
+        "4": {
+          "baseline": {
+            "src": "assets/audio/sample-04/baseline-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 33.33333333333333,
+            "sim": 0.4689728617668152,
+            "utmos": 2.1144332885742188
+          },
+          "full2": {
+            "src": "assets/audio/sample-04/full2-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 0.0,
+            "sim": 0.50505131483078,
+            "utmos": 2.9516196250915527
+          },
+          "full3": {
+            "src": "assets/audio/sample-04/full3-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 41.66666666666667,
+            "sim": 0.4379902482032776,
+            "utmos": 2.403961181640625
+          },
+          "prefix": {
+            "src": "assets/audio/sample-04/prefix-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 16.666666666666664,
+            "sim": 0.3741147220134735,
+            "utmos": 2.4110589027404785
+          },
+          "middle": {
+            "src": "assets/audio/sample-04/middle-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 8.333333333333332,
+            "sim": 0.29872816801071167,
+            "utmos": 2.771986961364746
+          },
+          "suffix": {
+            "src": "assets/audio/sample-04/suffix-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 25.0,
+            "sim": 0.5017696619033813,
+            "utmos": 2.8122732639312744
+          }
+        },
+        "32": {
+          "baseline": {
+            "src": "assets/audio/sample-04/baseline-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 0.0,
+            "sim": 0.5407326221466064,
+            "utmos": 3.2775721549987793
+          },
+          "full2": {
+            "src": "assets/audio/sample-04/full2-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 0.0,
+            "sim": 0.4664768874645233,
+            "utmos": 3.721987247467041
+          },
+          "full3": {
+            "src": "assets/audio/sample-04/full3-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 25.0,
+            "sim": 0.533944308757782,
+            "utmos": 3.669740676879883
+          },
+          "prefix": {
+            "src": "assets/audio/sample-04/prefix-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 16.666666666666664,
+            "sim": 0.5180967450141907,
+            "utmos": 3.084343671798706
+          },
+          "middle": {
+            "src": "assets/audio/sample-04/middle-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 0.0,
+            "sim": 0.4594966173171997,
+            "utmos": 3.2999112606048584
+          },
+          "suffix": {
+            "src": "assets/audio/sample-04/suffix-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 0.0,
+            "sim": 0.5213176012039185,
+            "utmos": 3.8118419647216797
+          }
+        }
+      }
+    },
+    {
+      "id": "sample-05",
+      "source_id": "common_voice_en_24523505-common_voice_en_24523504",
+      "text": "This type of mount is used in Transit telescopes, designed for precision astronomical measurement.",
+      "length_group": "long",
+      "reference": {
+        "src": "assets/audio/sample-05/reference.wav",
+        "duration_seconds": 6.085333,
+        "text": "Today, transaction cost economics is used to explain a number of different behaviours."
+      },
+      "outputs": {
+        "4": {
+          "baseline": {
+            "src": "assets/audio/sample-05/baseline-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 7.142857142857142,
+            "sim": 0.5461001396179199,
+            "utmos": 3.618607521057129
+          },
+          "full2": {
+            "src": "assets/audio/sample-05/full2-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 35.714285714285715,
+            "sim": 0.4870768189430237,
+            "utmos": 3.6476902961730957
+          },
+          "full3": {
+            "src": "assets/audio/sample-05/full3-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 14.285714285714285,
+            "sim": 0.5056657791137695,
+            "utmos": 3.529758930206299
+          },
+          "prefix": {
+            "src": "assets/audio/sample-05/prefix-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 14.285714285714285,
+            "sim": 0.40492480993270874,
+            "utmos": 3.692328929901123
+          },
+          "middle": {
+            "src": "assets/audio/sample-05/middle-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 7.142857142857142,
+            "sim": 0.47980114817619324,
+            "utmos": 3.678795337677002
+          },
+          "suffix": {
+            "src": "assets/audio/sample-05/suffix-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.5170681476593018,
+            "utmos": 3.670848846435547
+          }
+        },
+        "32": {
+          "baseline": {
+            "src": "assets/audio/sample-05/baseline-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.6954357624053955,
+            "utmos": 4.308203220367432
+          },
+          "full2": {
+            "src": "assets/audio/sample-05/full2-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.6939995288848877,
+            "utmos": 4.286873817443848
+          },
+          "full3": {
+            "src": "assets/audio/sample-05/full3-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.6755543351173401,
+            "utmos": 4.225614070892334
+          },
+          "prefix": {
+            "src": "assets/audio/sample-05/prefix-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.6955138444900513,
+            "utmos": 3.891843318939209
+          },
+          "middle": {
+            "src": "assets/audio/sample-05/middle-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.7115540504455566,
+            "utmos": 4.058244705200195
+          },
+          "suffix": {
+            "src": "assets/audio/sample-05/suffix-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.6915714740753174,
+            "utmos": 4.317072868347168
+          }
+        }
+      }
+    },
+    {
+      "id": "sample-06",
+      "source_id": "common_voice_en_22525318-common_voice_en_22525329",
+      "text": "He became a nationally known illustrator before he became an author.",
+      "length_group": "long",
+      "reference": {
+        "src": "assets/audio/sample-06/reference.wav",
+        "duration_seconds": 3.970542,
+        "text": "He has also appeared in a number of short films."
+      },
+      "outputs": {
+        "4": {
+          "baseline": {
+            "src": "assets/audio/sample-06/baseline-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 45.45454545454545,
+            "sim": 0.21562828123569489,
+            "utmos": 1.3580896854400635
+          },
+          "full2": {
+            "src": "assets/audio/sample-06/full2-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.32404375076293945,
+            "utmos": 1.5633236169815063
+          },
+          "full3": {
+            "src": "assets/audio/sample-06/full3-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 9.090909090909092,
+            "sim": 0.27467024326324463,
+            "utmos": 1.6592671871185303
+          },
+          "prefix": {
+            "src": "assets/audio/sample-06/prefix-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.49184471368789673,
+            "utmos": 1.49130380153656
+          },
+          "middle": {
+            "src": "assets/audio/sample-06/middle-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.3666783571243286,
+            "utmos": 1.7649335861206055
+          },
+          "suffix": {
+            "src": "assets/audio/sample-06/suffix-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.43240463733673096,
+            "utmos": 1.7323060035705566
+          }
+        },
+        "32": {
+          "baseline": {
+            "src": "assets/audio/sample-06/baseline-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5334051251411438,
+            "utmos": 3.61325740814209
+          },
+          "full2": {
+            "src": "assets/audio/sample-06/full2-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5640376806259155,
+            "utmos": 3.9696226119995117
+          },
+          "full3": {
+            "src": "assets/audio/sample-06/full3-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5807673931121826,
+            "utmos": 4.017979621887207
+          },
+          "prefix": {
+            "src": "assets/audio/sample-06/prefix-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5570367574691772,
+            "utmos": 3.5180065631866455
+          },
+          "middle": {
+            "src": "assets/audio/sample-06/middle-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5668193101882935,
+            "utmos": 3.4478893280029297
+          },
+          "suffix": {
+            "src": "assets/audio/sample-06/suffix-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5726538896560669,
+            "utmos": 4.127363204956055
+          }
+        }
+      }
+    }
+  ]
+}

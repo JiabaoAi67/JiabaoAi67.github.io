@@ -1,0 +1,374 @@
+{
+  "models": [
+    {
+      "id": "baseline",
+      "label": "Baseline",
+      "params_m": 157.965668,
+      "unique_blocks": 18,
+      "color": "#59636f"
+    },
+    {
+      "id": "full2",
+      "label": "Full ×2",
+      "params_m": 83.557988,
+      "unique_blocks": 9,
+      "color": "#8d97a1"
+    },
+    {
+      "id": "full3",
+      "label": "Full ×3",
+      "params_m": 58.755428,
+      "unique_blocks": 6,
+      "color": "#b6bdc6"
+    },
+    {
+      "id": "prefix",
+      "label": "Prefix",
+      "params_m": 108.360548,
+      "unique_blocks": 12,
+      "color": "#15877f"
+    },
+    {
+      "id": "middle",
+      "label": "Middle",
+      "params_m": 108.360548,
+      "unique_blocks": 12,
+      "color": "#b98223"
+    },
+    {
+      "id": "suffix",
+      "label": "Suffix",
+      "params_m": 108.360548,
+      "unique_blocks": 12,
+      "color": "#d56655"
+    }
+  ],
+  "quality": {
+    "seedtts": {
+      "4": {
+        "baseline": {
+          "wer": 10.58884784033038,
+          "sim": 0.4984570203570697,
+          "utmos": 2.8460626198417125
+        },
+        "full2": {
+          "wer": 9.373141089504372,
+          "sim": 0.49645202707581443,
+          "utmos": 3.083739211782813
+        },
+        "full3": {
+          "wer": 11.560091689804125,
+          "sim": 0.494610849653648,
+          "utmos": 3.033040461678277
+        },
+        "prefix": {
+          "wer": 6.874375319342261,
+          "sim": 0.4952553632165826,
+          "utmos": 3.2380951946765624
+        },
+        "middle": {
+          "wer": 8.231033685469601,
+          "sim": 0.49632832749493366,
+          "utmos": 3.09709899300052
+        },
+        "suffix": {
+          "wer": 10.31027984291083,
+          "sim": 0.4988814713792903,
+          "utmos": 3.074193566078868
+        }
+      },
+      "32": {
+        "baseline": {
+          "wer": 2.225220154671117,
+          "sim": 0.5666470663580934,
+          "utmos": 3.678098540260073
+        },
+        "full2": {
+          "wer": 2.6008526849418123,
+          "sim": 0.5616399050751866,
+          "utmos": 3.900995242190273
+        },
+        "full3": {
+          "wer": 2.956179982354205,
+          "sim": 0.5565226366401048,
+          "utmos": 3.859037739169948
+        },
+        "prefix": {
+          "wer": 2.3565941512051483,
+          "sim": 0.5631083216953009,
+          "utmos": 3.881577420678428
+        },
+        "middle": {
+          "wer": 2.0355973668176306,
+          "sim": 0.5662922857719583,
+          "utmos": 3.8441630077603106
+        },
+        "suffix": {
+          "wer": 2.1865639504250556,
+          "sim": 0.5695269287218039,
+          "utmos": 3.9081346195958115
+        }
+      }
+    },
+    "lspc": {
+      "4": {
+        "baseline": {
+          "wer": 17.80511213229663,
+          "sim": 0.43342347415144833,
+          "utmos": 2.22885447410887
+        },
+        "full2": {
+          "wer": 11.355325634079795,
+          "sim": 0.4442398167487715,
+          "utmos": 2.592673526999161
+        },
+        "full3": {
+          "wer": 16.683303588700625,
+          "sim": 0.4562968442878165,
+          "utmos": 2.797687915153526
+        },
+        "prefix": {
+          "wer": 11.195717858384018,
+          "sim": 0.4146613728825782,
+          "utmos": 2.8083827510030974
+        },
+        "middle": {
+          "wer": 10.830549247802953,
+          "sim": 0.44532673799230904,
+          "utmos": 2.69871173790664
+        },
+        "suffix": {
+          "wer": 17.17059474343516,
+          "sim": 0.4231252598715905,
+          "utmos": 2.412381087489045
+        }
+      },
+      "32": {
+        "baseline": {
+          "wer": 2.2907938923170534,
+          "sim": 0.592414708452724,
+          "utmos": 3.893866200413234
+        },
+        "full2": {
+          "wer": 2.1428268284900067,
+          "sim": 0.5999040717787377,
+          "utmos": 4.061304483178169
+        },
+        "full3": {
+          "wer": 2.6476590768353376,
+          "sim": 0.5925562393247499,
+          "utmos": 4.062871402059565
+        },
+        "prefix": {
+          "wer": 2.2376698133965105,
+          "sim": 0.5694668717688972,
+          "utmos": 4.087487536152239
+        },
+        "middle": {
+          "wer": 2.0669970533549544,
+          "sim": 0.5825002649785217,
+          "utmos": 4.044638044557004
+        },
+        "suffix": {
+          "wer": 2.0987010665940877,
+          "sim": 0.5932266958381819,
+          "utmos": 4.020698982560046
+        }
+      }
+    }
+  },
+  "curves": {
+    "steps": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "seedtts": {
+      "baseline": [
+        10.373048922194684,
+        2.938872120046428,
+        2.277973025214961,
+        2.2631779459607095
+      ],
+      "full2": [
+        9.329426025603578,
+        3.624675565027533,
+        2.7002632753876266,
+        2.7015380947988
+      ],
+      "full3": [
+        11.720389814746632,
+        3.876729150625498,
+        3.1562419342743113,
+        3.228403139368953
+      ],
+      "prefix": [
+        6.787808693679522,
+        3.09793706149675,
+        2.559455312145083,
+        2.7022077802651983
+      ],
+      "middle": [
+        7.94932222497642,
+        2.5463498004182474,
+        2.0153747891502,
+        1.9371319535544231
+      ],
+      "suffix": [
+        10.30620414849295,
+        2.8049913189943467,
+        1.9545986050906035,
+        2.148447852248674
+      ]
+    },
+    "lspc": {
+      "baseline": [
+        18.37392368787688,
+        3.300632532147961,
+        2.3046390329972604,
+        2.315340435636308
+      ],
+      "full2": [
+        11.35087199198877,
+        2.8305572347780346,
+        2.276961745142516,
+        2.2200460123271157
+      ],
+      "full3": [
+        15.710047341622632,
+        3.668381840703574,
+        2.783053385973875,
+        2.6591941283851597
+      ],
+      "prefix": [
+        11.539910043760225,
+        2.9317582434802376,
+        2.247306312544426,
+        2.190876153284804
+      ],
+      "middle": [
+        10.63518037949794,
+        2.711595931246045,
+        2.0783155827519804,
+        2.0210871154900802
+      ],
+      "suffix": [
+        18.087357712583206,
+        2.6132890924201875,
+        2.130923971325759,
+        1.931206533944556
+      ]
+    }
+  },
+  "resources": {
+    "baseline": {
+      "inference_mb": 876.68736,
+      "rtf": 0.14282193133216617,
+      "training_allocated_gib": 13.666626930236816,
+      "training_reserved_gib": 14.74609375,
+      "training_gpu": "H100",
+      "seconds_per_update": 0.1976313792541623
+    },
+    "full2": {
+      "inference_mb": 574.338048,
+      "rtf": 0.14317677912792337,
+      "training_allocated_gib": 12.270578384399414,
+      "training_reserved_gib": 19.771484375,
+      "training_gpu": "H100",
+      "seconds_per_update": 0.1941220007278025
+    },
+    "full3": {
+      "inference_mb": 473.554944,
+      "rtf": 0.14341695590769837,
+      "training_allocated_gib": 11.807664394378662,
+      "training_reserved_gib": 12.380859375,
+      "training_gpu": "H100",
+      "seconds_per_update": 0.19418209415860474
+    },
+    "prefix": {
+      "inference_mb": 675.121152,
+      "rtf": 0.14259059190962003,
+      "training_allocated_gib": 12.730461597442627,
+      "training_reserved_gib": 13.544921875,
+      "training_gpu": "H200",
+      "seconds_per_update": 0.19893719430547208
+    },
+    "middle": {
+      "inference_mb": 675.121152,
+      "rtf": 0.1438628096426699,
+      "training_allocated_gib": 12.744056224822998,
+      "training_reserved_gib": 13.267578125,
+      "training_gpu": "H100",
+      "seconds_per_update": 0.19918101634830238
+    },
+    "suffix": {
+      "inference_mb": 675.121152,
+      "rtf": 0.1439875271842122,
+      "training_allocated_gib": 12.743486881256104,
+      "training_reserved_gib": 13.396484375,
+      "training_gpu": "H200",
+      "seconds_per_update": 0.199657229995355
+    }
+  },
+  "protocol": {
+    "checkpoint_update": 500000,
+    "weights": "EMA",
+    "block_calls_per_network_evaluation": 18,
+    "solver": "Euler",
+    "cfg": 2,
+    "sway": -1,
+    "quality_seeds": {
+      "seedtts": 4,
+      "lspc": 3
+    },
+    "quality_seed_values": {
+      "seedtts": [
+        0,
+        1,
+        2,
+        666
+      ],
+      "lspc": [
+        0,
+        1,
+        2
+      ]
+    },
+    "curve_seeds": {
+      "seedtts": 666,
+      "lspc": 0
+    },
+    "utterances_per_seed": {
+      "seedtts": 1088,
+      "lspc": 1127
+    },
+    "wer": "Mean per-utterance word error rate, in percent; lower is better.",
+    "sim": "SIM-o: WavLM-Large/ECAPA-TDNN speaker similarity; higher is better.",
+    "utmos": "Predicted naturalness score; higher is better. This is not a human MOS.",
+    "curves": "WER at a fixed inference seed across all steps. Curve endpoints therefore differ from the multi-seed quality table.",
+    "inference": {
+      "gpu": "H100",
+      "precision": "FP32",
+      "batch_size": 1,
+      "steps": 32,
+      "dataset": "Seed-TTS test-en",
+      "seed": 666,
+      "memory": "Peak allocated GPU memory in decimal MB; includes the resident vocoder and its allocations.",
+      "rtf": "Total sampling time divided by total generated audio duration. Timing includes sampling and finite/prompt checks, and excludes vocoding, preprocessing, loading, and file I/O.",
+      "timing_scope": "One recorded run per model; small timing differences are not a controlled speed ranking."
+    },
+    "training": {
+      "world_size": 8,
+      "precision": "BF16 mixed precision; FP32 parameters, EMA, and Adam states",
+      "updates": [
+        400000,
+        500000
+      ],
+      "memory": "Late-training records of rank-0 process cumulative peaks, in GiB; not the maximum over all ranks or a minimum GPU-capacity requirement.",
+      "seconds_per_update": "Median over 1,000 logged windows, each covering 100 updates.",
+      "hardware": "Baseline, Full ×2, Full ×3, and Middle used H100; Prefix and Suffix used H200."
+    },
+    "scope": "One training run per layout. Equal 500k-update checkpoints are compared; the baseline's best earlier four-step checkpoint is not substituted. No current-stack human MOS has been completed."
+  }
+}
