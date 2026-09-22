@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="550" height="1590" viewBox="0 0 550 1590" role="img" aria-labelledby="title desc">
+<title id="title">Placement matters most at four sampling steps</title>
+<desc id="desc">Word error rate for Prefix, Middle, and Suffix, each with 108.4 million parameters. At 32 sampling steps their means lie between 2.04 and 2.36 percent on Seed-TTS and between 2.07 and 2.24 percent on LibriSpeech-PC. At four steps the Suffix-minus-Prefix gap is 3.44 and 5.97 percentage points, respectively. Middle has the lowest mean at 32 steps on both datasets and at four steps on LibriSpeech-PC. The 32-step panels use a zero-to-three-percent axis; four-step panels use zero-to-twenty percent.</desc>
+<style>text {font-family: Arial, Helvetica, sans-serif; font-variant-numeric: tabular-nums;}</style>
+<rect width="550" height="1590" fill="white"/>
+<g transform="translate(20,18)"><text x="8" y="32" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">Seed-TTS test-en</text>
+<text x="8" y="82" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">32 steps</text>
+<text x="460" y="82" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) · 0–3</text>
+<line x1="112.000" x2="112.000" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="112.0" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="225.333" x2="225.333" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="225.33333333333331" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">1</text>
+<line x1="338.667" x2="338.667" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="338.66666666666663" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">2</text>
+<line x1="452.000" x2="452.000" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="452.0" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">3</text>
+<text x="8" y="147" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="112" y="124" width="267.081" height="30" fill="#15877f"/>
+<text x="387.0806704699168" y="147" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.36</text>
+<text x="8" y="202" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="112" y="179" width="230.701" height="30" fill="#b98223"/>
+<text x="350.7010349059981" y="202" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.04</text>
+<text x="8" y="257" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="112" y="234" width="247.811" height="30" fill="#d56655"/>
+<text x="367.81058104817293" y="257" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.19</text>
+<text x="8" y="386" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
+<text x="460" y="386" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) · 0–20</text>
+<line x1="112.000" x2="112.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="112.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="197.000" x2="197.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="197.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">5</text>
+<line x1="282.000" x2="282.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="282.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">10</text>
+<line x1="367.000" x2="367.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="367.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">15</text>
+<line x1="452.000" x2="452.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="452.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">20</text>
+<text x="8" y="451" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="112" y="428" width="116.864" height="30" fill="#15877f"/>
+<text x="236.86438042881844" y="451" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">6.87</text>
+<text x="8" y="506" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="112" y="483" width="139.928" height="30" fill="#b98223"/>
+<text x="259.9275726529832" y="506" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">8.23</text>
+<text x="8" y="561" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="112" y="538" width="175.275" height="30" fill="#d56655"/>
+<text x="295.27475732948415" y="561" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.31</text>
+<text x="8" y="661" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">Suffix − Prefix at 4 steps</text>
+<text x="8" y="697" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">+3.44 percentage points</text>
+<text x="8" y="734" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 4 inference seeds</text></g>
+<g transform="translate(20,798)"><text x="8" y="32" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">LibriSpeech-PC</text>
+<text x="8" y="82" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">32 steps</text>
+<text x="460" y="82" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) · 0–3</text>
+<line x1="112.000" x2="112.000" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="112.0" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="225.333" x2="225.333" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="225.33333333333331" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">1</text>
+<line x1="338.667" x2="338.667" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="338.66666666666663" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">2</text>
+<line x1="452.000" x2="452.000" y1="114" y2="283" stroke="#e3e7e9" stroke-width="1"/>
+<text x="452.0" y="312" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">3</text>
+<text x="8" y="147" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="112" y="124" width="253.603" height="30" fill="#15877f"/>
+<text x="373.60257885160456" y="147" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.24</text>
+<text x="8" y="202" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="112" y="179" width="234.260" height="30" fill="#b98223"/>
+<text x="354.25966604689484" y="202" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.07</text>
+<text x="8" y="257" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="112" y="234" width="237.853" height="30" fill="#d56655"/>
+<text x="357.85278754732997" y="257" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.10</text>
+<text x="8" y="386" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
+<text x="460" y="386" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) · 0–20</text>
+<line x1="112.000" x2="112.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="112.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="197.000" x2="197.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="197.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">5</text>
+<line x1="282.000" x2="282.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="282.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">10</text>
+<line x1="367.000" x2="367.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="367.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">15</text>
+<line x1="452.000" x2="452.000" y1="418" y2="587" stroke="#e3e7e9" stroke-width="1"/>
+<text x="452.0" y="616" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">20</text>
+<text x="8" y="451" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="112" y="428" width="190.327" height="30" fill="#15877f"/>
+<text x="310.3272035925283" y="451" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.20</text>
+<text x="8" y="506" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="112" y="483" width="184.119" height="30" fill="#b98223"/>
+<text x="304.1193372126502" y="506" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.83</text>
+<text x="8" y="561" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="112" y="538" width="291.900" height="30" fill="#d56655"/>
+<text x="411.9001106383977" y="561" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">17.17</text>
+<text x="8" y="661" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">Suffix − Prefix at 4 steps</text>
+<text x="8" y="697" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">+5.97 percentage points</text>
+<text x="8" y="734" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 3 inference seeds</text></g>
+</svg>

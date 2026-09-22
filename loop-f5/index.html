@@ -3,66 +3,108 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Where to Loop in Flow-Matching Text-to-Speech. Explore six shared-depth F5-TTS layouts, compare speech at 4 and 32 sampling steps, and inspect quality and memory results.">
-  <meta name="theme-color" content="#fafbf9">
+  <meta name="description" content="Where to Loop in Flow-Matching Text-to-Speech: six weight-sharing layouts, a controlled study of loop placement, and audio comparisons at 32 and 4 sampling steps.">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="Where to Loop in Flow-Matching Text-to-Speech">
-  <meta property="og:description" content="Same executed depth. Different shared weights. Different speech-quality trade-offs.">
+  <meta property="og:description" content="Loop placement and sampling budget jointly shape speech quality. Listen to all six F5-TTS layouts at 32 and 4 steps.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="site.css">
-  <script src="site.js" defer></script>
-  <title>Where to Loop · Flow-Matching TTS</title>
+  <link rel="stylesheet" href="site.css?v=2">
+  <script src="site.js?v=2" defer></script>
+  <title>Where to Loop in Flow-Matching Text-to-Speech</title>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <nav class="container nav" aria-label="Main navigation">
-    <a class="wordmark" href="#" aria-label="Where to Loop, top of page"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M24 11a10 10 0 1 0 1 9M24 4v8h-8"/></svg>where to loop<span class="wordmark-dot">.</span></a>
-    <div class="nav-links"><a href="#layouts">Layouts</a><a href="#listen">Listen</a><a href="#results">Results</a><a class="nav-paper" href="https://github.com/JiabaoAi67/JiabaoAi67.github.io/tree/main/loop-f5">Source <span aria-hidden="true">↗</span></a></div>
-  </nav>
-</header>
-<main id="main">
-  <section class="hero container">
-    <p class="eyebrow"><span class="tiny-line"></span> FLOW-MATCHING TEXT-TO-SPEECH</p>
-    <h1>Where to <span class="title-loop">Loop<svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11Q95 0 197 10"/></svg></span></h1>
-    <p class="hero-subtitle">Same depth. Different places to share.</p>
-    <p class="hero-description">Reusing Transformer blocks saves parameters. <strong>Where we reuse them</strong> changes how speech generation responds to the sampling budget.</p>
-    <div class="hero-actions"><a class="button primary" href="#listen"><span class="play-icon" aria-hidden="true">▶</span> Listen to the samples</a><a class="button secondary" href="#results">Explore the results <span aria-hidden="true">↓</span></a></div>
-    <div class="hero-facts" aria-label="Study overview"><div><strong>6</strong><span>weight-sharing layouts</span></div><div><strong>18</strong><span>block calls in every layout</span></div><div><strong>4–32</strong><span>sampling steps explored</span></div></div>
+<a class="skip-link" href="#abstract">Skip to content</a>
+<main>
+  <header class="publication-header container">
+    <h1>Where to Loop in<br class="desktop-break"> Flow-Matching Text-to-Speech</h1>
+    <p class="publication-subtitle">A study of weight sharing, loop placement, and sampling budget in F5-TTS</p>
+    <nav class="publication-links" aria-label="Paper page links">
+      <a href="#audio">Audio samples</a>
+      <a href="#results">Results</a>
+      <a href="https://github.com/JiabaoAi67/JiabaoAi67.github.io/tree/main/loop-f5">Page source</a>
+    </nav>
+  </header>
+
+  <section class="section container" id="abstract" aria-labelledby="abstract-title">
+    <h2 id="abstract-title">Abstract</h2>
+    <div class="abstract-text">
+      <p>Where should a flow-matching speech generator share weights across depth? We study six F5-TTS layouts that execute the same 18 Transformer block calls, varying both the amount and position of sharing. Three partial loops—Prefix, Middle, and Suffix—have identical parameter counts but respond differently to the sampling budget. At 32 steps, their word error rates are close. At four steps, Suffix has 3.44 and 5.97 percentage points higher WER than Prefix on Seed-TTS and LibriSpeech-PC. Middle achieves the lowest 32-step WER on both datasets, while Suffix gives the highest 32-step speaker similarity among the partial loops. The four-step placement gap persists across training checkpoints despite Suffix’s lower logged training loss. Weight sharing also reduces storage: repeating nine blocks twice saves 47.1% of parameters and 34.5% of peak inference allocation, with comparable sampling time. These results show that loop placement should be evaluated at the intended sampling budget.</p>
+    </div>
   </section>
 
-  <section class="section container" id="layouts" aria-labelledby="layouts-title">
-    <div class="section-heading"><div><p class="eyebrow">01 / THE DESIGN</p><h2 id="layouts-title">One depth. Six ways through it.</h2></div><p>Full loops change <em>how much</em> is shared. <br>Partial loops change <em>where</em> sharing happens.</p></div>
-    <div class="architecture-shell"><div class="architecture-scroll" tabindex="0" role="region" aria-label="Six model layouts; scroll horizontally on small screens"><div id="architecture" class="architecture"></div></div><div class="architecture-footer"><span><i class="legend-block" aria-hidden="true"></i> Same number, same weights within a row.</span><span>Read left to right <span aria-hidden="true">→</span></span></div></div>
-    <p class="section-note">Each row is one network evaluation at a fixed flow time. Every layout executes 18 block calls. Prefix, Middle and Suffix each store 12 unique blocks and 108.4M parameters.</p>
+  <section class="section container" id="method" aria-labelledby="method-title">
+    <h2 id="method-title">Six layouts, the same executed depth</h2>
+    <p class="section-intro">Full loops vary <strong>how much</strong> is shared. Partial loops vary <strong>where</strong> it is shared, at the same parameter count.</p>
+    <figure class="method-figure">
+      <div class="scroll-region" tabindex="0" role="region" aria-label="All six model layouts; scroll horizontally on small screens">
+        <div id="architecture" class="architecture"></div>
+      </div>
+      <figcaption>Each row executes 18 block calls in one network evaluation, from left to right. Repeated block numbers within a row share weights; colored blocks are reused. <strong>9 × 2</strong> means nine unique blocks, two passes; <strong>6 × 3</strong> means six unique blocks, three passes. Prefix, Middle, and Suffix each reuse a six-block segment twice.</figcaption>
+    </figure>
   </section>
 
-  <section class="listening-section" id="listen" aria-labelledby="listen-title"><div class="container section">
-    <div class="section-heading"><div><p class="eyebrow">02 / LISTEN & COMPARE</p><h2 id="listen-title">Same sentence. A different loop.</h2></div><p>Compare the shared positions, then switch <br>between four and 32 sampling steps.</p></div>
+  <section class="section container" id="placement" aria-labelledby="placement-title">
+    <h2 id="placement-title">Sharing position matters most at four steps</h2>
+    <p class="section-intro">Prefix, Middle, and Suffix all have <strong>108.4M parameters</strong>. Their WERs are close at 32 steps; at four steps, Suffix falls behind Prefix on both test sets.</p>
+    <figure class="placement-figure">
+      <picture>
+        <source media="(max-width: 680px)" srcset="assets/figures/placement-budget-mobile.svg">
+        <img src="assets/figures/placement-budget.svg" width="1100" height="806" alt="Word error rate of three equal-size partial loops. At 32 steps, Prefix, Middle and Suffix have 2.36, 2.04 and 2.19 percent WER on Seed-TTS, and 2.24, 2.07 and 2.10 on LibriSpeech-PC. At 4 steps these become 6.87, 8.23 and 10.31 on Seed-TTS, and 11.20, 10.83 and 17.17 on LibriSpeech-PC. Suffix minus Prefix at 4 steps is 3.44 and 5.97 percentage points." loading="lazy">
+      </picture>
+      <figcaption>Lower WER is better. Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. The 32-step panels use a 0–3% axis; the four-step panels use 0–20%. Middle has the lowest 32-step WER on both datasets and the lowest four-step WER on LibriSpeech-PC.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section container" id="audio" aria-labelledby="audio-title">
+    <h2 id="audio-title">Audio samples</h2>
+    <p class="section-intro">Compare the Baseline with <strong>Loop 9 × 2</strong> and <strong>Loop 6 × 3</strong> to hear the effect of sharing more weights. Compare <strong>Prefix, Middle, and Suffix</strong> to hear the effect of sharing position, then listen across the two sampling budgets.</p>
     <div id="audio-load-error" class="error-message" hidden role="alert"></div>
-    <div class="listen-toolbar"><div class="sample-picker"><label for="sample-select">Example</label><select id="sample-select" aria-controls="sample-content"><option>Loading examples…</option></select><button class="icon-button" id="previous-sample" aria-label="Previous example">←</button><button class="icon-button" id="next-sample" aria-label="Next example">→</button></div><div class="control-group"><span class="control-label">Sampling steps</span><div class="segmented" aria-label="Audio sampling steps" role="group"><button class="active" data-audio-steps="4" aria-pressed="true">4 steps</button><button data-audio-steps="32" aria-pressed="false">32 steps</button></div></div></div>
-    <div id="sample-content" class="sample-content" aria-busy="true"><div class="sample-text"><p class="eyebrow">TEXT TO SYNTHESIZE</p><blockquote id="sample-text">Loading the selected sentence…</blockquote><p id="sample-meta" class="muted"></p></div><div class="reference-panel"><span class="reference-label">Reference voice</span><audio id="reference-audio" controls preload="none" aria-label="Reference voice"></audio><details class="reference-transcript"><summary>Reference transcript</summary><p id="reference-text"></p></details></div></div>
-    <div class="listen-options"><p id="listen-status" role="status" aria-live="polite">Three positions · same parameter count</p><div class="option-buttons"><label class="metric-toggle"><input type="checkbox" id="show-clip-metrics"> Clip metrics</label><button class="text-button" id="all-layouts" aria-pressed="false">Show all six layouts <span aria-hidden="true">↗</span></button></div></div>
-    <div id="audio-grid" class="audio-grid"></div>
-    <details class="protocol-details"><summary>How these examples were chosen</summary><p>Six Seed-TTS test-en examples, selected reproducibly before inspecting model scores: two each from short, medium and long target-duration groups, with distinct reference prompts. Every model uses the same text, reference and inference seed (0), its 500k EMA checkpoint, Euler sampling, CFG 2 and sway −1. The original WAV files are served without trimming or loudness adjustment.</p><p>These clips illustrate individual outputs. Full-test-set means are shown below; this demo is not a listening-test result. Sample selection and audio hashes are available in the <a href="data/samples.json">sample manifest</a> and <a href="data/audio-sha256.json">checksum record</a>.</p></details>
-  </div></section>
+    <div class="sample-picker">
+      <label for="sample-select">Example</label>
+      <select id="sample-select" aria-controls="sample-content audio-rows"><option>Loading examples…</option></select>
+      <span class="sample-count">6 examples · Seed-TTS test-en</span>
+    </div>
+    <div id="sample-content" aria-busy="true">
+      <div class="target-text"><span class="small-label">Text to synthesize</span><p id="sample-text">Loading the selected sentence…</p></div>
+      <div class="reference-row"><span>Reference voice</span><audio id="reference-audio" controls preload="metadata" aria-label="Reference voice"></audio><details class="reference-transcript"><summary>Transcript</summary><p id="reference-text"></p></details></div>
+    </div>
+    <div class="scroll-region audio-scroll" tabindex="0" role="region" aria-label="Six models at 32 and 4 steps; scroll horizontally on small screens">
+      <table class="audio-table">
+        <caption class="sr-only">All six layouts, with 32-step and four-step speech side by side</caption>
+        <thead><tr><th scope="col">Model</th><th scope="col">32 steps</th><th scope="col">4 steps</th></tr></thead>
+        <tbody id="audio-rows"></tbody>
+      </table>
+    </div>
+    <p class="note">Six examples selected by a fixed rule across short, medium, and long utterances, before inspecting model scores. Individual clips can differ from the aggregate ranking above. All models use the same text, reference voice, and inference seed.</p>
+    <details class="details"><summary>Audio settings and sample selection</summary><p>Seed-TTS test-en; seed 0; 500k-update EMA checkpoints; Euler sampling, CFG 2, sway −1. Two examples per target-duration group, with distinct reference prompts. Original WAV files are served without trimming or loudness adjustment.</p><p>See the <a href="data/samples.json">sample manifest</a> for the fixed selection rule, transcripts, and per-clip objective metrics, and the <a href="data/audio-sha256.json">audio checksums</a> for file verification. These examples are not a human listening-test result.</p></details>
+  </section>
 
   <section class="section container" id="results" aria-labelledby="results-title">
-    <div class="section-heading"><div><p class="eyebrow">03 / THE RESULTS</p><h2 id="results-title">The budget changes the ranking.</h2></div><div class="segmented dataset-control" aria-label="Results dataset" role="group"><button data-dataset="seedtts" class="active" aria-pressed="true">Seed-TTS</button><button data-dataset="lspc" aria-pressed="false">LibriSpeech-PC</button></div></div>
+    <h2 id="results-title">All six models</h2>
+    <p class="section-intro">Word error rate at both sampling budgets, alongside parameter count and measured memory and sampling time.</p>
     <div id="results-load-error" class="error-message" hidden role="alert"></div>
-    <div class="chart-panel"><div class="chart-heading"><div><h3>Word error rate vs. sampling steps</h3><p>Lower is better</p></div><label class="metric-toggle"><input type="checkbox" id="chart-zoom"> Zoom to 8–32 steps</label></div><div id="wer-chart" class="wer-chart" role="img" aria-label="Loading word error rate chart"></div><div id="chart-legend" class="chart-legend"></div><p class="chart-note">Curves use one fixed inference seed per dataset (666 / 0). The table averages four / three seeds, so its endpoint means differ.</p></div>
-    <div class="finding-strip"><span class="finding-mark" aria-hidden="true">↳</span><p id="finding-text"><strong>The clearest placement gap is at four steps.</strong> At eight steps, the Prefix–Suffix mean ordering has already reversed.</p></div>
-    <div class="table-heading"><div><h3>Quality, parameters and memory</h3><p>All six layouts · 500k updates · EMA weights</p></div><div class="segmented" aria-label="Quality table sampling steps" role="group"><button class="active" data-table-steps="32" aria-pressed="true">32 steps</button><button data-table-steps="4" aria-pressed="false">4 steps</button></div></div>
-    <div class="results-table-scroll" tabindex="0" role="region" aria-label="Model comparison table; scroll horizontally on small screens"><table class="results-table"><caption id="table-caption" class="sr-only">Quality and resources on Seed-TTS at 32 sampling steps</caption><thead><tr><th scope="col">Layout</th><th scope="col">Params <span>M</span></th><th scope="col">Memory <span>MB</span></th><th scope="col">RTF <span>↓</span></th><th scope="col">WER <span>% ↓</span></th><th scope="col">SIM-o <span>↑</span></th><th scope="col">UTMOS <span>↑</span></th></tr></thead><tbody id="results-rows"></tbody></table></div>
-    <p class="section-note">Bold marks the best displayed quality mean, including ties. <strong>Resource columns always use Seed-TTS at 32 steps:</strong> H100, fp32, batch one. Memory is peak allocated GPU memory including the vocoder. RTF is total sampling time ÷ generated duration, excluding vocoding. UTMOS is an automatic quality predictor.</p>
-    <div class="resource-summary"><div class="resource-copy"><p class="eyebrow">FULL ×2 VS. BASELINE</p><h3>Less memory. <br>Similar sampling time.</h3><p>Nine blocks, visited twice. Shared weights and optimizer states reduce storage; the network still executes 18 block calls.</p></div><div class="saving"><strong>47.1<span>%</span></strong><span>fewer parameters</span></div><div class="saving"><strong>34.5<span>%</span></strong><span>less inference allocation</span></div><div class="saving"><strong>10.2<span>%</span></strong><span>less recorded training allocation</span></div></div>
-    <details class="protocol-details"><summary>Training memory and measurement details</summary><p>Training uses eight GPUs and accumulation of two. The table reports the largest rank-0 cumulative process peak in records from 400k–500k updates, not a minimum GPU requirement or the maximum across all ranks. Prefix and Suffix trained on H200; the others used H100. Sharing does not remove activations for the 18 executed block calls.</p><div class="results-table-scroll"><table class="results-table training-table"><caption class="sr-only">Recorded late-training resources</caption><thead><tr><th scope="col">Layout</th><th scope="col">GPU ×8</th><th scope="col">Allocated <span>GiB</span></th><th scope="col">Reserved <span>GiB</span></th><th scope="col">Seconds / update</th></tr></thead><tbody id="training-rows"></tbody></table></div><p>Full ×2 has lower allocated memory but higher reserved memory than the baseline. Sampling RTF comes from one pass per layout on the same GPU model; the small timing differences do not establish a speed advantage. The <a href="data/results.json">results data</a> include the measurement protocols and aggregate values.</p></details>
-    <details class="training-finding"><summary><span>Another view: lower training loss does not select the better four-step layout.</span><span aria-hidden="true">+</span></summary><div><p>Across nine common checkpoints, Suffix has lower logged training loss than Prefix and higher four-step WER on both test sets. The four-step gap widens from 300k to 500k updates.</p><img src="assets/figures/training.svg" alt="Across nine checkpoints, Suffix minus Prefix training loss is negative while the four-step WER differences are positive on Seed-TTS and LibriSpeech-PC." loading="lazy" width="1100" height="335"><p class="section-note">Training loss uses online weights; speech evaluation uses EMA. There is one training run per layout. This is evidence about the observed rankings, not a proven mechanism of the velocity field.</p></div></details>
+    <div class="scroll-region" tabindex="0" role="region" aria-label="Quality and resources for all six models; scroll horizontally on small screens">
+      <table class="results-table">
+        <caption class="sr-only">All six models: WER on Seed-TTS and LibriSpeech-PC, parameters, peak allocated memory, and sampling real-time factor</caption>
+        <thead>
+          <tr><th scope="col" rowspan="2">Model</th><th scope="col" rowspan="2">Params<br><span>(M)</span></th><th scope="colgroup" colspan="2">Seed-TTS WER ↓</th><th scope="colgroup" colspan="2">LibriSpeech-PC WER ↓</th><th scope="col" rowspan="2">Infer. alloc.<br><span>(MB)</span></th><th scope="col" rowspan="2">Train alloc.<br><span>(GiB)*</span></th><th scope="col" rowspan="2">Sampling<br>RTF ↓</th></tr>
+          <tr><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">32 steps</th><th scope="col">4 steps</th></tr>
+        </thead><tbody id="results-rows"></tbody>
+      </table>
+    </div>
+    <div class="table-notes">
+      <p>Mean utterance WER (%): means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: lowest mean in each WER column. All quality results use 500k-update EMA checkpoints.</p>
+      <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder. Sampling RTF = sampling time ÷ generated audio duration; it excludes vocoding.</p>
+      <p>*Training: late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
+    </div>
+    <p class="result-reading"><strong>Sharing reduces storage while retaining the executed depth.</strong> Loop 9 × 2 uses 47.1% fewer parameters and 34.5% less peak inference allocation than the Baseline. At the same step count, sampling RTF remains approximately 0.143 across all six layouts.</p>
+    <details class="details"><summary>Speaker similarity and predicted speech quality</summary><p>SIM-o measures speaker similarity; UTMOS predicts naturalness. Higher is better for both. UTMOS is an automatic score, not human MOS. Values below use the same inference seeds and checkpoints as the WER table.</p><div id="quality-tables"></div></details>
+    <details class="details"><summary>Training measurements and evaluation scope</summary><p>Training uses eight GPUs, accumulation of two, and BF16 mixed precision with FP32 parameters, EMA, and Adam states. The table reports the largest rank-0 cumulative process peaks in records from 400k–500k updates. These are neither maxima across all ranks nor minimum GPU capacities.</p><div class="scroll-region" tabindex="0" role="region" aria-label="Training allocation, reservation, and hardware"><table class="results-table"><caption>Recorded training resources</caption><thead><tr><th scope="col">Model</th><th scope="col">GPU ×8</th><th scope="col">Allocated (GiB)</th><th scope="col">Reserved (GiB)</th><th scope="col">Seconds / update</th></tr></thead><tbody id="training-rows"></tbody></table></div><p>Loop 9 × 2 has lower allocated but higher reserved memory than the Baseline. Update time is the median over 1,000 logged windows, each covering 100 updates. Inference timing uses one recorded run per layout; small differences do not establish a speed advantage.</p><p>There is one training run per layout. The comparison fixes 500k updates rather than selecting an earlier checkpoint for each model. Across nine common checkpoints, Suffix has lower logged training loss than Prefix but higher four-step WER on both test sets; the gap widens from 300k to 500k. Training loss uses online weights, while speech evaluation uses EMA. This observation does not establish a causal mechanism. No human MOS study has been completed for these models.</p></details>
+    <p class="data-link"><a href="data/results.json">Download the result data</a></p>
   </section>
-
-  <section class="about-section"><div class="container about-inner"><div><p class="eyebrow">ABOUT THE STUDY</p><h2>Choose the position <br>with the operating point.</h2></div><div><p>Prefix, Middle and Suffix offer different quality trade-offs. Middle has the lowest 32-step WER means on both datasets; Prefix leads four-step WER on Seed-TTS. Suffix has the strongest 32-step speaker similarity among the partial loops.</p><p class="muted">Results cover one training run per layout and the stated Euler / CFG / sway setting. A current-model listening test, independent retraining and alternative sampling grids remain open evaluations.</p><div class="inline-links"><a href="https://github.com/JiabaoAi67/JiabaoAi67.github.io/tree/main/loop-f5">Page source ↗</a><a href="data/samples.json">Sample manifest ↗</a><a href="data/results.json">Results data ↗</a></div></div></div></section>
 </main>
-<footer class="container footer"><span>Where to Loop in Flow-Matching Text-to-Speech</span><span><a href="https://github.com/JiabaoAi67/JiabaoAi67.github.io/tree/main/loop-f5">Page source</a><span class="footer-separator">/</span> Layout inspired by <a href="https://github.com/JiabaoAi67/TDJD_TTS_Demo">TDJD-TTS</a></span></footer>
-<noscript><div class="noscript">Enable JavaScript to switch audio examples and explore results. The <a href="assets/figures/sampling-steps.svg">sampling curves</a>, <a href="data/results.json">results data</a> and <a href="data/samples.json">audio manifest</a> are available directly.</div></noscript>
+<footer class="footer container"><p>Page structure follows <a href="https://github.com/JiabaoAi67/TDJD_TTS_Demo">TDJD-TTS Demo</a>, with a standalone implementation.</p><p><a href="https://github.com/JiabaoAi67/JiabaoAi67.github.io/tree/main/loop-f5">Page source</a> · <a href="data/samples.json">Audio manifest</a> · <a href="data/results.json">Results data</a></p></footer>
+<noscript><p class="container note">JavaScript is needed to load the audio comparison and tables. The <a href="data/samples.json">audio manifest</a> and <a href="data/results.json">results data</a> are also available directly.</p></noscript>
 </body>
 </html>
