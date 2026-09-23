@@ -121,14 +121,10 @@
     </div>
     <div class="table-notes">
       <p id="quality-table-note">Mean utterance WER (%): means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: lowest mean in each WER column. All quality results use 500k-update EMA checkpoints.</p>
-      <p id="memory-ratio-note"><strong>Each memory column = measured peak ÷ the corresponding Baseline peak × 100.</strong> Baseline is 100%; lower means less memory used.</p>
-      <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder.</p>
-      <p>*Training: ratios of recorded late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
+      <p id="memory-ratio-note">Memory: peak allocated memory relative to Baseline (100%).</p>
+      <p>*Training values are recorded cumulative peaks from runs on different hardware.</p>
     </div>
-    <p class="result-reading"><strong>Sharing reduces storage while retaining the executed depth.</strong> CYCLE and SEQUENCE 9 × 2 each use 47.1% fewer parameters and 34.5% less peak inference allocation than the Baseline. Their inference allocation is therefore 65.5% of the Baseline; all seven models still execute 18 block calls per network evaluation.</p>
-
-    <p class="result-reading"><strong>The order of reuse changes the trade-off.</strong> At 32 steps, SEQUENCE lowers Seed-TTS WER from CYCLE’s 2.60 to 2.03, while UTMOS falls from 3.90 to 3.75. On LibriSpeech-PC, WER rises from 2.14 to 2.26. SEQUENCE has higher SIM-o on both datasets. Parameter count and executed depth are unchanged.</p>
-
+    <details class="details"><summary>Measurement details</summary><p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder.</p><p>Training: recorded late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p></details>
     <p class="data-link"><a href="data/results.json">Download the result data</a></p>
   </section>
 </main>
