@@ -12,21 +12,21 @@
       "label": "CYCLE 9 × 2",
       "params_m": 83.557988,
       "unique_blocks": 9,
-      "color": "#8d97a1"
+      "color": "#4878a8"
     },
     {
       "id": "sequence",
       "label": "SEQUENCE 9 × 2",
       "params_m": 83.557988,
       "unique_blocks": 9,
-      "color": "#636d77"
+      "color": "#8064aa"
     },
     {
       "id": "full3",
       "label": "Full ×3",
       "params_m": 58.755428,
       "unique_blocks": 6,
-      "color": "#b6bdc6"
+      "color": "#65864f"
     },
     {
       "id": "prefix",

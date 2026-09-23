@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="site.css?v=3">
-  <script src="site.js?v=6" defer></script>
+  <script src="site.js?v=7" defer></script>
   <title>Where to Loop in Flow-Matching Text-to-Speech</title>
 </head>
 <body>
@@ -64,8 +64,8 @@
     <p id="metric-finding" class="metric-finding" aria-live="polite">At four steps, Suffix has 3.44 / 5.97 percentage points higher WER than Prefix on Seed-TTS / LibriSpeech-PC. Among the partial loops, Middle has the lowest 32-step WER on both datasets.</p>
     <figure class="placement-figure">
       <picture>
-        <source id="quality-figure-source" media="(max-width: 680px)" srcset="assets/figures/placement-budget-mobile.svg?v=5">
-        <img id="quality-figure-image" src="assets/figures/placement-budget.svg?v=5" width="1100" height="1170" alt="Word error rate for all seven models: Baseline, CYCLE 9 by 2, SEQUENCE 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. Exact means are also available in the comparison table below." loading="lazy">
+        <source id="quality-figure-source" media="(max-width: 680px)" srcset="assets/figures/placement-budget-mobile.svg?v=7">
+        <img id="quality-figure-image" src="assets/figures/placement-budget.svg?v=7" width="1100" height="1170" alt="Word error rate for all seven models: Baseline, CYCLE 9 by 2, SEQUENCE 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. Exact means are also available in the comparison table below." loading="lazy">
       </picture>
       <figcaption id="quality-figure-caption">WER measures transcription errors; lower is better. Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Axes start at zero: 0–3% at 32 steps, 0–20% at four steps. All seven models execute 18 block calls per network evaluation; only the three partial loops share the same 108.4M parameter count.</figcaption>
     </figure>
@@ -115,7 +115,7 @@
     </div>
     <div class="table-notes">
       <p id="quality-table-note">Mean utterance WER (%): means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: lowest mean in each WER column. All quality results use 500k-update EMA checkpoints.</p>
-      <p id="memory-ratio-note"><strong>Each memory column = measured peak ÷ the corresponding Baseline peak × 100.</strong> Baseline is 100%; lower means less memory used. Absolute measurements are available below.</p>
+      <p id="memory-ratio-note"><strong>Each memory column = measured peak ÷ the corresponding Baseline peak × 100.</strong> Baseline is 100%; lower means less memory used.</p>
       <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder.</p>
       <p>*Training: ratios of recorded late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
     </div>
@@ -123,13 +123,6 @@
 
     <p class="result-reading"><strong>The order of reuse changes the trade-off.</strong> At 32 steps, SEQUENCE lowers Seed-TTS WER from CYCLE’s 2.60 to 2.03, while UTMOS falls from 3.90 to 3.75. On LibriSpeech-PC, WER rises from 2.14 to 2.26. SEQUENCE has higher SIM-o on both datasets. Parameter count and executed depth are unchanged.</p>
 
-    <details class="details" id="resource-details"><summary>Absolute memory measurements and evaluation scope</summary>
-      <p>The main table normalizes each allocated-memory measurement to its corresponding Baseline value. The absolute measurements are shown here.</p>
-      <div class="scroll-region" tabindex="0" role="region" aria-label="Absolute inference and training memory measurements"><table class="results-table"><caption>Recorded allocated memory</caption><thead><tr><th scope="col">Model</th><th scope="col">Infer. allocated (MB)</th><th scope="col">Train GPU ×8</th><th scope="col">Train allocated (GiB)</th></tr></thead><tbody id="training-rows"></tbody></table></div>
-      <p>Training uses eight GPUs, accumulation of two, and BF16 mixed precision with FP32 parameters, EMA, and Adam states. Values are the largest rank-0 cumulative allocation peaks in records from 400k–500k updates. These include each process’s earlier allocation history and are neither maxima across all ranks nor minimum GPU capacities.</p>
-      <p>At the same 32-step inference setting, sampling RTF ranges from 0.1426 to 0.1440 across the seven layouts. RTF is total sampling time divided by generated audio duration, excluding vocoding. There is one recorded timing run per layout; these small differences do not establish a speed advantage. Detailed timing values remain in the result data.</p>
-      <p>There is one training run per layout. The comparison fixes 500k updates rather than selecting an earlier checkpoint for each model. Across nine common checkpoints, Suffix has lower logged training loss than Prefix but higher four-step WER on both test sets; the gap widens from 300k to 500k. Training loss uses online weights, while speech evaluation uses EMA. This observation does not establish a causal mechanism. No human MOS study has been completed for these models.</p>
-    </details>
     <p class="data-link"><a href="data/results.json">Download the result data</a></p>
   </section>
 </main>

@@ -17,8 +17,8 @@ from pathlib import Path
 
 MODELS = [
     ("baseline", "f5h200code", "Baseline", "#59636f"),
-    ("full2", "elt9x2h200code", "Full ×2", "#8d97a1"),
-    ("full3", "elt6x3h200code", "Full ×3", "#b6bdc6"),
+    ("full2", "elt9x2h200code", "Full ×2", "#4878a8"),
+    ("full3", "elt6x3h200code", "Full ×3", "#65864f"),
     ("prefix", "prefixnosync", "Prefix", "#15877f"),
     ("middle", "midh200code", "Middle", "#b98223"),
     ("suffix", "suffixnosync", "Suffix", "#d56655"),
@@ -154,7 +154,7 @@ def main() -> None:
     sequence_path = args.sequence_audit or args.paper_dir / "analysis/demo_sequence_20260923/audit.json"
     if sequence_path.exists():
         sequence = json.loads(sequence_path.read_text())
-        result["models"].insert(2, {"id": "sequence", "label": "SEQUENCE 9 × 2", "params_m": 83.557988, "unique_blocks": 9, "color": "#636d77"})
+        result["models"].insert(2, {"id": "sequence", "label": "SEQUENCE 9 × 2", "params_m": 83.557988, "unique_blocks": 9, "color": "#8064aa"})
         for model in result["models"]:
             if model["id"] == "full2": model["label"] = "CYCLE 9 × 2"
         for dataset, seeds in QUALITY_SEEDS.items():

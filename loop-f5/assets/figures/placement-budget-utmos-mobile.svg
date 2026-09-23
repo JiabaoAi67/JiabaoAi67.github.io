@@ -25,17 +25,17 @@
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="full2" data-metric="utmos">
 <text x="8" y="190" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
-<rect x="145" y="167" width="234.060" height="30" fill="#8d97a1"/>
+<rect x="145" y="167" width="234.060" height="30" fill="#4878a8"/>
 <text x="387.0597145314164" y="190" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.90</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="sequence" data-metric="utmos">
 <text x="8" y="234" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
-<rect x="145" y="211" width="225.227" height="30" fill="#636d77"/>
+<rect x="145" y="211" width="225.227" height="30" fill="#8064aa"/>
 <text x="378.22745095796006" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.75</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="full3" data-metric="utmos">
 <text x="8" y="278" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="255" width="231.542" height="30" fill="#b6bdc6"/>
+<rect x="145" y="255" width="231.542" height="30" fill="#65864f"/>
 <text x="384.5422643501969" y="278" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.86</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="prefix" data-metric="utmos">
@@ -75,17 +75,17 @@
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="full2" data-metric="utmos">
 <text x="8" y="643" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
-<rect x="145" y="620" width="185.024" height="30" fill="#8d97a1"/>
+<rect x="145" y="620" width="185.024" height="30" fill="#4878a8"/>
 <text x="338.0243527069688" y="643" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.08</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="sequence" data-metric="utmos">
 <text x="8" y="687" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
-<rect x="145" y="664" width="184.081" height="30" fill="#636d77"/>
+<rect x="145" y="664" width="184.081" height="30" fill="#8064aa"/>
 <text x="337.0810000052785" y="687" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.07</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="full3" data-metric="utmos">
 <text x="8" y="731" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="708" width="181.982" height="30" fill="#b6bdc6"/>
+<rect x="145" y="708" width="181.982" height="30" fill="#65864f"/>
 <text x="334.98242770069663" y="731" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.03</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="prefix" data-metric="utmos">
@@ -130,17 +130,17 @@
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="full2" data-metric="utmos">
 <text x="8" y="190" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
-<rect x="145" y="167" width="243.678" height="30" fill="#8d97a1"/>
+<rect x="145" y="167" width="243.678" height="30" fill="#4878a8"/>
 <text x="396.6782689906901" y="190" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">4.06</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="sequence" data-metric="utmos">
 <text x="8" y="234" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
-<rect x="145" y="211" width="236.089" height="30" fill="#636d77"/>
+<rect x="145" y="211" width="236.089" height="30" fill="#8064aa"/>
 <text x="389.0886067337131" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">3.93</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="full3" data-metric="utmos">
 <text x="8" y="278" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="255" width="243.772" height="30" fill="#b6bdc6"/>
+<rect x="145" y="255" width="243.772" height="30" fill="#65864f"/>
 <text x="396.7722841235739" y="278" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">4.06</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="prefix" data-metric="utmos">
@@ -180,17 +180,17 @@
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="full2" data-metric="utmos">
 <text x="8" y="643" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
-<rect x="145" y="620" width="155.560" height="30" fill="#8d97a1"/>
+<rect x="145" y="620" width="155.560" height="30" fill="#4878a8"/>
 <text x="308.56041161994966" y="643" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.59</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="sequence" data-metric="utmos">
 <text x="8" y="687" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
-<rect x="145" y="664" width="153.470" height="30" fill="#636d77"/>
+<rect x="145" y="664" width="153.470" height="30" fill="#8064aa"/>
 <text x="306.470391008636" y="687" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.56</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="full3" data-metric="utmos">
 <text x="8" y="731" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="708" width="167.861" height="30" fill="#b6bdc6"/>
+<rect x="145" y="708" width="167.861" height="30" fill="#65864f"/>
 <text x="320.86127490921155" y="731" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.80</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="prefix" data-metric="utmos">

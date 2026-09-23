@@ -5,9 +5,9 @@
   const esc = (value) => String(value).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const models = [
     {id:'baseline',label:'Baseline (18 × 1)',formula:'18 unique blocks · one pass',params:157.965668,unique:18,color:'#757575',sequence:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]},
-    {id:'full2',label:'CYCLE 9 × 2',formula:'9 unique blocks · two passes',params:83.557988,unique:9,color:'#757575',sequence:[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9]},
-    {id:'sequence',label:'SEQUENCE 9 × 2',formula:'Each block repeated immediately',params:83.557988,unique:9,color:'#636d77',sequence:[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9]},
-    {id:'full3',label:'Loop 6 × 3',formula:'6 unique blocks · three passes',params:58.755428,unique:6,color:'#757575',sequence:[1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6]},
+    {id:'full2',label:'CYCLE 9 × 2',formula:'9 unique blocks · two passes',params:83.557988,unique:9,color:'#4878a8',sequence:[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9]},
+    {id:'sequence',label:'SEQUENCE 9 × 2',formula:'Each block repeated immediately',params:83.557988,unique:9,color:'#8064aa',sequence:[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9]},
+    {id:'full3',label:'Loop 6 × 3',formula:'6 unique blocks · three passes',params:58.755428,unique:6,color:'#65864f',sequence:[1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6]},
     {id:'prefix',label:'Prefix',formula:'6 × 2 + 6',params:108.360548,unique:12,color:'#15877f',sequence:[1,2,3,4,5,6,1,2,3,4,5,6,7,8,9,10,11,12]},
     {id:'middle',label:'Middle',formula:'3 + 6 × 2 + 3',params:108.360548,unique:12,color:'#b98223',sequence:[1,2,3,4,5,6,7,8,9,4,5,6,7,8,9,10,11,12]},
     {id:'suffix',label:'Suffix',formula:'6 + 6 × 2',params:108.360548,unique:12,color:'#d56655',sequence:[1,2,3,4,5,6,7,8,9,10,11,12,7,8,9,10,11,12]},
@@ -75,7 +75,6 @@
       const values = cols.map(([dataset,steps],i) => {const raw = data.quality[dataset][steps][m.id][qualityMetric]; if (!Number.isFinite(raw)) return '<td class="pending" title="Audio generated; objective evaluation pending">Pending</td>'; const value = raw.toFixed(metric.digits);return `<td>${Number(value) === best[i] ? `<strong>${value}</strong>` : value}</td>`;}).join('');
       return `<tr class="${rowClass(m)}" data-model="${m.id}"><th scope="row">${m.label}</th><td>${m.params.toFixed(1)}</td>${values}<td title="${r.inference_mb.toFixed(1)} MB allocated">${inferencePercent}%</td><td title="${r.training_allocated_gib.toFixed(2)} GiB allocated; ${esc(r.training_gpu)}">${trainingPercent}%</td></tr>`;
     }).join('');
-    $('#training-rows').innerHTML = models.map((m) => {const r = data.resources[m.id];return `<tr class="${rowClass(m)}"><th scope="row">${m.label}</th><td>${r.inference_mb.toFixed(1)}</td><td>${esc(r.training_gpu)}</td><td>${r.training_allocated_gib.toFixed(2)}</td></tr>`;}).join('');
   }
   function selectQualityMetric(key) {
     if (!Object.hasOwn(metrics, key)) return;
@@ -83,7 +82,7 @@
     const metric = metrics[key];
     $$('[data-quality-metric]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.qualityMetric === key)));
     $('#quality-figure-source').srcset = `assets/figures/${metric.asset}-mobile.svg?v=5`;
-    $('#quality-figure-image').src = `assets/figures/${metric.asset}.svg?v=5`;
+    $('#quality-figure-image').src = `assets/figures/${metric.asset}.svg?v=7`;
     $('#quality-figure-image').alt = `${metric.name} for all seven models: Baseline, CYCLE 9 by 2, SEQUENCE 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. ${metric.finding} Exact means are also available in the comparison table below.`;
     $('#metric-finding').textContent = metric.finding;
     $('#quality-figure-caption').textContent = `${metric.definition} Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. ${metric.axis} All seven models execute 18 block calls per network evaluation; only the three partial loops share the same 108.4M parameter count.`;
@@ -100,5 +99,5 @@
     $('#sample-select').innerHTML = data.samples.map((sample,index) => `<option value="${index}">${String(index + 1).padStart(2,'0')} · ${esc(sample.length_group[0].toUpperCase() + sample.length_group.slice(1))} sentence</option>`).join('');
     renderSample(0);
   }).catch((error) => showError('#audio-load-error', 'The audio examples could not load. Please reload the page, or open the sample manifest below.', error));
-  readJSON('data/results.json?v=5').then((data) => { qualityData = data; renderResults(data); }).catch((error) => showError('#results-load-error', 'The results table could not load. Please reload the page, or open the result data below.', error));
+  readJSON('data/results.json?v=7').then((data) => { qualityData = data; renderResults(data); }).catch((error) => showError('#results-load-error', 'The results table could not load. Please reload the page, or open the result data below.', error));
 })();
