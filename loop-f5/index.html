@@ -122,9 +122,8 @@
     <div class="table-notes">
       <p id="quality-table-note">Mean utterance WER (%): means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: lowest mean in each WER column. All quality results use 500k-update EMA checkpoints.</p>
       <p id="memory-ratio-note">Memory: peak allocated memory relative to Baseline (100%).</p>
-      <p>*Training values are recorded cumulative peaks from runs on different hardware.</p>
+      <p>*Training: recorded cumulative allocation peaks.</p>
     </div>
-    <details class="details"><summary>Measurement details</summary><p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder.</p><p>Training: recorded late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p></details>
     <p class="data-link"><a href="data/results.json">Download the result data</a></p>
   </section>
 </main>
