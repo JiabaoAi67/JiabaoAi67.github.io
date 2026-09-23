@@ -17,7 +17,7 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 - Abstract and a seven-row architecture overview.
 - Directly selectable WER, SIM-o, and UTMOS figures. Every metric shows all seven models on both datasets at 32 and 4 steps, with labeled means. SEQUENCE has complete WER, corrected SIM-o, and UTMOS at both budgets, with matched audio examples. Mobile uses a stacked figure. Baseline and full-loop bars are gray; the three equal-size partial loops retain distinct colors.
 - Six reproducibly selected Seed-TTS examples. Each displays all seven models at both 32 and 4 steps: adjacent columns on desktop, labeled players stacked within each model on mobile.
-- A complete seven-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters and allocated inference memory and allocated/reserved training memory as percentages of Baseline remain visible. Baseline is 100%; these values are percentages used, not percentages saved. Absolute allocated/reserved memory and measurement details are available below the main table. Inference reserved memory was not recorded and is not imputed. RTF is kept in the data and measurement notes rather than the main table.
+- A complete seven-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters and allocated inference/training memory as percentages of Baseline remain visible. Baseline is 100%; these values are percentages used, not percentages saved. Absolute allocated memory and measurement details are available below the main table. RTF is kept in the data and measurement notes rather than the main table.
 
 ## Files and protocols
 
@@ -36,3 +36,7 @@ Page structure follows [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_De
 ## SEQUENCE result update
 
 The SEQUENCE row and its twelve audio files were audited against raw 500k-update results. Reuse order was verified from the training share-pattern manifest and every inference protocol. Only complete corrected-SIM / WER / UTMOS seed sets are exported. The original six systems and sample selection are preserved. The results exporter supports the original six-model audit plus the SEQUENCE extension via `--sequence-audit`; the raw audit and audio-extension script is retained in the paper analysis directory. The original audio-selection script reproduces the six-model starting point.
+
+## Memory display
+
+The page shows allocated memory only. Original reserved-memory records remain in the downloadable result data for provenance. Training values are cumulative rank-0 process peaks, including earlier startup/resume history; they are not per-window peaks or minimum GPU requirements.
