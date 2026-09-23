@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="site.css?v=3">
-  <script src="site.js?v=3" defer></script>
+  <script src="site.js?v=4" defer></script>
   <title>Where to Loop in Flow-Matching Text-to-Speech</title>
 </head>
 <body>
@@ -97,7 +97,7 @@
 
   <section class="section container" id="results" aria-labelledby="results-title">
     <h2 id="results-title">All six models</h2>
-    <p class="section-intro">Compare intelligibility, speaker similarity, and predicted naturalness alongside parameter count, memory, and sampling time. The metric selection is shared with the figure above.</p>
+    <p class="section-intro">Compare intelligibility, speaker similarity, and predicted naturalness alongside parameter count and memory relative to the Baseline. The metric selection is shared with the figure above.</p>
     <div class="metric-selector" role="group" aria-label="Quality metric">
       <button type="button" data-quality-metric="wer" aria-pressed="true"><strong>WER ↓</strong><span>Intelligibility</span></button>
       <button type="button" data-quality-metric="sim" aria-pressed="false"><strong>SIM-o ↑</strong><span>Speaker similarity</span></button>
@@ -106,21 +106,28 @@
     <div id="results-load-error" class="error-message" hidden role="alert"></div>
     <div class="scroll-region" tabindex="0" role="region" aria-label="Quality and resources for all six models; scroll horizontally on small screens">
       <table class="results-table">
-        <caption id="results-caption" class="sr-only">All six models: WER on Seed-TTS and LibriSpeech-PC, parameters, peak allocated memory, and sampling real-time factor</caption>
+        <caption id="results-caption" class="sr-only">All six models: WER on Seed-TTS and LibriSpeech-PC, parameters and allocated memory as a percentage of Baseline</caption>
         <thead>
-          <tr><th scope="col" rowspan="2">Model</th><th scope="col" rowspan="2">Params<br><span>(M)</span></th><th id="seedtts-metric-heading" scope="colgroup" colspan="2">Seed-TTS WER ↓</th><th id="lspc-metric-heading" scope="colgroup" colspan="2">LibriSpeech-PC WER ↓</th><th scope="col" rowspan="2">Infer. alloc.<br><span>(MB)</span></th><th scope="col" rowspan="2">Train alloc.<br><span>(GiB)*</span></th><th scope="col" rowspan="2">Sampling<br>RTF ↓</th></tr>
-          <tr><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">32 steps</th><th scope="col">4 steps</th></tr>
+          <tr><th scope="col" rowspan="2">Model</th><th scope="col" rowspan="2">Params<br><span>(M)</span></th><th id="seedtts-metric-heading" scope="colgroup" colspan="2">Seed-TTS WER ↓</th><th id="lspc-metric-heading" scope="colgroup" colspan="2">LibriSpeech-PC WER ↓</th><th scope="colgroup" colspan="2">Memory (% of Baseline) ↓</th></tr>
+          <tr><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">Inference</th><th scope="col">Training*</th></tr>
         </thead><tbody id="results-rows"></tbody>
       </table>
     </div>
     <div class="table-notes">
       <p id="quality-table-note">Mean utterance WER (%): means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: lowest mean in each WER column. All quality results use 500k-update EMA checkpoints.</p>
-      <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder. Sampling RTF = sampling time ÷ generated audio duration; it excludes vocoding.</p>
-      <p>*Training: late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
+      <p id="memory-ratio-note"><strong>Memory = allocated memory ÷ Baseline allocated memory × 100.</strong> Baseline is 100%; lower means less memory used. Absolute measurements are available below.</p>
+      <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder.</p>
+      <p>*Training: ratios of recorded late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
     </div>
-    <p class="result-reading"><strong>Sharing reduces storage while retaining the executed depth.</strong> Loop 9 × 2 uses 47.1% fewer parameters and 34.5% less peak inference allocation than the Baseline. At the same step count, sampling RTF remains approximately 0.143 across all six layouts.</p>
+    <p class="result-reading"><strong>Sharing reduces storage while retaining the executed depth.</strong> Loop 9 × 2 uses 47.1% fewer parameters and 34.5% less peak inference allocation than the Baseline. Its inference allocation is therefore 65.5% of the Baseline; all six models still execute 18 block calls per network evaluation.</p>
 
-    <details class="details"><summary>Training measurements and evaluation scope</summary><p>Training uses eight GPUs, accumulation of two, and BF16 mixed precision with FP32 parameters, EMA, and Adam states. The table reports the largest rank-0 cumulative process peaks in records from 400k–500k updates. These are neither maxima across all ranks nor minimum GPU capacities.</p><div class="scroll-region" tabindex="0" role="region" aria-label="Training allocation, reservation, and hardware"><table class="results-table"><caption>Recorded training resources</caption><thead><tr><th scope="col">Model</th><th scope="col">GPU ×8</th><th scope="col">Allocated (GiB)</th><th scope="col">Reserved (GiB)</th><th scope="col">Seconds / update</th></tr></thead><tbody id="training-rows"></tbody></table></div><p>Loop 9 × 2 has lower allocated but higher reserved memory than the Baseline. Update time is the median over 1,000 logged windows, each covering 100 updates. Inference timing uses one recorded run per layout; small differences do not establish a speed advantage.</p><p>There is one training run per layout. The comparison fixes 500k updates rather than selecting an earlier checkpoint for each model. Across nine common checkpoints, Suffix has lower logged training loss than Prefix but higher four-step WER on both test sets; the gap widens from 300k to 500k. Training loss uses online weights, while speech evaluation uses EMA. This observation does not establish a causal mechanism. No human MOS study has been completed for these models.</p></details>
+    <details class="details" id="resource-details"><summary>Absolute memory measurements and evaluation scope</summary>
+      <p>The main table normalizes each memory measurement to its corresponding Baseline value. The original allocated and reserved memory measurements are shown here.</p>
+      <div class="scroll-region" tabindex="0" role="region" aria-label="Absolute inference and training memory measurements"><table class="results-table"><caption>Recorded memory measurements</caption><thead><tr><th scope="col">Model</th><th scope="col">Infer. allocated (MB)</th><th scope="col">Train GPU ×8</th><th scope="col">Train allocated (GiB)</th><th scope="col">Train reserved (GiB)</th></tr></thead><tbody id="training-rows"></tbody></table></div>
+      <p>Training uses eight GPUs, accumulation of two, and BF16 mixed precision with FP32 parameters, EMA, and Adam states. Values are the largest rank-0 cumulative process peaks in records from 400k–500k updates. These are neither maxima across all ranks nor minimum GPU capacities. Loop 9 × 2 has lower allocated but higher reserved memory than the Baseline.</p>
+      <p>At the same 32-step inference setting, sampling RTF ranges from 0.1426 to 0.1440 across the six layouts. RTF is total sampling time divided by generated audio duration, excluding vocoding. There is one recorded timing run per layout; these small differences do not establish a speed advantage. Detailed timing values remain in the result data.</p>
+      <p>There is one training run per layout. The comparison fixes 500k updates rather than selecting an earlier checkpoint for each model. Across nine common checkpoints, Suffix has lower logged training loss than Prefix but higher four-step WER on both test sets; the gap widens from 300k to 500k. Training loss uses online weights, while speech evaluation uses EMA. This observation does not establish a causal mechanism. No human MOS study has been completed for these models.</p>
+    </details>
     <p class="data-link"><a href="data/results.json">Download the result data</a></p>
   </section>
 </main>

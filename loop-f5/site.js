@@ -64,14 +64,17 @@
     const best = cols.map(([dataset,steps]) => (metric.lower ? Math.min : Math.max)(...models.map((m) => Number(data.quality[dataset][steps][m.id][qualityMetric].toFixed(metric.digits)))));
     $('#seedtts-metric-heading').textContent = `Seed-TTS ${metric.label} ${metric.direction}`;
     $('#lspc-metric-heading').textContent = `LibriSpeech-PC ${metric.label} ${metric.direction}`;
-    $('#results-caption').textContent = `All six models: ${metric.name} on Seed-TTS and LibriSpeech-PC at 32 and 4 steps, parameters, peak allocated memory, and sampling real-time factor.`;
+    $('#results-caption').textContent = `All six models: ${metric.name} on Seed-TTS and LibriSpeech-PC at 32 and 4 steps, parameters and allocated memory as a percentage of Baseline.`;
     $('#quality-table-note').textContent = `${metric.definition} Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: ${metric.lower ? 'lowest' : 'highest'} displayed mean in each quality column, including ties. All quality results use 500k-update EMA checkpoints.`;
     $('#results-rows').innerHTML = models.map((m) => {
       const r = data.resources[m.id];
+      const baseline = data.resources.baseline;
+      const inferencePercent = (100 * r.inference_mb / baseline.inference_mb).toFixed(1);
+      const trainingPercent = (100 * r.training_allocated_gib / baseline.training_allocated_gib).toFixed(1);
       const values = cols.map(([dataset,steps],i) => {const value = data.quality[dataset][steps][m.id][qualityMetric].toFixed(metric.digits);return `<td>${Number(value) === best[i] ? `<strong>${value}</strong>` : value}</td>`;}).join('');
-      return `<tr class="${rowClass(m)}" data-model="${m.id}"><th scope="row">${m.label}</th><td>${m.params.toFixed(1)}</td>${values}<td>${r.inference_mb.toFixed(1)}</td><td>${r.training_allocated_gib.toFixed(2)}</td><td>${r.rtf.toFixed(4)}</td></tr>`;
+      return `<tr class="${rowClass(m)}" data-model="${m.id}"><th scope="row">${m.label}</th><td>${m.params.toFixed(1)}</td>${values}<td title="${r.inference_mb.toFixed(1)} MB allocated">${inferencePercent}%</td><td title="${r.training_allocated_gib.toFixed(2)} GiB allocated; ${esc(r.training_gpu)}">${trainingPercent}%</td></tr>`;
     }).join('');
-    $('#training-rows').innerHTML = models.map((m) => {const r = data.resources[m.id];return `<tr class="${rowClass(m)}"><th scope="row">${m.label}</th><td>${esc(r.training_gpu)}</td><td>${r.training_allocated_gib.toFixed(2)}</td><td>${r.training_reserved_gib.toFixed(2)}</td><td>${r.seconds_per_update.toFixed(4)}</td></tr>`;}).join('');
+    $('#training-rows').innerHTML = models.map((m) => {const r = data.resources[m.id];return `<tr class="${rowClass(m)}"><th scope="row">${m.label}</th><td>${r.inference_mb.toFixed(1)}</td><td>${esc(r.training_gpu)}</td><td>${r.training_allocated_gib.toFixed(2)}</td><td>${r.training_reserved_gib.toFixed(2)}</td></tr>`;}).join('');
   }
   function selectQualityMetric(key) {
     if (!Object.hasOwn(metrics, key)) return;

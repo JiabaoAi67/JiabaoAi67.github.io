@@ -17,7 +17,7 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 - Abstract and a six-row architecture overview.
 - Directly selectable WER, SIM-o, and UTMOS figures. Every metric shows all six models on both datasets at 32 and 4 steps, with labeled means. Mobile uses a stacked figure. Baseline and full-loop bars are gray; the three equal-size partial loops retain distinct colors.
 - Six reproducibly selected Seed-TTS examples. Each displays all six models at both 32 and 4 steps: adjacent columns on desktop, labeled players stacked within each model on mobile.
-- A complete six-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters, inference allocation, recorded training allocation, and sampling RTF remain visible. Training measurement details are available below it.
+- A complete six-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters and allocated inference/training memory as percentages of Baseline remain visible. Baseline is 100%; these values are percentages used, not percentages saved. Absolute allocated/reserved memory and measurement details are available below the main table. RTF is kept in the data and measurement notes rather than the main table.
 
 ## Files and protocols
 
@@ -27,7 +27,7 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 
 `assets/audio/` contains six reference clips and 72 model outputs, unmodified PCM16 WAV. `data/audio-sha256.json` records the 78 checksums and format metadata. The `scripts/` exporters require the original experiment data/audit summaries and are not needed to serve the site.
 
-Inference allocation and RTF refer to the 32-step Seed-TTS H100/FP32/batch-one measurement. Memory includes the vocoder; sampling RTF excludes vocoding. Training figures are late-training rank-0 cumulative process peaks in GiB, with mixed H100/H200 hardware. Reserved memory, hardware, and measurement scope are reported separately; these values are not minimum GPU requirements. Small timing differences are not evidence of a speed advantage. UTMOS is an automatic predictor, not human MOS.
+Memory percentages are computed from the unrounded absolute measurements, separately for inference and training. Inference allocation and RTF refer to the 32-step Seed-TTS H100/FP32/batch-one measurement. Memory includes the vocoder; sampling RTF excludes vocoding. Training figures are late-training rank-0 cumulative process peaks in GiB, with mixed H100/H200 hardware. Reserved memory, hardware, and measurement scope are reported separately; these values are not minimum GPU requirements. Small timing differences are not evidence of a speed advantage. UTMOS is an automatic predictor, not human MOS.
 
 ## Acknowledgments
 
