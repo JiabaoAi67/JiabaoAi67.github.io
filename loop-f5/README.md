@@ -21,7 +21,7 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 
 ## Files and protocols
 
-`data/results.json` contains aggregate quality, fixed-seed curves, and resources. The page's three quality figures and table use the same multi-seed quality means: four inference seeds for Seed-TTS and three for LibriSpeech-PC. Null values denote unavailable metrics and are excluded from best-value highlighting. SEQUENCE does not yet have a complete four-budget curve in this export. Single-seed curves remain in the data for reference but are not mixed into the displayed comparison.
+`data/results.json` contains aggregate quality, fixed-seed curves, and resources. The page's three quality figures and table use the same multi-seed quality means: four inference seeds for Seed-TTS and three for LibriSpeech-PC. Null values denote unavailable metrics and are excluded from best-value highlighting. All seven models, including SEQUENCE, have complete WER curves at 4, 8, 16, and 32 steps. The sampling-step plot is linked below the quality comparison and uses the same data as paper Figure 3: Seed-TTS seed 666 and LibriSpeech-PC seed 0 throughout each curve. These fixed-seed endpoints differ from the multi-seed means in the main comparison.
 
 `data/samples.json` contains texts, reference voices, output paths, selection details, and per-clip objective metrics. Audio uses seed 0 for every model, 500k-update EMA checkpoints, Euler sampling, CFG 2, and sway −1. Six examples are selected by fixed hash within target-duration terciles, two per group with distinct prompts, before reading model quality metrics. The fixed sample order includes failures and counterexamples. These examples are not a human listening test.
 
