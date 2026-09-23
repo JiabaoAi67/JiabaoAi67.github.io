@@ -47,7 +47,8 @@
   "metric_units": {
     "wer": "percent; per-utterance automatic ASR WER",
     "sim": "WavLM speaker-embedding cosine similarity",
-    "utmos": "Automatic quality prediction; not human MOS"
+    "utmos": "Automatic quality prediction; not human MOS",
+    "missing": "Null means the objective score is not yet available."
   },
   "models": [
     {
@@ -58,9 +59,15 @@
     },
     {
       "id": "full2",
-      "label": "Full ×2",
+      "label": "CYCLE 9 × 2",
       "params_m": 83.557988,
       "layout": "9 × 2"
+    },
+    {
+      "id": "sequence",
+      "label": "SEQUENCE 9 × 2",
+      "params_m": 83.557988,
+      "layout": "1,1,2,2,...,9,9"
     },
     {
       "id": "full3",
@@ -141,6 +148,13 @@
             "wer": 0.0,
             "sim": 0.3939160704612732,
             "utmos": 1.8933424949645996
+          },
+          "sequence": {
+            "src": "assets/audio/sample-01/sequence-4.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.41230320930480957,
+            "utmos": 1.8261113166809082
           }
         },
         "32": {
@@ -185,6 +199,13 @@
             "wer": 0.0,
             "sim": 0.41353726387023926,
             "utmos": 3.621750593185425
+          },
+          "sequence": {
+            "src": "assets/audio/sample-01/sequence-32.wav",
+            "duration_seconds": 2.922667,
+            "wer": 0.0,
+            "sim": 0.440796822309494,
+            "utmos": 1.7081133127212524
           }
         }
       }
@@ -242,6 +263,13 @@
             "wer": 0.0,
             "sim": 0.5260822772979736,
             "utmos": 4.050539016723633
+          },
+          "sequence": {
+            "src": "assets/audio/sample-02/sequence-4.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.4985881447792053,
+            "utmos": 3.5396246910095215
           }
         },
         "32": {
@@ -286,6 +314,13 @@
             "wer": 0.0,
             "sim": 0.6922149062156677,
             "utmos": 4.312444686889648
+          },
+          "sequence": {
+            "src": "assets/audio/sample-02/sequence-32.wav",
+            "duration_seconds": 3.285333,
+            "wer": 0.0,
+            "sim": 0.6428977251052856,
+            "utmos": 4.098278522491455
           }
         }
       }
@@ -343,6 +378,13 @@
             "wer": 0.0,
             "sim": 0.5406757593154907,
             "utmos": 3.1600849628448486
+          },
+          "sequence": {
+            "src": "assets/audio/sample-03/sequence-4.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.5607975721359253,
+            "utmos": 3.478485107421875
           }
         },
         "32": {
@@ -387,6 +429,13 @@
             "wer": 0.0,
             "sim": 0.6636666059494019,
             "utmos": 4.058320045471191
+          },
+          "sequence": {
+            "src": "assets/audio/sample-03/sequence-32.wav",
+            "duration_seconds": 4.266667,
+            "wer": 0.0,
+            "sim": 0.6801847219467163,
+            "utmos": 3.636772632598877
           }
         }
       }
@@ -444,6 +493,13 @@
             "wer": 25.0,
             "sim": 0.5017696619033813,
             "utmos": 2.8122732639312744
+          },
+          "sequence": {
+            "src": "assets/audio/sample-04/sequence-4.wav",
+            "duration_seconds": 4.330667,
+            "wer": 16.666666666666664,
+            "sim": 0.44154804944992065,
+            "utmos": 2.097655773162842
           }
         },
         "32": {
@@ -488,6 +544,13 @@
             "wer": 0.0,
             "sim": 0.5213176012039185,
             "utmos": 3.8118419647216797
+          },
+          "sequence": {
+            "src": "assets/audio/sample-04/sequence-32.wav",
+            "duration_seconds": 4.330667,
+            "wer": 0.0,
+            "sim": 0.5153689980506897,
+            "utmos": 3.240161657333374
           }
         }
       }
@@ -545,6 +608,13 @@
             "wer": 0.0,
             "sim": 0.5170681476593018,
             "utmos": 3.670848846435547
+          },
+          "sequence": {
+            "src": "assets/audio/sample-05/sequence-4.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.5508412718772888,
+            "utmos": 4.295727729797363
           }
         },
         "32": {
@@ -589,6 +659,13 @@
             "wer": 0.0,
             "sim": 0.6915714740753174,
             "utmos": 4.317072868347168
+          },
+          "sequence": {
+            "src": "assets/audio/sample-05/sequence-32.wav",
+            "duration_seconds": 6.848,
+            "wer": 0.0,
+            "sim": 0.7096030712127686,
+            "utmos": 4.249574184417725
           }
         }
       }
@@ -646,6 +723,13 @@
             "wer": 0.0,
             "sim": 0.43240463733673096,
             "utmos": 1.7323060035705566
+          },
+          "sequence": {
+            "src": "assets/audio/sample-06/sequence-4.wav",
+            "duration_seconds": 5.504,
+            "wer": 18.181818181818183,
+            "sim": 0.2602136731147766,
+            "utmos": 1.8886125087738037
           }
         },
         "32": {
@@ -690,6 +774,13 @@
             "wer": 0.0,
             "sim": 0.5726538896560669,
             "utmos": 4.127363204956055
+          },
+          "sequence": {
+            "src": "assets/audio/sample-06/sequence-32.wav",
+            "duration_seconds": 5.504,
+            "wer": 0.0,
+            "sim": 0.5761797428131104,
+            "utmos": 3.465048313140869
           }
         }
       }

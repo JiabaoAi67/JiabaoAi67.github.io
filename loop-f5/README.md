@@ -1,8 +1,8 @@
 # Where to Loop in Flow-Matching Text-to-Speech
 
-A paper-style research page for six shared-depth F5-TTS layouts. Live: **https://jiabaoai67.github.io/loop-f5/**.
+A paper-style research page for seven shared-depth F5-TTS layouts. Live: **https://jiabaoai67.github.io/loop-f5/**.
 
-The page follows the title / Abstract / method / findings / audio structure of [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_Demo), with a standalone HTML/CSS/JavaScript implementation. All six systems are always shown: Baseline (18 × 1), Loop 9 × 2, Loop 6 × 3, Prefix, Middle, and Suffix. Here, full-loop notation means unique blocks × passes; all layouts execute 18 block calls per network evaluation.
+The page follows the title / Abstract / method / findings / audio structure of [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_Demo), with a standalone HTML/CSS/JavaScript implementation. All seven systems are always shown: Baseline (18 × 1), CYCLE 9 × 2, SEQUENCE 9 × 2, Loop 6 × 3, Prefix, Middle, and Suffix. CYCLE repeats the full nine-block stack; SEQUENCE repeats each block immediately (1,1,2,2,…,9,9). Both use 83.6M parameters. Other full-loop notation means unique blocks × passes; all layouts execute 18 block calls per network evaluation.
 
 ## Run locally
 
@@ -14,21 +14,25 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 
 ## Page contents
 
-- Abstract and a six-row architecture overview.
-- Directly selectable WER, SIM-o, and UTMOS figures. Every metric shows all six models on both datasets at 32 and 4 steps, with labeled means. Mobile uses a stacked figure. Baseline and full-loop bars are gray; the three equal-size partial loops retain distinct colors.
-- Six reproducibly selected Seed-TTS examples. Each displays all six models at both 32 and 4 steps: adjacent columns on desktop, labeled players stacked within each model on mobile.
-- A complete six-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters and allocated inference/training memory as percentages of Baseline remain visible. Baseline is 100%; these values are percentages used, not percentages saved. Absolute allocated/reserved memory and measurement details are available below the main table. RTF is kept in the data and measurement notes rather than the main table.
+- Abstract and a seven-row architecture overview.
+- Directly selectable WER, SIM-o, and UTMOS figures. Every metric shows all seven models on both datasets at 32 and 4 steps, with labeled means. SEQUENCE has complete WER, corrected SIM-o, and UTMOS at both budgets, with matched audio examples. Mobile uses a stacked figure. Baseline and full-loop bars are gray; the three equal-size partial loops retain distinct colors.
+- Six reproducibly selected Seed-TTS examples. Each displays all seven models at both 32 and 4 steps: adjacent columns on desktop, labeled players stacked within each model on mobile.
+- A complete seven-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters and allocated inference memory and allocated/reserved training memory as percentages of Baseline remain visible. Baseline is 100%; these values are percentages used, not percentages saved. Absolute allocated/reserved memory and measurement details are available below the main table. Inference reserved memory was not recorded and is not imputed. RTF is kept in the data and measurement notes rather than the main table.
 
 ## Files and protocols
 
-`data/results.json` contains aggregate quality, fixed-seed curves, and resources. The page's three quality figures and table use the same multi-seed quality means: four inference seeds for Seed-TTS and three for LibriSpeech-PC. Single-seed curves remain in the data for reference but are not mixed into the displayed comparison.
+`data/results.json` contains aggregate quality, fixed-seed curves, and resources. The page's three quality figures and table use the same multi-seed quality means: four inference seeds for Seed-TTS and three for LibriSpeech-PC. Null values denote unavailable metrics and are excluded from best-value highlighting. SEQUENCE does not yet have a complete four-budget curve in this export. Single-seed curves remain in the data for reference but are not mixed into the displayed comparison.
 
 `data/samples.json` contains texts, reference voices, output paths, selection details, and per-clip objective metrics. Audio uses seed 0 for every model, 500k-update EMA checkpoints, Euler sampling, CFG 2, and sway −1. Six examples are selected by fixed hash within target-duration terciles, two per group with distinct prompts, before reading model quality metrics. The fixed sample order includes failures and counterexamples. These examples are not a human listening test.
 
-`assets/audio/` contains six reference clips and 72 model outputs, unmodified PCM16 WAV. `data/audio-sha256.json` records the 78 checksums and format metadata. The `scripts/` exporters require the original experiment data/audit summaries and are not needed to serve the site.
+`assets/audio/` contains six reference clips and 84 model outputs, unmodified PCM16 WAV. `data/audio-sha256.json` records the 90 file checksums. The `scripts/` exporters require the original experiment data/audit summaries and are not needed to serve the site.
 
-Memory percentages are computed from the unrounded absolute measurements, separately for inference and training. Inference allocation and RTF refer to the 32-step Seed-TTS H100/FP32/batch-one measurement. Memory includes the vocoder; sampling RTF excludes vocoding. Training figures are late-training rank-0 cumulative process peaks in GiB, with mixed H100/H200 hardware. Reserved memory, hardware, and measurement scope are reported separately; these values are not minimum GPU requirements. Small timing differences are not evidence of a speed advantage. UTMOS is an automatic predictor, not human MOS.
+Memory percentages are computed from the unrounded absolute measurements, separately for inference and training. Inference allocation and RTF refer to the 32-step Seed-TTS H100/FP32/batch-one measurement. Memory includes the vocoder; sampling RTF excludes vocoding. Training figures are late-training rank-0 cumulative process peaks in GiB, with mixed H100/H200 hardware. Absolute values, hardware, and measurement scope are reported separately; these values are not minimum GPU requirements. Small timing differences are not evidence of a speed advantage. UTMOS is an automatic predictor, not human MOS.
 
 ## Acknowledgments
 
 Page structure follows [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_Demo). The models follow [F5-TTS](https://github.com/SWivid/F5-TTS), and the listening examples use the [Seed-TTS evaluation benchmark](https://github.com/BytedanceSpeech/seed-tts-eval). Audio and research artifacts retain their upstream provenance; this repository does not relicense third-party material.
+
+## SEQUENCE result update
+
+The SEQUENCE row and its twelve audio files were audited against raw 500k-update results. Reuse order was verified from the training share-pattern manifest and every inference protocol. Only complete corrected-SIM / WER / UTMOS seed sets are exported. The original six systems and sample selection are preserved. The results exporter supports the original six-model audit plus the SEQUENCE extension via `--sequence-audit`; the raw audit and audio-extension script is retained in the paper analysis directory. The original audio-selection script reproduces the six-model starting point.

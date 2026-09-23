@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Where to Loop in Flow-Matching Text-to-Speech: six weight-sharing layouts, a controlled study of loop placement, and audio comparisons at 32 and 4 sampling steps.">
+  <meta name="description" content="Where to Loop in Flow-Matching Text-to-Speech: seven weight-sharing layouts, a controlled study of loop placement, and audio comparisons at 32 and 4 sampling steps.">
   <meta name="author" content="Jiabao Ai, Peng Han, Yuchen Song, Zhengjun Yue">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="Where to Loop in Flow-Matching Text-to-Speech">
-  <meta property="og:description" content="Loop placement and sampling budget jointly shape speech quality. Listen to all six F5-TTS layouts at 32 and 4 steps.">
+  <meta property="og:description" content="Loop placement and sampling budget jointly shape speech quality. Listen to all seven F5-TTS layouts at 32 and 4 steps.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="site.css?v=3">
-  <script src="site.js?v=4" defer></script>
+  <script src="site.js?v=5" defer></script>
   <title>Where to Loop in Flow-Matching Text-to-Speech</title>
 </head>
 <body>
@@ -38,42 +38,42 @@
   <section class="section container" id="abstract" aria-labelledby="abstract-title">
     <h2 id="abstract-title">Abstract</h2>
     <div class="abstract-text">
-      <p>Where should a flow-matching speech generator share weights across depth? We study six F5-TTS layouts that execute the same 18 Transformer block calls, varying both the amount and position of sharing. Three partial loops—Prefix, Middle, and Suffix—have identical parameter counts but respond differently to the sampling budget. At 32 steps, their word error rates are close. At four steps, Suffix has 3.44 and 5.97 percentage points higher WER than Prefix on Seed-TTS and LibriSpeech-PC. Middle achieves the lowest 32-step WER on both datasets, while Suffix gives the highest 32-step speaker similarity among the partial loops. The four-step placement gap persists across training checkpoints despite Suffix’s lower logged training loss. Weight sharing also reduces storage: repeating nine blocks twice saves 47.1% of parameters and 34.5% of peak inference allocation, with comparable sampling time. These results show that loop placement should be evaluated at the intended sampling budget.</p>
+      <p>Where should a flow-matching speech generator share weights across depth? We study seven F5-TTS layouts that execute the same 18 Transformer block calls, varying both the amount and position of sharing. Three partial loops—Prefix, Middle, and Suffix—have identical parameter counts but respond differently to the sampling budget. At 32 steps, their word error rates are close. At four steps, Suffix has 3.44 and 5.97 percentage points higher WER than Prefix on Seed-TTS and LibriSpeech-PC. Among the partial loops, Middle achieves the lowest 32-step WER on both datasets, while Suffix gives the highest 32-step speaker similarity among the partial loops. The four-step placement gap persists across training checkpoints despite Suffix’s lower logged training loss. Weight sharing also reduces storage: repeating nine blocks twice saves 47.1% of parameters and 34.5% of peak inference allocation, with comparable sampling time. An adjacent-repeat SEQUENCE control further shows that reuse order changes the balance between intelligibility and predicted naturalness. These results show that weight sharing should be evaluated at the intended sampling budget.</p>
     </div>
   </section>
 
   <section class="section container" id="method" aria-labelledby="method-title">
-    <h2 id="method-title">Six layouts, the same executed depth</h2>
-    <p class="section-intro">Full loops vary <strong>how much</strong> is shared. Partial loops vary <strong>where</strong> it is shared, at the same parameter count.</p>
+    <h2 id="method-title">Seven layouts, the same executed depth</h2>
+    <p class="section-intro">Full loops vary <strong>how much</strong> is shared. CYCLE and SEQUENCE vary <strong>the order of reuse</strong>. Partial loops vary <strong>where</strong> sharing occurs, at the same parameter count.</p>
     <figure class="method-figure">
-      <div class="scroll-region" tabindex="0" role="region" aria-label="All six model layouts; scroll horizontally on small screens">
+      <div class="scroll-region" tabindex="0" role="region" aria-label="All seven model layouts; scroll horizontally on small screens">
         <div id="architecture" class="architecture"></div>
       </div>
-      <figcaption>Each row executes 18 block calls in one network evaluation, from left to right. Repeated block numbers within a row share weights; colored blocks are reused. <strong>9 × 2</strong> means nine unique blocks, two passes; <strong>6 × 3</strong> means six unique blocks, three passes. Prefix, Middle, and Suffix each reuse a six-block segment twice.</figcaption>
+      <figcaption>Each row executes 18 block calls in one network evaluation, from left to right. Repeated block numbers within a row share weights; colored blocks are reused. <strong>CYCLE 9 × 2</strong> runs blocks 1–9 twice; <strong>SEQUENCE 9 × 2</strong> repeats each block immediately: 1, 1, 2, 2, …, 9, 9. Both use 83.6M parameters.  <strong>6 × 3</strong> means six unique blocks, three passes. Prefix, Middle, and Suffix each reuse a six-block segment twice.</figcaption>
     </figure>
   </section>
 
   <section class="section container" id="placement" aria-labelledby="placement-title">
     <h2 id="placement-title">Loop placement and speech quality</h2>
-    <p class="section-intro">Compare <strong>all six models</strong> at 32 and 4 sampling steps. Baseline, Loop 9 × 2, and Loop 6 × 3 provide the full-stack comparison; Prefix, Middle, and Suffix each have 108.4M parameters.</p>
+    <p class="section-intro">Compare <strong>all seven models</strong> at 32 and 4 sampling steps. Baseline, CYCLE 9 × 2, SEQUENCE 9 × 2, and Loop 6 × 3 provide the full-stack comparison; Prefix, Middle, and Suffix each have 108.4M parameters.</p>
     <div class="metric-selector" role="group" aria-label="Quality metric">
       <button type="button" data-quality-metric="wer" aria-pressed="true"><strong>WER ↓</strong><span>Intelligibility</span></button>
       <button type="button" data-quality-metric="sim" aria-pressed="false"><strong>SIM-o ↑</strong><span>Speaker similarity</span></button>
       <button type="button" data-quality-metric="utmos" aria-pressed="false"><strong>UTMOS ↑</strong><span>Predicted naturalness</span></button>
     </div>
-    <p id="metric-finding" class="metric-finding" aria-live="polite">At four steps, Suffix has 3.44 / 5.97 percentage points higher WER than Prefix on Seed-TTS / LibriSpeech-PC. Middle has the lowest 32-step WER on both datasets.</p>
+    <p id="metric-finding" class="metric-finding" aria-live="polite">At four steps, Suffix has 3.44 / 5.97 percentage points higher WER than Prefix on Seed-TTS / LibriSpeech-PC. Among the partial loops, Middle has the lowest 32-step WER on both datasets.</p>
     <figure class="placement-figure">
       <picture>
-        <source id="quality-figure-source" media="(max-width: 680px)" srcset="assets/figures/placement-budget-mobile.svg?v=3">
-        <img id="quality-figure-image" src="assets/figures/placement-budget.svg?v=3" width="1100" height="1060" alt="Word error rate for all six models: Baseline, Loop 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. Exact means are also available in the comparison table below." loading="lazy">
+        <source id="quality-figure-source" media="(max-width: 680px)" srcset="assets/figures/placement-budget-mobile.svg?v=5">
+        <img id="quality-figure-image" src="assets/figures/placement-budget.svg?v=5" width="1100" height="1170" alt="Word error rate for all seven models: Baseline, CYCLE 9 by 2, SEQUENCE 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. Exact means are also available in the comparison table below." loading="lazy">
       </picture>
-      <figcaption id="quality-figure-caption">WER measures transcription errors; lower is better. Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Axes start at zero: 0–3% at 32 steps, 0–20% at four steps. All six models execute 18 block calls per network evaluation; only the three partial loops share the same 108.4M parameter count.</figcaption>
+      <figcaption id="quality-figure-caption">WER measures transcription errors; lower is better. Means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Axes start at zero: 0–3% at 32 steps, 0–20% at four steps. All seven models execute 18 block calls per network evaluation; only the three partial loops share the same 108.4M parameter count.</figcaption>
     </figure>
   </section>
 
   <section class="section container" id="audio" aria-labelledby="audio-title">
     <h2 id="audio-title">Audio samples</h2>
-    <p class="section-intro">Compare the Baseline with <strong>Loop 9 × 2</strong> and <strong>Loop 6 × 3</strong> to hear the effect of sharing more weights. Compare <strong>Prefix, Middle, and Suffix</strong> to hear the effect of sharing position, then listen across the two sampling budgets.</p>
+    <p class="section-intro">Compare the Baseline with <strong>CYCLE 9 × 2</strong> and <strong>Loop 6 × 3</strong> to hear the effect of sharing more weights. Compare <strong>CYCLE and SEQUENCE</strong> to hear the effect of reuse order. Compare <strong>Prefix, Middle, and Suffix</strong> to hear the effect of sharing position, then listen across the two sampling budgets.</p>
     <div id="audio-load-error" class="error-message" hidden role="alert"></div>
     <div class="sample-picker">
       <label for="sample-select">Example</label>
@@ -84,9 +84,9 @@
       <div class="target-text"><span class="small-label">Text to synthesize</span><p id="sample-text">Loading the selected sentence…</p></div>
       <div class="reference-row"><span>Reference voice</span><audio id="reference-audio" controls preload="metadata" aria-label="Reference voice"></audio><details class="reference-transcript"><summary>Transcript</summary><p id="reference-text"></p></details></div>
     </div>
-    <div class="scroll-region audio-scroll" tabindex="0" role="region" aria-label="Six models at 32 and 4 steps; scroll horizontally on small screens">
+    <div class="scroll-region audio-scroll" tabindex="0" role="region" aria-label="Seven models at 32 and 4 steps; scroll horizontally on small screens">
       <table class="audio-table">
-        <caption class="sr-only">All six layouts, with 32-step and four-step speech side by side</caption>
+        <caption class="sr-only">All seven layouts, with 32-step and four-step speech side by side</caption>
         <thead><tr><th scope="col">Model</th><th scope="col">32 steps</th><th scope="col">4 steps</th></tr></thead>
         <tbody id="audio-rows"></tbody>
       </table>
@@ -96,7 +96,7 @@
   </section>
 
   <section class="section container" id="results" aria-labelledby="results-title">
-    <h2 id="results-title">All six models</h2>
+    <h2 id="results-title">All seven models</h2>
     <p class="section-intro">Compare intelligibility, speaker similarity, and predicted naturalness alongside parameter count and memory relative to the Baseline. The metric selection is shared with the figure above.</p>
     <div class="metric-selector" role="group" aria-label="Quality metric">
       <button type="button" data-quality-metric="wer" aria-pressed="true"><strong>WER ↓</strong><span>Intelligibility</span></button>
@@ -104,28 +104,30 @@
       <button type="button" data-quality-metric="utmos" aria-pressed="false"><strong>UTMOS ↑</strong><span>Predicted naturalness</span></button>
     </div>
     <div id="results-load-error" class="error-message" hidden role="alert"></div>
-    <div class="scroll-region" tabindex="0" role="region" aria-label="Quality and resources for all six models; scroll horizontally on small screens">
+    <div class="scroll-region" tabindex="0" role="region" aria-label="Quality and resources for all seven models; scroll horizontally on small screens">
       <table class="results-table">
-        <caption id="results-caption" class="sr-only">All six models: WER on Seed-TTS and LibriSpeech-PC, parameters and allocated memory as a percentage of Baseline</caption>
+        <caption id="results-caption" class="sr-only">All seven models: WER on Seed-TTS and LibriSpeech-PC, parameters and allocated / reserved memory as percentages of Baseline</caption>
         <thead>
-          <tr><th scope="col" rowspan="2">Model</th><th scope="col" rowspan="2">Params<br><span>(M)</span></th><th id="seedtts-metric-heading" scope="colgroup" colspan="2">Seed-TTS WER ↓</th><th id="lspc-metric-heading" scope="colgroup" colspan="2">LibriSpeech-PC WER ↓</th><th scope="colgroup" colspan="2">Memory (% of Baseline) ↓</th></tr>
-          <tr><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">Inference</th><th scope="col">Training*</th></tr>
+          <tr><th scope="col" rowspan="2">Model</th><th scope="col" rowspan="2">Params<br><span>(M)</span></th><th id="seedtts-metric-heading" scope="colgroup" colspan="2">Seed-TTS WER ↓</th><th id="lspc-metric-heading" scope="colgroup" colspan="2">LibriSpeech-PC WER ↓</th><th scope="colgroup" colspan="3">Peak memory (% of Baseline) ↓</th></tr>
+          <tr><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">32 steps</th><th scope="col">4 steps</th><th scope="col">Infer.<br>allocated</th><th scope="col">Train<br>allocated*</th><th scope="col">Train<br>reserved*</th></tr>
         </thead><tbody id="results-rows"></tbody>
       </table>
     </div>
     <div class="table-notes">
       <p id="quality-table-note">Mean utterance WER (%): means over four inference seeds on Seed-TTS and three on LibriSpeech-PC. Bold: lowest mean in each WER column. All quality results use 500k-update EMA checkpoints.</p>
-      <p id="memory-ratio-note"><strong>Memory = allocated memory ÷ Baseline allocated memory × 100.</strong> Baseline is 100%; lower means less memory used. Absolute measurements are available below.</p>
-      <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder.</p>
-      <p>*Training: ratios of recorded late-training rank-0 cumulative allocation peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
+      <p id="memory-ratio-note"><strong>Each memory column = measured peak ÷ the corresponding Baseline peak × 100.</strong> Baseline is 100%; lower means less memory used. Absolute measurements are available below.</p>
+      <p>Inference: H100, FP32, batch one, 32-step Seed-TTS. Peak allocated memory includes the vocoder. Inference reserved memory was not logged and is not estimated.</p>
+      <p>*Training: ratios of recorded late-training rank-0 cumulative allocated / reserved peaks. Prefix/Suffix used H200; the other models used H100. These records are not a controlled hardware comparison or minimum GPU requirements.</p>
     </div>
-    <p class="result-reading"><strong>Sharing reduces storage while retaining the executed depth.</strong> Loop 9 × 2 uses 47.1% fewer parameters and 34.5% less peak inference allocation than the Baseline. Its inference allocation is therefore 65.5% of the Baseline; all six models still execute 18 block calls per network evaluation.</p>
+    <p class="result-reading"><strong>Sharing reduces storage while retaining the executed depth.</strong> CYCLE and SEQUENCE 9 × 2 each use 47.1% fewer parameters and 34.5% less peak inference allocation than the Baseline. Their inference allocation is therefore 65.5% of the Baseline; all seven models still execute 18 block calls per network evaluation.</p>
+
+    <p class="result-reading"><strong>The order of reuse changes the trade-off.</strong> At 32 steps, SEQUENCE lowers Seed-TTS WER from CYCLE’s 2.60 to 2.03, while UTMOS falls from 3.90 to 3.75. On LibriSpeech-PC, WER rises from 2.14 to 2.26. SEQUENCE has higher SIM-o on both datasets. Parameter count and executed depth are unchanged.</p>
 
     <details class="details" id="resource-details"><summary>Absolute memory measurements and evaluation scope</summary>
       <p>The main table normalizes each memory measurement to its corresponding Baseline value. The original allocated and reserved memory measurements are shown here.</p>
       <div class="scroll-region" tabindex="0" role="region" aria-label="Absolute inference and training memory measurements"><table class="results-table"><caption>Recorded memory measurements</caption><thead><tr><th scope="col">Model</th><th scope="col">Infer. allocated (MB)</th><th scope="col">Train GPU ×8</th><th scope="col">Train allocated (GiB)</th><th scope="col">Train reserved (GiB)</th></tr></thead><tbody id="training-rows"></tbody></table></div>
-      <p>Training uses eight GPUs, accumulation of two, and BF16 mixed precision with FP32 parameters, EMA, and Adam states. Values are the largest rank-0 cumulative process peaks in records from 400k–500k updates. These are neither maxima across all ranks nor minimum GPU capacities. Loop 9 × 2 has lower allocated but higher reserved memory than the Baseline.</p>
-      <p>At the same 32-step inference setting, sampling RTF ranges from 0.1426 to 0.1440 across the six layouts. RTF is total sampling time divided by generated audio duration, excluding vocoding. There is one recorded timing run per layout; these small differences do not establish a speed advantage. Detailed timing values remain in the result data.</p>
+      <p>Training uses eight GPUs, accumulation of two, and BF16 mixed precision with FP32 parameters, EMA, and Adam states. Values are the largest rank-0 cumulative process peaks in records from 400k–500k updates. Allocated and reserved peaks may occur at different times. These are neither maxima across all ranks nor minimum GPU capacities. CYCLE 9 × 2 has lower allocated but higher reserved memory than the Baseline.</p>
+      <p>At the same 32-step inference setting, sampling RTF ranges from 0.1426 to 0.1440 across the seven layouts. RTF is total sampling time divided by generated audio duration, excluding vocoding. There is one recorded timing run per layout; these small differences do not establish a speed advantage. Detailed timing values remain in the result data.</p>
       <p>There is one training run per layout. The comparison fixes 500k updates rather than selecting an earlier checkpoint for each model. Across nine common checkpoints, Suffix has lower logged training loss than Prefix but higher four-step WER on both test sets; the gap widens from 300k to 500k. Training loss uses online weights, while speech evaluation uses EMA. This observation does not establish a causal mechanism. No human MOS study has been completed for these models.</p>
     </details>
     <p class="data-link"><a href="data/results.json">Download the result data</a></p>

@@ -76,5 +76,17 @@
   "assets/audio/sample-06/full3-32.wav": "d119c9403705595578e4274a3dd1c48946a67f4f279a3f862a98f2f455a699a3",
   "assets/audio/sample-06/prefix-32.wav": "bb48ce3f497149012bf57e04e9f935c07e7f6951a0fed7d5cb9110ebf9bbf1a1",
   "assets/audio/sample-06/middle-32.wav": "669f0fcc2c457f7d2641159f617a779c23d4382625ddfdeb404740fb15d3b47f",
-  "assets/audio/sample-06/suffix-32.wav": "bddfcb4818bcf2e03f3b8c85233d930ad81cc83d4184f0b7d4dc76576cbcc555"
+  "assets/audio/sample-06/suffix-32.wav": "bddfcb4818bcf2e03f3b8c85233d930ad81cc83d4184f0b7d4dc76576cbcc555",
+  "assets/audio/sample-01/sequence-4.wav": "f602e9bd732b080101d5c8983afd011cfe83d44d0bc3b29f0c11c00b6b7b79bd",
+  "assets/audio/sample-01/sequence-32.wav": "b1d5af830c1077156b815a38d79017f05fe4b8aa399ad507d75c5350108cc181",
+  "assets/audio/sample-02/sequence-4.wav": "7c407d0df41b1b102c9e84b1582e72c7f0e387fde946f4939dd711d9b82adcc9",
+  "assets/audio/sample-02/sequence-32.wav": "b38964c9d1761d821b8b2f202bb066b6de545d05d99874cebfadd1c26cb12333",
+  "assets/audio/sample-03/sequence-4.wav": "90f727eb76bf9953d9f42d8baf564ee5abaf14097bb4158e41570104d923bbe1",
+  "assets/audio/sample-03/sequence-32.wav": "dd2bc0de148474456f6364be0a6f92656305a4bde6c8bb9d16b84ec2e8ce6f18",
+  "assets/audio/sample-04/sequence-4.wav": "1242765679eafce2816ea3bdbcddb4149426a9cc7b7dc2bc62227526cc338a87",
+  "assets/audio/sample-04/sequence-32.wav": "fb0aefdaa2acba3a0b9e7fdd456b92fa3666bffdcb8e690414d5b71cb463c710",
+  "assets/audio/sample-05/sequence-4.wav": "c7a4e55c965e6d5966ba571023e73f4a76e4a9e192a5f6c0712d1bd92a66103f",
+  "assets/audio/sample-05/sequence-32.wav": "23791c4dee3fbc4fe6589b557c157a4369ae66c9f1cac2e8a0d146aa07593612",
+  "assets/audio/sample-06/sequence-4.wav": "0a63f81dfda3fe9413d919f20f0d37a44ef3dc50cffaf3bceea5a942f1032e2b",
+  "assets/audio/sample-06/sequence-32.wav": "77e6c896d78b4bd1aee5be640158dad3a875c9ef4abcb2a08d4769aaa60496af"
 }

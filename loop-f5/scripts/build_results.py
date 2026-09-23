@@ -146,10 +146,30 @@ def main() -> None:
     parser.add_argument("--paper-dir", type=Path, default=Path(__file__).resolve().parents[2])
     parser.add_argument("--output", type=Path, default=Path(__file__).resolve().parents[1] / "data/results.json")
     parser.add_argument("--audit-output", type=Path, help="Private manifest location; defaults to the paper analysis directory")
+    parser.add_argument("--sequence-audit", type=Path, help="Optional raw SEQUENCE audit; defaults to the current paper audit if available")
     args = parser.parse_args()
     paths = {name: args.paper_dir / relative for name, relative in AUDIT_FILES.items()}
     inputs = {name: json.loads(path.read_text()) for name, path in paths.items()}
     result = build(inputs)
+    sequence_path = args.sequence_audit or args.paper_dir / "analysis/demo_sequence_20260923/audit.json"
+    if sequence_path.exists():
+        sequence = json.loads(sequence_path.read_text())
+        result["models"].insert(2, {"id": "sequence", "label": "SEQUENCE 9 × 2", "params_m": 83.557988, "unique_blocks": 9, "color": "#636d77"})
+        for model in result["models"]:
+            if model["id"] == "full2": model["label"] = "CYCLE 9 × 2"
+        for dataset, seeds in QUALITY_SEEDS.items():
+            for step in (4, 32):
+                cells = [sequence["cells"][f"{dataset}/{step}/{seed}"]["means"] for seed in seeds]
+                result["quality"][dataset][str(step)]["sequence"] = {
+                    metric: sum(cell[metric] for cell in cells) / len(cells) if all(cell[metric] is not None for cell in cells) else None
+                    for metric in ("wer", "sim", "utmos")
+                }
+        resource_keys = ("inference_mb", "rtf", "training_allocated_gib", "training_reserved_gib", "training_gpu", "seconds_per_update")
+        result["resources"]["sequence"] = {key: sequence["training"][key] for key in resource_keys}
+        for resource in result["resources"].values(): resource["inference_reserved_mb"] = None
+        result["protocol"]["training"]["hardware"] = "Baseline, CYCLE 9 × 2, SEQUENCE 9 × 2, Loop 6 × 3, and Middle used H100; Prefix and Suffix used H200."
+        result["protocol"]["inference"]["reserved_memory"] = "Not recorded by the inference logger; no value is imputed."
+        result["protocol"]["sequence"] = "SEQUENCE repeats adjacent blocks (1,1,2,2,...,9,9). It uses the same 83,557,988 parameters and 18 block calls as CYCLE (1,...,9,1,...,9). Null quality values mean the full multi-seed metric is not yet available. Its 4-step audio has been generated."
     serialized = json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
     for forbidden in ("/mnt/", "/home/", "/opt/", "source_manifest", "source_sha256"):
         assert forbidden not in serialized, f"Private audit detail in public export: {forbidden}"
@@ -160,12 +180,13 @@ def main() -> None:
     audit_path.write_text(json.dumps({
         "sources": {AUDIT_FILES[name]: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in paths.items()},
         "output_sha256": hashlib.sha256(serialized.encode()).hexdigest(),
-        "quality_values": 72,
+        "quality_values": sum(value is not None for dataset in result["quality"].values() for cell in dataset.values() for model in cell.values() for value in model.values()),
         "curve_values": 48,
-        "resource_values": 30,
+        "resource_values": 5 * len(result["models"]),
+        "sequence_audit_sha256": hashlib.sha256(sequence_path.read_bytes()).hexdigest() if sequence_path.exists() else None,
         "checks": ["All source parameter counts agree", "Quality seed counts agree", "Fixed-seed curve endpoints agree with per-seed quality", "No private paths or source manifests in public export"],
     }, ensure_ascii=False, indent=2) + "\n")
-    print(f"Exported {len(result['models'])} models, 72 quality values, and 48 curve values.")
+    print(f"Exported {len(result['models'])} models; missing quality values remain null.")
 
 
 if __name__ == "__main__":

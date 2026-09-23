@@ -1,184 +1,206 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1060" viewBox="0 0 1100 1060" role="img" aria-labelledby="title desc">
-<title id="title">WER (%) ↓: all six models at 32 and four sampling steps</title>
-<desc id="desc">Word error rate for all six models: Baseline, Loop 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix. All six execute 18 block calls per network evaluation; Prefix, Middle, and Suffix each have 108.4 million parameters. At 32 sampling steps all six means lie between 2.04 and 2.96 percent on Seed-TTS and between 2.07 and 2.65 percent on LibriSpeech-PC. At four steps the Suffix-minus-Prefix gap is 3.44 and 5.97 percentage points, respectively. Middle has the lowest mean at 32 steps on both datasets and at four steps on LibriSpeech-PC. The 32-step panels use a zero-to-three-percent axis; four-step panels use zero-to-twenty percent. Lower WER is better.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1170" viewBox="0 0 1100 1170" role="img" aria-labelledby="title desc">
+<title id="title">WER (%) ↓: all seven models at 32 and four sampling steps</title>
+<desc id="desc">WER (%) ↓ for Baseline, CYCLE 9×2, SEQUENCE 9×2, Loop 6×3, Prefix, Middle and Suffix on both datasets at 32 and 4 steps. All models execute 18 block calls; partial loops have 108.4M parameters. Means use four inference seeds on Seed-TTS and three on LibriSpeech-PC.</desc>
 <style>text {font-family: Arial, Helvetica, sans-serif; font-variant-numeric: tabular-nums;}</style>
-<rect width="1100" height="1060" fill="white"/>
+<rect width="1100" height="1170" fill="white"/>
 <g transform="translate(24,18)"><text x="8" y="32" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">Seed-TTS test-en</text>
 <text x="8" y="82" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">32 steps</text>
 <text x="500" y="82" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) ↓ · 0–3</text>
-<line x1="145.000" x2="145.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="145.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
-<line x1="245.000" x2="245.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="245.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">1</text>
-<line x1="345.000" x2="345.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="345.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">2</text>
-<line x1="445.000" x2="445.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="445.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">3</text>
+<line x1="145.000" x2="145.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="245.000" x2="245.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="245.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">1</text>
+<line x1="345.000" x2="345.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="345.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">2</text>
+<line x1="445.000" x2="445.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="445.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">3</text>
 <g data-dataset="seedtts" data-steps="32" data-model="baseline" data-metric="wer">
-<text x="8" y="146" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<text x="8" y="146" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
 <rect x="145" y="123" width="222.522" height="30" fill="#59636f"/>
 <text x="375.5220154671117" y="146" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.23</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="full2" data-metric="wer">
-<text x="8" y="190" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
+<text x="8" y="190" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
 <rect x="145" y="167" width="260.085" height="30" fill="#8d97a1"/>
 <text x="413.0852684941812" y="190" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.60</text>
 </g>
+<g data-dataset="seedtts" data-steps="32" data-model="sequence" data-metric="wer">
+<text x="8" y="234" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
+<rect x="145" y="211" width="203.316" height="30" fill="#636d77"/>
+<text x="356.3159824844513" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.03</text>
+</g>
 <g data-dataset="seedtts" data-steps="32" data-model="full3" data-metric="wer">
-<text x="8" y="234" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="211" width="295.618" height="30" fill="#b6bdc6"/>
-<text x="448.61799823542054" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.96</text>
+<text x="8" y="278" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="255" width="295.618" height="30" fill="#b6bdc6"/>
+<text x="448.61799823542054" y="278" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.96</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="prefix" data-metric="wer">
-<text x="8" y="292" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
-<rect x="145" y="269" width="235.659" height="30" fill="#15877f"/>
-<text x="388.65941512051484" y="292" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.36</text>
+<text x="8" y="336" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="313" width="235.659" height="30" fill="#15877f"/>
+<text x="388.65941512051484" y="336" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.36</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="middle" data-metric="wer">
-<text x="8" y="336" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
-<rect x="145" y="313" width="203.560" height="30" fill="#b98223"/>
-<text x="356.55973668176307" y="336" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.04</text>
+<text x="8" y="380" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="357" width="203.560" height="30" fill="#b98223"/>
+<text x="356.55973668176307" y="380" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.04</text>
 </g>
 <g data-dataset="seedtts" data-steps="32" data-model="suffix" data-metric="wer">
-<text x="8" y="380" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
-<rect x="145" y="357" width="218.656" height="30" fill="#d56655"/>
-<text x="371.65639504250555" y="380" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.19</text>
+<text x="8" y="424" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="401" width="218.656" height="30" fill="#d56655"/>
+<text x="371.65639504250555" y="424" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.19</text>
 </g>
-<line x1="8" x2="500" y1="255" y2="255" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
-<text x="8" y="486" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
-<text x="500" y="486" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) ↓ · 0–20</text>
-<line x1="145.000" x2="145.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="145.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
-<line x1="220.000" x2="220.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="220.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">5</text>
-<line x1="295.000" x2="295.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="295.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">10</text>
-<line x1="370.000" x2="370.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="370.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">15</text>
-<line x1="445.000" x2="445.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="445.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">20</text>
+<line x1="8" x2="500" y1="299" y2="299" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="535" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
+<text x="500" y="535" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) ↓ · 0–20</text>
+<line x1="145.000" x2="145.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="220.000" x2="220.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="220.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">5</text>
+<line x1="295.000" x2="295.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="295.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">10</text>
+<line x1="370.000" x2="370.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="370.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">15</text>
+<line x1="445.000" x2="445.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="445.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">20</text>
 <g data-dataset="seedtts" data-steps="4" data-model="baseline" data-metric="wer">
-<text x="8" y="550" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
-<rect x="145" y="527" width="158.833" height="30" fill="#59636f"/>
-<text x="311.8327176049557" y="550" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.59</text>
+<text x="8" y="599" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<rect x="145" y="576" width="158.833" height="30" fill="#59636f"/>
+<text x="311.8327176049557" y="599" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.59</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="full2" data-metric="wer">
-<text x="8" y="594" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
-<rect x="145" y="571" width="140.597" height="30" fill="#8d97a1"/>
-<text x="293.5971163425656" y="594" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">9.37</text>
+<text x="8" y="643" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
+<rect x="145" y="620" width="140.597" height="30" fill="#8d97a1"/>
+<text x="293.5971163425656" y="643" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">9.37</text>
+</g>
+<g data-dataset="seedtts" data-steps="4" data-model="sequence" data-metric="wer">
+<text x="8" y="687" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
+<rect x="145" y="664" width="139.824" height="30" fill="#636d77"/>
+<text x="292.8242283428074" y="687" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">9.32</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="full3" data-metric="wer">
-<text x="8" y="638" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="615" width="173.401" height="30" fill="#b6bdc6"/>
-<text x="326.40137534706184" y="638" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.56</text>
+<text x="8" y="731" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="708" width="173.401" height="30" fill="#b6bdc6"/>
+<text x="326.40137534706184" y="731" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.56</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="prefix" data-metric="wer">
-<text x="8" y="696" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
-<rect x="145" y="673" width="103.116" height="30" fill="#15877f"/>
-<text x="256.1156297901339" y="696" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">6.87</text>
+<text x="8" y="789" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="766" width="103.116" height="30" fill="#15877f"/>
+<text x="256.1156297901339" y="789" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">6.87</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="middle" data-metric="wer">
-<text x="8" y="740" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
-<rect x="145" y="717" width="123.466" height="30" fill="#b98223"/>
-<text x="276.46550528204403" y="740" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">8.23</text>
+<text x="8" y="833" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="810" width="123.466" height="30" fill="#b98223"/>
+<text x="276.46550528204403" y="833" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">8.23</text>
 </g>
 <g data-dataset="seedtts" data-steps="4" data-model="suffix" data-metric="wer">
-<text x="8" y="784" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
-<rect x="145" y="761" width="154.654" height="30" fill="#d56655"/>
-<text x="307.6541976436624" y="784" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.31</text>
+<text x="8" y="877" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="854" width="154.654" height="30" fill="#d56655"/>
+<text x="307.6541976436624" y="877" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.31</text>
 </g>
-<line x1="8" x2="500" y1="659" y2="659" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
-<text x="8" y="899" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">Suffix − Prefix at 4 steps</text>
-<text x="8" y="935" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">+3.44 percentage points</text>
-<text x="8" y="972" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 4 inference seeds</text></g>
+<line x1="8" x2="500" y1="752" y2="752" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="968" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">Suffix − Prefix at 4 steps</text>
+<text x="8" y="1004" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">+3.44 percentage points</text>
+<text x="8" y="1041" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 4 inference seeds</text>
+<text x="8" y="1070" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">SEQ. = SEQUENCE (adjacent block reuse)</text></g>
 <g transform="translate(576,18)"><text x="8" y="32" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">LibriSpeech-PC</text>
 <text x="8" y="82" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">32 steps</text>
 <text x="500" y="82" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) ↓ · 0–3</text>
-<line x1="145.000" x2="145.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="145.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
-<line x1="245.000" x2="245.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="245.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">1</text>
-<line x1="345.000" x2="345.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="345.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">2</text>
-<line x1="445.000" x2="445.000" y1="114" y2="395" stroke="#e3e7e9" stroke-width="1"/>
-<text x="445.0" y="424" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">3</text>
+<line x1="145.000" x2="145.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="245.000" x2="245.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="245.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">1</text>
+<line x1="345.000" x2="345.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="345.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">2</text>
+<line x1="445.000" x2="445.000" y1="114" y2="439" stroke="#e3e7e9" stroke-width="1"/>
+<text x="445.0" y="468" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">3</text>
 <g data-dataset="lspc" data-steps="32" data-model="baseline" data-metric="wer">
-<text x="8" y="146" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<text x="8" y="146" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
 <rect x="145" y="123" width="229.079" height="30" fill="#59636f"/>
 <text x="382.07938923170536" y="146" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.29</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="full2" data-metric="wer">
-<text x="8" y="190" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
+<text x="8" y="190" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
 <rect x="145" y="167" width="214.283" height="30" fill="#8d97a1"/>
 <text x="367.2826828490007" y="190" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.14</text>
 </g>
+<g data-dataset="lspc" data-steps="32" data-model="sequence" data-metric="wer">
+<text x="8" y="234" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
+<rect x="145" y="211" width="226.455" height="30" fill="#636d77"/>
+<text x="379.45461150878555" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.26</text>
+</g>
 <g data-dataset="lspc" data-steps="32" data-model="full3" data-metric="wer">
-<text x="8" y="234" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="211" width="264.766" height="30" fill="#b6bdc6"/>
-<text x="417.7659076835337" y="234" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.65</text>
+<text x="8" y="278" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="255" width="264.766" height="30" fill="#b6bdc6"/>
+<text x="417.7659076835337" y="278" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.65</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="prefix" data-metric="wer">
-<text x="8" y="292" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
-<rect x="145" y="269" width="223.767" height="30" fill="#15877f"/>
-<text x="376.766981339651" y="292" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.24</text>
+<text x="8" y="336" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="313" width="223.767" height="30" fill="#15877f"/>
+<text x="376.766981339651" y="336" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.24</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="middle" data-metric="wer">
-<text x="8" y="336" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
-<rect x="145" y="313" width="206.700" height="30" fill="#b98223"/>
-<text x="359.6997053354954" y="336" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.07</text>
+<text x="8" y="380" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="357" width="206.700" height="30" fill="#b98223"/>
+<text x="359.6997053354954" y="380" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.07</text>
 </g>
 <g data-dataset="lspc" data-steps="32" data-model="suffix" data-metric="wer">
-<text x="8" y="380" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
-<rect x="145" y="357" width="209.870" height="30" fill="#d56655"/>
-<text x="362.87010665940875" y="380" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.10</text>
+<text x="8" y="424" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="401" width="209.870" height="30" fill="#d56655"/>
+<text x="362.87010665940875" y="424" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">2.10</text>
 </g>
-<line x1="8" x2="500" y1="255" y2="255" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
-<text x="8" y="486" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
-<text x="500" y="486" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) ↓ · 0–20</text>
-<line x1="145.000" x2="145.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="145.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
-<line x1="220.000" x2="220.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="220.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">5</text>
-<line x1="295.000" x2="295.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="295.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">10</text>
-<line x1="370.000" x2="370.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="370.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">15</text>
-<line x1="445.000" x2="445.000" y1="518" y2="799" stroke="#e3e7e9" stroke-width="1"/>
-<text x="445.0" y="828" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">20</text>
+<line x1="8" x2="500" y1="299" y2="299" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="535" font-size="24" font-weight="650" fill="#24313a" text-anchor="start">4 steps</text>
+<text x="500" y="535" font-size="18" font-weight="400" fill="#5e6871" text-anchor="end">WER (%) ↓ · 0–20</text>
+<line x1="145.000" x2="145.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="145.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">0</text>
+<line x1="220.000" x2="220.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="220.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">5</text>
+<line x1="295.000" x2="295.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="295.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">10</text>
+<line x1="370.000" x2="370.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="370.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">15</text>
+<line x1="445.000" x2="445.000" y1="567" y2="892" stroke="#e3e7e9" stroke-width="1"/>
+<text x="445.0" y="921" font-size="18" font-weight="400" fill="#69737a" text-anchor="middle">20</text>
 <g data-dataset="lspc" data-steps="4" data-model="baseline" data-metric="wer">
-<text x="8" y="550" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
-<rect x="145" y="527" width="267.077" height="30" fill="#59636f"/>
-<text x="420.07668198444946" y="550" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">17.81</text>
+<text x="8" y="599" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Baseline</text>
+<rect x="145" y="576" width="267.077" height="30" fill="#59636f"/>
+<text x="420.07668198444946" y="599" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">17.81</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="full2" data-metric="wer">
-<text x="8" y="594" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 9×2</text>
-<rect x="145" y="571" width="170.330" height="30" fill="#8d97a1"/>
-<text x="323.32988451119695" y="594" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.36</text>
+<text x="8" y="643" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">CYCLE 9×2</text>
+<rect x="145" y="620" width="170.330" height="30" fill="#8d97a1"/>
+<text x="323.32988451119695" y="643" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.36</text>
+</g>
+<g data-dataset="lspc" data-steps="4" data-model="sequence" data-metric="wer">
+<text x="8" y="687" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">SEQ. 9×2</text>
+<rect x="145" y="664" width="171.904" height="30" fill="#636d77"/>
+<text x="324.9035091572432" y="687" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.46</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="full3" data-metric="wer">
-<text x="8" y="638" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
-<rect x="145" y="615" width="250.250" height="30" fill="#b6bdc6"/>
-<text x="403.2495538305094" y="638" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">16.68</text>
+<text x="8" y="731" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Loop 6×3</text>
+<rect x="145" y="708" width="250.250" height="30" fill="#b6bdc6"/>
+<text x="403.2495538305094" y="731" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">16.68</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="prefix" data-metric="wer">
-<text x="8" y="696" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
-<rect x="145" y="673" width="167.936" height="30" fill="#15877f"/>
-<text x="320.9357678757603" y="696" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.20</text>
+<text x="8" y="789" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Prefix</text>
+<rect x="145" y="766" width="167.936" height="30" fill="#15877f"/>
+<text x="320.9357678757603" y="789" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">11.20</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="middle" data-metric="wer">
-<text x="8" y="740" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
-<rect x="145" y="717" width="162.458" height="30" fill="#b98223"/>
-<text x="315.4582387170443" y="740" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.83</text>
+<text x="8" y="833" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Middle</text>
+<rect x="145" y="810" width="162.458" height="30" fill="#b98223"/>
+<text x="315.4582387170443" y="833" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">10.83</text>
 </g>
 <g data-dataset="lspc" data-steps="4" data-model="suffix" data-metric="wer">
-<text x="8" y="784" font-size="23" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
-<rect x="145" y="761" width="257.559" height="30" fill="#d56655"/>
-<text x="410.55892115152744" y="784" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">17.17</text>
+<text x="8" y="877" font-size="21" font-weight="400" fill="#24313a" text-anchor="start">Suffix</text>
+<rect x="145" y="854" width="257.559" height="30" fill="#d56655"/>
+<text x="410.55892115152744" y="877" font-size="22" font-weight="600" fill="#24313a" text-anchor="start">17.17</text>
 </g>
-<line x1="8" x2="500" y1="659" y2="659" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
-<text x="8" y="899" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">Suffix − Prefix at 4 steps</text>
-<text x="8" y="935" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">+5.97 percentage points</text>
-<text x="8" y="972" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 3 inference seeds</text></g>
-<line x1="548" x2="548" y1="20" y2="1000" stroke="#e3e7e9"/>
-<text x="550" y="1027" font-size="19" font-weight="400" fill="#5e6871" text-anchor="middle">All six: 18 block calls per evaluation · Prefix / Middle / Suffix: 108.4M parameters</text>
+<line x1="8" x2="500" y1="752" y2="752" stroke="#d7dde1" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="8" y="968" font-size="19" font-weight="400" fill="#5e6871" text-anchor="start">Suffix − Prefix at 4 steps</text>
+<text x="8" y="1004" font-size="27" font-weight="650" fill="#24313a" text-anchor="start">+5.97 percentage points</text>
+<text x="8" y="1041" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">Means over 3 inference seeds</text>
+<text x="8" y="1070" font-size="18" font-weight="400" fill="#69737a" text-anchor="start">SEQ. = SEQUENCE (adjacent block reuse)</text></g>
+<line x1="548" x2="548" y1="20" y2="1100" stroke="#e3e7e9"/>
+<text x="550" y="1137" font-size="19" font-weight="400" fill="#5e6871" text-anchor="middle">All seven: 18 block calls per evaluation · Prefix / Middle / Suffix: 108.4M parameters</text>
 </svg>

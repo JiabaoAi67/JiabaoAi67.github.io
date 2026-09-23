@@ -9,10 +9,17 @@
     },
     {
       "id": "full2",
-      "label": "Full ×2",
+      "label": "CYCLE 9 × 2",
       "params_m": 83.557988,
       "unique_blocks": 9,
       "color": "#8d97a1"
+    },
+    {
+      "id": "sequence",
+      "label": "SEQUENCE 9 × 2",
+      "params_m": 83.557988,
+      "unique_blocks": 9,
+      "color": "#636d77"
     },
     {
       "id": "full3",
@@ -75,6 +82,11 @@
           "wer": 10.31027984291083,
           "sim": 0.4988814713792903,
           "utmos": 3.074193566078868
+        },
+        "sequence": {
+          "wer": 9.321615222853826,
+          "sim": 0.4983567358679412,
+          "utmos": 3.068016666754642
         }
       },
       "32": {
@@ -107,6 +119,11 @@
           "wer": 2.1865639504250556,
           "sim": 0.5695269287218039,
           "utmos": 3.9081346195958115
+        },
+        "sequence": {
+          "wer": 2.0331598248445135,
+          "sim": 0.572706805949565,
+          "utmos": 3.7537908492993344
         }
       }
     },
@@ -141,6 +158,11 @@
           "wer": 17.17059474343516,
           "sim": 0.4231252598715905,
           "utmos": 2.412381087489045
+        },
+        "sequence": {
+          "wer": 11.460233943816213,
+          "sim": 0.42821091138701295,
+          "utmos": 2.5578398501439334
         }
       },
       "32": {
@@ -173,6 +195,11 @@
           "wer": 2.0987010665940877,
           "sim": 0.5932266958381819,
           "utmos": 4.020698982560046
+        },
+        "sequence": {
+          "wer": 2.2645461150878554,
+          "sim": 0.6025599951893575,
+          "utmos": 3.934810112228552
         }
       }
     }
@@ -268,7 +295,8 @@
       "training_allocated_gib": 13.666626930236816,
       "training_reserved_gib": 14.74609375,
       "training_gpu": "H100",
-      "seconds_per_update": 0.1976313792541623
+      "seconds_per_update": 0.1976313792541623,
+      "inference_reserved_mb": null
     },
     "full2": {
       "inference_mb": 574.338048,
@@ -276,7 +304,8 @@
       "training_allocated_gib": 12.270578384399414,
       "training_reserved_gib": 19.771484375,
       "training_gpu": "H100",
-      "seconds_per_update": 0.1941220007278025
+      "seconds_per_update": 0.1941220007278025,
+      "inference_reserved_mb": null
     },
     "full3": {
       "inference_mb": 473.554944,
@@ -284,7 +313,8 @@
       "training_allocated_gib": 11.807664394378662,
       "training_reserved_gib": 12.380859375,
       "training_gpu": "H100",
-      "seconds_per_update": 0.19418209415860474
+      "seconds_per_update": 0.19418209415860474,
+      "inference_reserved_mb": null
     },
     "prefix": {
       "inference_mb": 675.121152,
@@ -292,7 +322,8 @@
       "training_allocated_gib": 12.730461597442627,
       "training_reserved_gib": 13.544921875,
       "training_gpu": "H200",
-      "seconds_per_update": 0.19893719430547208
+      "seconds_per_update": 0.19893719430547208,
+      "inference_reserved_mb": null
     },
     "middle": {
       "inference_mb": 675.121152,
@@ -300,7 +331,8 @@
       "training_allocated_gib": 12.744056224822998,
       "training_reserved_gib": 13.267578125,
       "training_gpu": "H100",
-      "seconds_per_update": 0.19918101634830238
+      "seconds_per_update": 0.19918101634830238,
+      "inference_reserved_mb": null
     },
     "suffix": {
       "inference_mb": 675.121152,
@@ -308,7 +340,17 @@
       "training_allocated_gib": 12.743486881256104,
       "training_reserved_gib": 13.396484375,
       "training_gpu": "H200",
-      "seconds_per_update": 0.199657229995355
+      "seconds_per_update": 0.199657229995355,
+      "inference_reserved_mb": null
+    },
+    "sequence": {
+      "inference_mb": 574.338048,
+      "inference_reserved_mb": null,
+      "rtf": 0.1425890567180732,
+      "training_allocated_gib": 12.261483669281006,
+      "training_reserved_gib": 13.080078125,
+      "training_gpu": "H100",
+      "seconds_per_update": 0.19815983222797512
     }
   },
   "protocol": {
@@ -356,7 +398,8 @@
       "seed": 666,
       "memory": "Peak allocated GPU memory in decimal MB; includes the resident vocoder and its allocations.",
       "rtf": "Total sampling time divided by total generated audio duration. Timing includes sampling and finite/prompt checks, and excludes vocoding, preprocessing, loading, and file I/O.",
-      "timing_scope": "One recorded run per model; small timing differences are not a controlled speed ranking."
+      "timing_scope": "One recorded run per model; small timing differences are not a controlled speed ranking.",
+      "reserved_memory": "Not recorded by the inference logger; no value is imputed."
     },
     "training": {
       "world_size": 8,
@@ -367,8 +410,9 @@
       ],
       "memory": "Late-training records of rank-0 process cumulative peaks, in GiB; not the maximum over all ranks or a minimum GPU-capacity requirement.",
       "seconds_per_update": "Median over 1,000 logged windows, each covering 100 updates.",
-      "hardware": "Baseline, Full ×2, Full ×3, and Middle used H100; Prefix and Suffix used H200."
+      "hardware": "Baseline, CYCLE 9 × 2, SEQUENCE 9 × 2, Loop 6 × 3, and Middle used H100; Prefix and Suffix used H200."
     },
-    "scope": "One training run per layout. Equal 500k-update checkpoints are compared; the baseline's best earlier four-step checkpoint is not substituted. No current-stack human MOS has been completed."
+    "scope": "One training run per layout. Equal 500k-update checkpoints are compared; the baseline's best earlier four-step checkpoint is not substituted. No current-stack human MOS has been completed.",
+    "sequence": "SEQUENCE repeats adjacent blocks (1,1,2,2,...,9,9). It uses the same 83,557,988 parameters and 18 block calls as CYCLE (1,...,9,1,...,9). Null quality values mean the full multi-seed metric is not yet available. Its 4-step audio has been generated."
   }
 }
