@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Where to Loop in Flow-Matching Text-to-Speech: seven weight-sharing layouts, a controlled study of loop placement, and audio comparisons at 32 and 4 sampling steps.">
+  <meta name="description" content="Depth Through Recurrence: seven Transformer weight-sharing layouts for flow-matching TTS, varying reuse amount, order, and placement across sampling budgets.">
   <meta name="author" content="Jiabao Ai, Peng Han, Yuchen Song, Zhengjun Yue">
   <meta name="theme-color" content="#ffffff">
-  <meta property="og:title" content="Where to Loop in Flow-Matching Text-to-Speech">
-  <meta property="og:description" content="Loop placement and sampling budget jointly shape speech quality. Listen to all seven F5-TTS layouts at 32 and 4 steps.">
+  <meta property="og:title" content="Depth Through Recurrence: Looped Transformers for Flow-Matching TTS">
+  <meta property="og:description" content="How recurrent computation is organized affects synthesis quality. Compare seven weight-sharing layouts at 32 and four sampling steps.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="site.css?v=8">
+  <link rel="stylesheet" href="site.css?v=9">
   <script src="site.js?v=8" defer></script>
-  <title>Where to Loop in Flow-Matching Text-to-Speech</title>
+  <title>Depth Through Recurrence: Looped Transformers for Flow-Matching TTS</title>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to content</a>
 <main>
   <header class="publication-header container">
-    <h1>Where to Loop in<br class="desktop-break"> Flow-Matching Text-to-Speech</h1>
+    <h1>Depth Through Recurrence: <span class="publication-title-detail">Looped Transformers for Flow-Matching TTS</span></h1>
     <div class="publication-authors" aria-label="Authors">
       <span>Jiabao Ai<sup>1</sup></span><span>Peng Han<sup>1,2</sup></span><span>Yuchen Song<sup>1,3</sup></span><span>Zhengjun Yue<sup>1</sup></span>
     </div>
@@ -27,7 +27,7 @@
       <p><sup>2</sup> University of Electronic Science and Technology of China</p>
       <p><sup>3</sup> The Chinese University of Hong Kong, Shenzhen</p>
     </div>
-    <p class="publication-subtitle">A study of weight sharing, loop placement, and sampling budget in F5-TTS</p>
+    <p class="publication-subtitle">Weight reuse, executed depth, and sampling budget in flow-matching TTS</p>
     <nav class="publication-links" aria-label="Paper page links">
       <a href="#audio">Audio samples</a>
       <a href="#results">Results</a>
@@ -38,7 +38,7 @@
   <section class="section container" id="abstract" aria-labelledby="abstract-title">
     <h2 id="abstract-title">Abstract</h2>
     <div class="abstract-text">
-      <p>Where should a flow-matching speech generator share weights across depth? We study seven F5-TTS layouts that execute the same 18 Transformer block calls, varying both the amount and position of sharing. Three partial loops—Prefix, Middle, and Suffix—have identical parameter counts but respond differently to the sampling budget. At 32 steps, their word error rates are close. At four steps, Suffix has 3.44 and 5.97 percentage points higher WER than Prefix on Seed-TTS and LibriSpeech-PC. Among the partial loops, Middle achieves the lowest 32-step WER on both datasets, while Suffix gives the highest 32-step speaker similarity among the partial loops. The four-step placement gap persists across training checkpoints despite Suffix’s lower logged training loss. Weight sharing also reduces storage: repeating nine blocks twice saves 47.1% of parameters and 34.5% of peak inference allocation, with comparable sampling time. An adjacent-repeat SEQUENCE control further shows that reuse order changes the balance between intelligibility and predicted naturalness. These results show that weight sharing should be evaluated at the intended sampling budget.</p>
+      <p>We study how to organize Transformer depth through recurrence in flow-matching text-to-speech, varying the amount, order, and placement of weight reuse. Seven layouts perform the same 18 block calls per network evaluation under a common training objective and sampler. On Seed-TTS and LibriSpeech-PC, adjacent reuse of nine blocks retains competitive intelligibility, speaker similarity, and predicted speech quality at 32 sampling steps with 47.1% fewer parameters than the unshared baseline. Cyclic reuse of six blocks three times further reduces model size but raises 32-step word error rates relative to nine blocks used twice. At matched parameter counts and executed depth, reuse order and sharing position produce different quality trade-offs. These comparisons also depend on sampling budget: Prefix and Suffix have similar 32-step word error rates, but Suffix is worse by 3.44 and 5.97 percentage points at four steps on the two datasets, respectively. These results show that the organization of recurrent computation affects synthesis quality, and that reuse layouts should be selected for both the sampling budget and the quality dimensions of interest.</p>
     </div>
   </section>
 

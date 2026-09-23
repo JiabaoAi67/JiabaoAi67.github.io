@@ -1,6 +1,6 @@
-# Where to Loop in Flow-Matching Text-to-Speech
+# Depth Through Recurrence: Looped Transformers for Flow-Matching TTS
 
-A paper-style research page for seven shared-depth F5-TTS layouts. Live: **https://jiabaoai67.github.io/loop-f5/**.
+A research page for seven Transformer weight-sharing layouts in flow-matching text-to-speech. The title and abstract match the current manuscript. Live: **https://jiabaoai67.github.io/loop-f5/**.
 
 The page follows the title / Abstract / method / findings / audio structure of [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_Demo), with a standalone HTML/CSS/JavaScript implementation. All seven systems are always shown: Baseline (18 × 1), CYCLE 9 × 2, SEQUENCE 9 × 2, Loop 6 × 3, Prefix, Middle, and Suffix. CYCLE repeats the full nine-block stack; SEQUENCE repeats each block immediately (1,1,2,2,…,9,9). Both use 83.6M parameters. Other full-loop notation means unique blocks × passes; all layouts execute 18 block calls per network evaluation.
 
@@ -31,7 +31,7 @@ Memory percentages are computed from the unrounded absolute measurements, separa
 
 ## Acknowledgments
 
-Page structure follows [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_Demo). The models follow [F5-TTS](https://github.com/SWivid/F5-TTS), and the listening examples use the [Seed-TTS evaluation benchmark](https://github.com/BytedanceSpeech/seed-tts-eval). Audio and research artifacts retain their upstream provenance; this repository does not relicense third-party material.
+Page structure follows [TDJD-TTS Demo](https://github.com/JiabaoAi67/TDJD_TTS_Demo). The models use the [F5-TTS](https://github.com/SWivid/F5-TTS) Small architecture with a modified training implementation, and the listening examples use the [Seed-TTS evaluation benchmark](https://github.com/BytedanceSpeech/seed-tts-eval). Audio and research artifacts retain their upstream provenance; this repository does not relicense third-party material.
 
 ## SEQUENCE result update
 

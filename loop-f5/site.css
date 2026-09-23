@@ -11,6 +11,7 @@ button,a,select,summary{-webkit-tap-highlight-color:transparent}
 .container{width:min(100% - 48px,1000px);margin-inline:auto}
 .publication-header{text-align:center;padding-top:66px;padding-bottom:12px}
 h1{font-size:clamp(32px,3.7vw,48px);font-weight:650;line-height:1.17;letter-spacing:-1.3px;margin:0 auto 23px;max-width:960px}
+.publication-title-detail{display:block;font-size:clamp(24px,2.8vw,36px);line-height:1.25;letter-spacing:-.5px;margin-top:.2em}
 .publication-authors{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 23px;font-size:19px;line-height:1.5;margin:0 auto 16px}
 .publication-authors span{white-space:nowrap}
 .publication-authors sup{font-size:11px;margin-left:3px}
