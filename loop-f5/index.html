@@ -10,8 +10,8 @@
   <meta property="og:description" content="Loop placement and sampling budget jointly shape speech quality. Listen to all seven F5-TTS layouts at 32 and 4 steps.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="site.css?v=3">
-  <script src="site.js?v=7" defer></script>
+  <link rel="stylesheet" href="site.css?v=8">
+  <script src="site.js?v=8" defer></script>
   <title>Where to Loop in Flow-Matching Text-to-Speech</title>
 </head>
 <body>
@@ -49,7 +49,13 @@
       <div class="scroll-region" tabindex="0" role="region" aria-label="All seven model layouts; scroll horizontally on small screens">
         <div id="architecture" class="architecture"></div>
       </div>
-      <figcaption>Each row executes 18 block calls in one network evaluation, from left to right. Repeated block numbers within a row share weights; colored blocks are reused. <strong>CYCLE 9 × 2</strong> runs blocks 1–9 twice; <strong>SEQUENCE 9 × 2</strong> repeats each block immediately: 1, 1, 2, 2, …, 9, 9. Both use 83.6M parameters.  <strong>6 × 3</strong> means six unique blocks, three passes. Prefix, Middle, and Suffix each reuse a six-block segment twice.</figcaption>
+      <div class="architecture-legend" aria-label="Block shading legend">
+        <span><span class="block" aria-hidden="true"></span>Not shared</span>
+        <span><span class="block shared" data-use="1" aria-hidden="true"></span>1st use</span>
+        <span><span class="block shared" data-use="2" aria-hidden="true"></span>2nd use</span>
+        <span><span class="block shared" data-use="3" aria-hidden="true"></span>3rd use</span>
+      </div>
+      <figcaption>Each row executes 18 block calls from left to right. <strong>Repeated block numbers within a row share weights; darker shades mark later uses of the same block.</strong> Gray blocks are not shared. <strong>CYCLE 9 × 2</strong> repeats the whole nine-block stack (light → dark); <strong>SEQUENCE 9 × 2</strong> repeats each block immediately (light–dark pairs). Both use 83.6M parameters. <strong>6 × 3</strong> repeats six blocks in three progressively darker passes. Prefix, Middle, and Suffix each repeat a six-block segment twice, with unshared blocks before or after it.</figcaption>
     </figure>
   </section>
 

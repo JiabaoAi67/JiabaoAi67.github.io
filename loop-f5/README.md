@@ -14,7 +14,7 @@ Open `http://localhost:8000/` from this directory. No build step or external Jav
 
 ## Page contents
 
-- Abstract and a seven-row architecture overview.
+- Abstract and a seven-row architecture overview. Within each model's hue, shared blocks darken on their first, second, and third uses; unshared blocks remain gray. CYCLE shows two nine-block shades, SEQUENCE alternates light/dark within each adjacent pair, and Loop 6 × 3 shows three six-block shades. Block numbers identify shared weights within each row; a compact legend explains the shading.
 - Directly selectable WER, SIM-o, and UTMOS figures. Every metric shows all seven models on both datasets at 32 and 4 steps, with labeled means. SEQUENCE has complete WER, corrected SIM-o, and UTMOS at both budgets, with matched audio examples. Mobile uses a stacked figure. Baseline is gray. CYCLE is blue, SEQUENCE purple, and Loop 6 × 3 green; Prefix, Middle, and Suffix retain teal, ochre, and coral. Shared blocks in the architecture diagram use the same model colors as the quality figures.
 - Six reproducibly selected Seed-TTS examples. Each displays all seven models at both 32 and 4 steps: adjacent columns on desktop, labeled players stacked within each model on mobile.
 - A complete seven-model table whose quality metric switches together with the figure: WER, SIM-o, or UTMOS at both budgets. Parameters and allocated inference/training memory as percentages of Baseline remain visible. Baseline is 100%; these values are percentages used, not percentages saved. Absolute measurements and RTF remain available in the downloadable result data; measurement scope is summarized in the table footnotes.

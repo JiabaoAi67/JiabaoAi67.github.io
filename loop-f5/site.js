@@ -37,8 +37,12 @@
   function renderArchitecture() {
     $('#architecture').innerHTML = '<div class="architecture-head"><span>Layout</span><span>18 block calls →</span><span>Unique</span><span>Params</span></div>' + models.map((m) => {
       const counts = m.sequence.reduce((a, n) => (a[n] = (a[n] || 0) + 1, a), {});
-      const blocks = m.sequence.map((n, i) => `<span class="block${counts[n] > 1 ? ' shared' : ''}${i > 0 && n < m.sequence[i - 1] ? ' pass-start' : ''}" title="Call ${i + 1}: block ${n}${counts[n] > 1 ? ' (shared)' : ''}">${n}</span>`).join('');
-      return `<div class="architecture-row ${rowClass(m)}" style="--color:${m.color}"><span class="layout-label">${m.label}<small>${m.formula}</small></span><div class="block-track" aria-label="${esc(m.label)}: blocks ${m.sequence.join(', ')}">${blocks}</div><span class="layout-number">${m.unique}</span><span class="layout-number">${m.params.toFixed(1)}M</span></div>`;
+      const uses = {};
+      const blocks = m.sequence.map((n, i) => {
+        const use = uses[n] = (uses[n] || 0) + 1;
+        return `<span class="block${counts[n] > 1 ? ' shared' : ''}${i > 0 && n < m.sequence[i - 1] ? ' pass-start' : ''}" data-use="${use}" title="Call ${i + 1}: block ${n}${counts[n] > 1 ? `; use ${use} of ${counts[n]} (shared weights)` : ' (not shared)'}">${n}</span>`;
+      }).join('');
+      return `<div class="architecture-row ${rowClass(m)}" data-model="${m.id}" style="--color:${m.color}"><span class="layout-label">${m.label}<small>${m.formula}</small></span><div class="block-track" aria-label="${esc(m.label)}: blocks ${m.sequence.join(', ')}">${blocks}</div><span class="layout-number">${m.unique}</span><span class="layout-number">${m.params.toFixed(1)}M</span></div>`;
     }).join('');
   }
   function renderSample(index) {
@@ -81,7 +85,7 @@
     qualityMetric = key;
     const metric = metrics[key];
     $$('[data-quality-metric]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.qualityMetric === key)));
-    $('#quality-figure-source').srcset = `assets/figures/${metric.asset}-mobile.svg?v=5`;
+    $('#quality-figure-source').srcset = `assets/figures/${metric.asset}-mobile.svg?v=7`;
     $('#quality-figure-image').src = `assets/figures/${metric.asset}.svg?v=7`;
     $('#quality-figure-image').alt = `${metric.name} for all seven models: Baseline, CYCLE 9 by 2, SEQUENCE 9 by 2, Loop 6 by 3, Prefix, Middle, and Suffix, on Seed-TTS and LibriSpeech-PC at 32 and 4 sampling steps. ${metric.finding} Exact means are also available in the comparison table below.`;
     $('#metric-finding').textContent = metric.finding;
