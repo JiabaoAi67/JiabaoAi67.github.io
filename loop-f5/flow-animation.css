@@ -1,0 +1,40 @@
+.loop-flow {
+  --lf-ink: #26313d;
+  --lf-muted: #697482;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--lf-ink);
+  width: 100%;
+  min-width: 0;
+}
+.loop-flow .lf-figure { margin: 0; background: #fff; }
+.loop-flow .lf-viewport { width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.loop-flow .lf-svg { display: block; width: 100%; min-width: 760px; height: auto; font-family: Arial, Helvetica, sans-serif; background: #fff; }
+.loop-flow .lf-svg text { fill: #293440; }
+.loop-flow .lf-svg .lf-column-label { font-size: 13px; fill: #697482; }
+.loop-flow .lf-counter { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.loop-flow .lf-model-name { font-size: 14px; font-weight: 600; }
+.loop-flow .lf-svg .lf-model-note { font-size: 11px; fill: #697482; }
+.loop-flow .lf-block-label { font-size: 13px; font-variant-numeric: tabular-nums; pointer-events: none; }
+.loop-flow .lf-edges path, .loop-flow .lf-active-edge { stroke-linecap: round; stroke-linejoin: round; }
+.loop-flow .lf-legend { font-size: 12px; }
+.loop-flow .lf-legend text { fill: #697482; }
+.loop-flow .lf-scope-note { font-size: 11px; }
+.loop-flow .lf-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; padding: 12px 0; border-top: 1px solid #e5e7eb; }
+.loop-flow .lf-controls button { appearance: none; border: 1px solid #d4d9df; border-radius: 5px; background: #fff; color: #33414f; min-height: 36px; min-width: 76px; padding: 7px 14px; font: 14px Arial, Helvetica, sans-serif; cursor: pointer; }
+.loop-flow .lf-controls .lf-play { color: #fff; background: #354f69; border-color: #354f69; font-weight: 600; }
+.loop-flow .lf-controls button:hover { border-color: #7d8c9b; }
+.loop-flow .lf-controls .lf-play:hover { background: #293f55; }
+.loop-flow .lf-slider-label { margin-left: 8px; color: var(--lf-muted); font-size: 13px; }
+.loop-flow .lf-progress { flex: 1 1 180px; min-width: 100px; width: auto; margin: 0; padding: 0; accent-color: #4878a8; cursor: pointer; }
+.loop-flow .lf-progress-value { min-width: 70px; text-align: right; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--lf-muted); }
+.loop-flow :is(button, input, .lf-viewport):focus-visible { outline: 2px solid #4878a8; outline-offset: 4px; }
+.loop-flow .lf-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 600px) {
+  .loop-flow .lf-controls { gap: 9px; }
+  .loop-flow .lf-slider-label { margin-left: 0; }
+  .loop-flow .lf-progress { flex-basis: calc(100% - 82px); }
+  .loop-flow .lf-svg { min-width: 760px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loop-flow *, .loop-flow *::before, .loop-flow *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}

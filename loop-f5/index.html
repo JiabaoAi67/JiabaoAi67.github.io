@@ -11,7 +11,9 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="site.css?v=10">
+  <link rel="stylesheet" href="flow-animation.css?v=1">
   <script src="site.js?v=8" defer></script>
+  <script src="flow-animation.js?v=1" defer></script>
   <title>Depth Through Recurrence: Looped Transformers for Flow-Matching TTS</title>
 </head>
 <body>
@@ -56,6 +58,13 @@
       </div>
       <figcaption>Each row executes 18 block calls from left to right. <strong>Repeated block numbers within a row share weights; darker shades mark later uses of the same block.</strong> Gray blocks are not shared. <strong>CYCLE 9 × 2</strong> repeats the whole nine-block stack (light → dark); <strong>SEQUENCE 9 × 2</strong> repeats each block immediately (light–dark pairs). Both use 83.6M parameters. <strong>6 × 3</strong> repeats six blocks in three progressively darker passes. Prefix, Middle, and Suffix each repeat a six-block segment twice, with unshared blocks before or after it.</figcaption>
     </figure>
+  </section>
+
+  <section class="section container" id="flow" aria-labelledby="flow-title">
+    <h2 id="flow-title">Watch the computation flow</h2>
+    <p class="section-intro">One box per unique block. Follow the hidden state through all 18 calls in each layout.</p>
+    <div id="flow-animation"></div>
+    <p class="data-link"><a href="flow.html">Open animation</a> · <a href="assets/animations/loop-flow.gif" download>Download GIF</a></p>
   </section>
 
   <section class="section container" id="placement" aria-labelledby="placement-title">
