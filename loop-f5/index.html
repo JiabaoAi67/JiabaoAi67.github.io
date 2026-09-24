@@ -20,7 +20,7 @@
   <header class="publication-header container">
     <h1>Depth Through Recurrence: <span class="publication-title-detail">Looped Transformers for Flow-Matching TTS</span></h1>
     <div class="publication-authors" aria-label="Authors">
-      <span>Jiabao Ai<sup>1,2</sup></span><span>Peng Han<sup>1,2</sup></span><span>Yuchen Song<sup>1,2</sup></span><span>Zhengjun Yue<sup>1</sup></span>
+      <span>Jiabao Ai<sup>1,2</sup></span><span>Peng Han<sup>1,2</sup></span><span>Yuchen Song<sup>1,2</sup></span><span>Zhengjun Yue<sup>1,2</sup></span>
     </div>
     <div class="publication-affiliations">
       <p><sup>1</sup> Shenzhen Loop Area Institute, Shenzhen, China</p>
@@ -37,7 +37,7 @@
   <section class="section container" id="abstract" aria-labelledby="abstract-title">
     <h2 id="abstract-title">Abstract</h2>
     <div class="abstract-text">
-      <p>We study how to organize Transformer depth through recurrence in flow-matching text-to-speech, varying the amount, order, and placement of weight reuse. Seven layouts perform the same 18 block calls per network evaluation under a common training objective and sampler. On Seed-TTS and LibriSpeech-PC, adjacent reuse of nine blocks retains competitive intelligibility, speaker similarity, and predicted speech quality at 32 sampling steps with 47.1% fewer parameters than the unshared baseline. Cyclic reuse of six blocks three times further reduces model size but raises 32-step word error rates relative to nine blocks used twice. At matched parameter counts and executed depth, reuse order and sharing position produce different quality trade-offs. These comparisons also depend on sampling budget: Prefix and Suffix have similar 32-step word error rates, but Suffix is worse by 3.44 and 5.97 percentage points at four steps on the two datasets, respectively. Only Middle ranks first or second in mean word error rate at 32 and four steps on both datasets. These results show that the organization of recurrent computation affects synthesis quality, and that reuse layouts should be selected for both the sampling budget and the quality dimensions of interest.</p>
+      <p>We study how to organize Transformer depth through recurrence in flow-matching text-to-speech, varying the amount, order, and placement of weight reuse. Seven layouts perform 18 block calls per network evaluation under a common training objective and sampler. On Seed-TTS and LibriSpeech-PC, SEQUENCE applies each of nine blocks twice consecutively, retaining competitive intelligibility, speaker similarity, and predicted speech quality at 32 sampling steps with 47.1% fewer parameters than the unshared baseline. Cycling six blocks three times further reduces model size but raises 32-step word error rates relative to cycling nine blocks twice. At matched parameter counts and executed depth, reuse order and sharing position produce different quality trade-offs. These comparisons depend on sampling budget: Prefix and Suffix have similar 32-step word error rates, but Suffix is worse by 3.44 and 5.97 percentage points at four steps on the two datasets, respectively. Only Middle ranks first or second in mean word error rate at 32 and four steps on both datasets. These results show that the organization of recurrent computation affects synthesis quality, and that reuse layouts should be selected for both the sampling budget and the quality dimensions of interest.</p>
     </div>
   </section>
 
