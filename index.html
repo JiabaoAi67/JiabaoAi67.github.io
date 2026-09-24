@@ -86,59 +86,120 @@
         .contact-links a:hover { color: var(--accent-color); transform: translateY(-2px); }
         .contact-links a svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* --- 项目列表样式 --- */
+        /* Matched paper cards: shared media size and aligned text. */
         .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
         }
 
         .project-card {
+            min-width: 0;
             display: flex;
             flex-direction: column;
             background: var(--card-bg);
+            border: 1px solid #e7ebef;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            border: 1px solid #eee;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
         }
 
         .project-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            background: #000;
+            aspect-ratio: 1000 / 761;
+            background: #fff;
+            border-bottom: 1px solid #eef1f4;
+            box-sizing: border-box;
+        }
+
+        .project-media img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .media-stack {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
 
         .project-media video {
-            width: 100%;
             display: block;
-            margin: 0;
+            width: 100%;
+            max-height: 50%;
+            object-fit: contain;
         }
 
         .project-info {
-            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 22px;
         }
+
+        .paper-status {
+            align-self: flex-start;
+            margin: 0 0 14px;
+            padding: 4px 9px;
+            border-radius: 4px;
+            background: #eef2f5;
+            color: #42566b;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .paper-status.accepted { background: #e8f3ed; color: #276044; }
 
         .project-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-            color: #2c3e50;
+            min-height: 5.8em;
+            margin: 0 0 12px;
+            font-size: 1.2rem;
+            line-height: 1.45;
+            font-weight: 700;
         }
 
+        .project-title a { color: var(--primary-color); text-decoration: none; }
+        .project-title a:hover { color: #247bb5; }
+        .paper-authors {
+            min-height: 3.2em;
+            margin: 0 0 12px;
+            color: #566474;
+            font-size: 0.9rem;
+        }
+        .project-summary { margin: 0 0 18px; }
+        .paper-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 2px;
+        }
+        .paper-links a {
+            color: #247bb5;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .paper-links a:hover { text-decoration: underline; }
+        a:focus-visible { outline: 2px solid #247bb5; outline-offset: 4px; }
+        .site-footer { text-align: center; margin-top: 40px; color: #697581; font-size: 0.875rem; }
+
         @media (max-width: 768px) {
-            .header-section { flex-direction: column-reverse; align-items: center; text-align: center; }
-            .bio-photo img { width: 150px; height: 150px; margin-bottom: 20px; }
+            .header-section { flex-direction: column-reverse; align-items: center; text-align: center; gap: 16px; margin-bottom: 36px; padding-bottom: 30px; }
+            .bio-photo img { width: 150px; height: 150px; }
+            .contact-links { justify-content: center; }
+            .project-list { grid-template-columns: 1fr; }
+            .project-title, .paper-authors { min-height: 0; }
+        }
+        @media (max-width: 420px) {
+            .container { padding: 28px 16px; }
+            .project-info { padding: 20px; }
         }
     </style>
 </head>
@@ -182,32 +243,50 @@
     <h2>Papers</h2>
     
     <div class="project-list">
-        
-        <a href="https://anonymousinterpseech.github.io/TTS_Demo/" class="project-card">
-            
-            <div class="project-media">
-                <video loop muted playsinline>
-                    <source src="assets/teaser_jump.mp4" type="video/mp4">
-                </video>
 
-                <video loop muted playsinline>
-                    <source src="assets/teaser.mp4" type="video/mp4">
-                </video>
-            </div>
-
+        <article class="project-card">
+            <a href="loop-f5/" class="project-media" aria-label="Explore the Looped Transformers for Flow-Matching TTS demo">
+                <img src="loop-f5/assets/animations/loop-flow.gif" width="1000" height="761"
+                     alt="Animated comparison of seven Transformer layouts with the same 18 block calls.">
+            </a>
             <div class="project-info">
-                <span class="project-title">Beyond Two-stage Diffusion TTS: Joint Structure and Content Refinement via Jump Diffusion ↗</span>
-                <p>
-                    A probabilistic approach to model duration and spectral content in one process for TTS.
-                </p>
-                <span class="tag">Jump diffusion</span> <span class="tag">Probabilistic modeling</span>
+                <p class="paper-status">ICASSP 2027 · Submitted</p>
+                <h3 class="project-title"><a href="loop-f5/">Depth Through Recurrence: Looped Transformers for Flow-Matching TTS</a></h3>
+                <p class="paper-authors"><strong>Jiabao Ai</strong>, Peng Han, Yuchen Song, Zhengjun Yue</p>
+                <p class="project-summary">How the amount, order, and placement of weight reuse shape flow-matching TTS at a fixed computation budget.</p>
+                <div class="paper-links">
+                    <a href="loop-f5/">Demo ↗</a>
+                </div>
             </div>
-        </a>
+        </article>
+
+        <article class="project-card">
+            <a href="https://jiabaoai67.github.io/TDJD_TTS_Demo/" class="project-media" aria-label="Explore the Jump Diffusion TTS demo">
+                <div class="media-stack">
+                    <video autoplay loop muted playsinline preload="auto" aria-label="Jump diffusion progressively refines temporal structure.">
+                        <source src="assets/teaser_jump.mp4" type="video/mp4">
+                    </video>
+                    <video autoplay loop muted playsinline preload="auto" aria-label="Upsample–Diffuse–Downsample progressively refines the mel-spectrogram.">
+                        <source src="assets/teaser.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </a>
+            <div class="project-info">
+                <p class="paper-status accepted">INTERSPEECH 2026 · Accepted</p>
+                <h3 class="project-title"><a href="https://jiabaoai67.github.io/TDJD_TTS_Demo/">Beyond Two-stage Diffusion TTS: Joint Structure and Content Refinement via Jump Diffusion</a></h3>
+                <p class="paper-authors"><strong>Jiabao Ai</strong>, Minghui Zhao, Anton Ragni</p>
+                <p class="project-summary">Jointly refining temporal structure and spectral content with jump diffusion for text-to-speech synthesis.</p>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2603.14032">Paper ↗</a>
+                    <a href="https://jiabaoai67.github.io/TDJD_TTS_Demo/">Demo ↗</a>
+                </div>
+            </div>
+        </article>
 
     </div>
 
-    <div style="text-align: center; margin-top: 50px; color: #aaa; font-size: 0.8rem;">
-        &copy; 2025 Jiabao Ai. Hosted on GitHub Pages.
+    <div class="site-footer">
+        &copy; 2026 Jiabao Ai. Hosted on GitHub Pages.
     </div>
 
 </div>
