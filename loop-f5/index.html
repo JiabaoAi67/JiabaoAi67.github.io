@@ -12,7 +12,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="site.css?v=10">
   <link rel="stylesheet" href="flow-animation.css?v=1">
-  <script src="site.js?v=8" defer></script>
+  <script src="site.js?v=9" defer></script>
   <script src="flow-animation.js?v=1" defer></script>
   <title>Depth Through Recurrence: Looped Transformers for Flow-Matching TTS</title>
 </head>
@@ -46,24 +46,9 @@
   <section class="section container" id="method" aria-labelledby="method-title">
     <h2 id="method-title">Seven layouts, the same executed depth</h2>
     <p class="section-intro">Full loops vary <strong>how much</strong> is shared. CYCLE and SEQUENCE vary <strong>the order of reuse</strong>. Partial loops vary <strong>where</strong> sharing occurs, at the same parameter count.</p>
-    <figure class="method-figure">
-      <div class="scroll-region" tabindex="0" role="region" aria-label="All seven model layouts; scroll horizontally on small screens">
-        <div id="architecture" class="architecture"></div>
-      </div>
-      <div class="architecture-legend" aria-label="Block shading legend">
-        <span><span class="block" aria-hidden="true"></span>Not shared</span>
-        <span><span class="block shared" data-use="1" aria-hidden="true"></span>1st use</span>
-        <span><span class="block shared" data-use="2" aria-hidden="true"></span>2nd use</span>
-        <span><span class="block shared" data-use="3" aria-hidden="true"></span>3rd use</span>
-      </div>
-      <figcaption>Each row executes 18 block calls from left to right. <strong>Repeated block numbers within a row share weights; darker shades mark later uses of the same block.</strong> Gray blocks are not shared. <strong>CYCLE 9 × 2</strong> repeats the whole nine-block stack (light → dark); <strong>SEQUENCE 9 × 2</strong> repeats each block immediately (light–dark pairs). Both use 83.6M parameters. <strong>6 × 3</strong> repeats six blocks in three progressively darker passes. Prefix, Middle, and Suffix each repeat a six-block segment twice, with unshared blocks before or after it.</figcaption>
-    </figure>
-  </section>
-
-  <section class="section container" id="flow" aria-labelledby="flow-title">
-    <h2 id="flow-title">Watch the computation flow</h2>
-    <p class="section-intro">One box per unique block. Follow the hidden state through all 18 calls in each layout.</p>
-    <div id="flow-animation"></div>
+    <div id="flow">
+      <div id="flow-animation"></div>
+    </div>
     <p class="data-link"><a href="flow.html">Open animation</a> · <a href="assets/animations/loop-flow.gif" download>Download GIF</a></p>
   </section>
 

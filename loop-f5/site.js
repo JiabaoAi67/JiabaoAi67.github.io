@@ -34,17 +34,6 @@
     if (event.target.tagName === 'AUDIO') $$('audio').forEach((audio) => { if (audio !== event.target) audio.pause(); });
   }, true);
   function rowClass(model) { return model.id === 'baseline' ? 'baseline-row' : model.id === 'prefix' ? 'partial-start' : ''; }
-  function renderArchitecture() {
-    $('#architecture').innerHTML = '<div class="architecture-head"><span>Layout</span><span>18 block calls →</span><span>Unique</span><span>Params</span></div>' + models.map((m) => {
-      const counts = m.sequence.reduce((a, n) => (a[n] = (a[n] || 0) + 1, a), {});
-      const uses = {};
-      const blocks = m.sequence.map((n, i) => {
-        const use = uses[n] = (uses[n] || 0) + 1;
-        return `<span class="block${counts[n] > 1 ? ' shared' : ''}${i > 0 && n < m.sequence[i - 1] ? ' pass-start' : ''}" data-use="${use}" title="Call ${i + 1}: block ${n}${counts[n] > 1 ? `; use ${use} of ${counts[n]} (shared weights)` : ' (not shared)'}">${n}</span>`;
-      }).join('');
-      return `<div class="architecture-row ${rowClass(m)}" data-model="${m.id}" style="--color:${m.color}"><span class="layout-label">${m.label}<small>${m.formula}</small></span><div class="block-track" aria-label="${esc(m.label)}: blocks ${m.sequence.join(', ')}">${blocks}</div><span class="layout-number">${m.unique}</span><span class="layout-number">${m.params.toFixed(1)}M</span></div>`;
-    }).join('');
-  }
   function renderSample(index) {
     if (!samples) return;
     pauseAll();
@@ -94,7 +83,6 @@
   }
   async function readJSON(path) { const response = await fetch(path); if (!response.ok) throw new Error(`${path}: ${response.status}`); return response.json(); }
   function showError(selector, message, error) { const el = $(selector); el.hidden = false; el.textContent = message; console.error(error); }
-  renderArchitecture();
   $$('[data-quality-metric]').forEach((button) => button.addEventListener('click', () => selectQualityMetric(button.dataset.qualityMetric)));
   $('#sample-select').addEventListener('change', (event) => renderSample(Number(event.target.value)));
   readJSON('data/samples.json?v=5').then((data) => {
