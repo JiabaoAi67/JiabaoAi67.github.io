@@ -161,7 +161,7 @@
             font-weight: 600;
         }
 
-        .paper-status.accepted { background: #e8f3ed; color: #276044; }
+        .paper-status.published { background: #e8f3ed; color: #276044; }
 
         .project-title {
             min-height: 4.35em;
@@ -180,9 +180,11 @@
             font-size: 0.9rem;
         }
         .project-summary { margin: 0 0 18px; }
+        .paper-citation { margin: 0 0 18px; color: #566474; font-size: 0.875rem; overflow-wrap: anywhere; }
         .paper-links {
             display: flex;
-            gap: 18px;
+            flex-wrap: wrap;
+            gap: 8px 18px;
             align-items: center;
             margin-top: auto;
             padding-top: 2px;
@@ -282,13 +284,18 @@
                 </div>
             </a>
             <div class="project-info">
-                <p class="paper-status accepted">INTERSPEECH 2026 · Accepted</p>
+                <p class="paper-status published">INTERSPEECH 2026 · Published</p>
                 <h3 class="project-title"><a href="https://jiabaoai67.github.io/TDJD_TTS_Demo/">Beyond Two-stage Diffusion TTS: Joint Structure and Content Refinement via Jump Diffusion</a></h3>
                 <p class="paper-authors"><strong>Jiabao Ai</strong>, Minghui Zhao, Anton Ragni</p>
                 <p class="project-summary">Jointly refining temporal structure and spectral content with jump diffusion for text-to-speech synthesis.</p>
+                <p class="paper-citation">Proceedings of Interspeech 2026, pp. 3600–3604.<br>
+                    DOI: <a href="https://doi.org/10.21437/Interspeech.2026-2875">10.21437/Interspeech.2026-2875</a>
+                </p>
                 <div class="paper-links">
-                    <a href="https://arxiv.org/abs/2603.14032">Paper ↗</a>
+                    <a href="https://www.isca-archive.org/interspeech_2026/ai26b_interspeech.html">Paper (ISCA) ↗</a>
+                    <a href="https://arxiv.org/abs/2603.14032">arXiv ↗</a>
                     <a href="https://jiabaoai67.github.io/TDJD_TTS_Demo/">Demo ↗</a>
+                    <a href="assets/jump-diffusion-tts.bib" download>BibTeX ↓</a>
                 </div>
             </div>
         </article>
