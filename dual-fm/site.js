@@ -5,12 +5,13 @@
   const context = canvas.getContext('2d');
   const poster = document.getElementById('poster');
   const controls = document.getElementById('animation-controls');
+  const headings = document.getElementById('comparison-headings');
   const play = document.getElementById('play-toggle');
   const replay = document.getElementById('replay');
   const slider = document.getElementById('progress');
   const progressValue = document.getElementById('progress-value');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const colors = { x: '#168c87', h: '#d97560' };
+  const colors = { fm: '#137f88', x: '#137f88', h: '#dc785c' };
   const duration = 6400;
   const endHold = 1300;
   let paths;
@@ -65,29 +66,38 @@
 
   function draw() {
     if (!paths || !width || !height) return;
+    context.clearRect(0, 0, width, height);
+    const gap = width < 500 ? 14 : 32;
+    const panelWidth = (width - gap) / 2;
+    const side = Math.min(panelWidth - (width < 500 ? 16 : 32), height - 26);
+    // Both panels share their bounds, size, sampling progress, and X initial state.
+    drawPanel(['fm'], panelWidth / 2, side);
+    drawPanel(['h', 'x'], width - panelWidth / 2, side);
+  }
+
+  function drawPanel(names, centerX, side) {
     const ctx = context;
-    ctx.clearRect(0, 0, width, height);
-    const side = Math.min(width - 44, height - 30);
+    const compact = width < 500;
     const range = Math.max(bounds[1] - bounds[0], bounds[3] - bounds[2]);
     const scale = side / range;
-    const left = (width - side) / 2;
+    const left = centerX - side / 2;
     const top = (height - side) / 2;
     const cx = (bounds[0] + bounds[1]) / 2;
     const cy = (bounds[2] + bounds[3]) / 2;
-    const px = x => width / 2 + (x - cx) * scale;
+    const px = x => centerX + (x - cx) * scale;
     const py = y => height / 2 - (y - cy) * scale;
 
     ctx.save();
     ctx.beginPath();
     ctx.rect(left, top, side, side);
     ctx.clip();
-    ctx.fillStyle = '#fbfcfc';
+    ctx.fillStyle = '#fff';
     ctx.fillRect(left, top, side, side);
     // Occupied cells of the original 4 × 4 checkerboard target.
     for (let ix = 0; ix < 4; ix++) {
       for (let iy = 0; iy < 4; iy++) {
         if ((ix + iy) % 2 !== 0) continue;
-        ctx.fillStyle = '#e9eff1';
+        ctx.fillStyle = '#e3eaed';
         ctx.fillRect(px(ix - 2), py(iy - 1), scale, scale);
       }
     }
@@ -95,27 +105,27 @@
     ctx.strokeStyle = '#dfe6e9';
     for (let value = -2; value <= 2; value++) {
       ctx.beginPath();
-      ctx.moveTo(px(value), top); ctx.lineTo(px(value), top + side);
-      ctx.moveTo(left, py(value)); ctx.lineTo(left + side, py(value));
+      ctx.moveTo(px(value), py(-2)); ctx.lineTo(px(value), py(2));
+      ctx.moveTo(px(-2), py(value)); ctx.lineTo(px(2), py(value));
       ctx.stroke();
     }
 
-    for (const name of ['h', 'x']) {
+    for (const name of names) {
       const path = paths[name];
       const lastIndex = Math.floor(progress * (path.length - 1));
       const point = currentPoint(path);
       ctx.strokeStyle = colors[name];
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.setLineDash(name === 'h' ? [6, 6] : []);
+      ctx.setLineDash(name === 'h' ? (compact ? [4, 3] : [6, 5]) : []);
       // Pale complete paths preserve context while the saturated trace grows.
-      ctx.globalAlpha = 0.16;
-      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.2;
+      ctx.lineWidth = compact ? 1.4 : 1.7;
       ctx.beginPath();
       path.forEach((p, i) => i ? ctx.lineTo(px(p[0]), py(p[1])) : ctx.moveTo(px(p[0]), py(p[1])));
       ctx.stroke();
       ctx.globalAlpha = 1;
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth = compact ? 2.1 : 2.8;
       ctx.beginPath();
       ctx.moveTo(px(path[0][0]), py(path[0][1]));
       for (let i = 1; i <= lastIndex; i++) ctx.lineTo(px(path[i][0]), py(path[i][1]));
@@ -128,7 +138,7 @@
       ctx.fillStyle = '#fff';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      if (name === 'x') ctx.arc(startX, startY, 3, 0, Math.PI * 2);
+      if (name !== 'h') ctx.arc(startX, startY, 3, 0, Math.PI * 2);
       else ctx.rect(startX - 3, startY - 3, 6, 6);
       ctx.fill(); ctx.stroke();
       ctx.globalAlpha = 1;
@@ -136,21 +146,22 @@
       const x = px(point[0]), y = py(point[1]);
       ctx.fillStyle = colors[name];
       ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth = compact ? 1.6 : 2.5;
       ctx.shadowColor = `${colors[name]}33`;
       ctx.shadowBlur = 9;
       ctx.beginPath();
-      if (name === 'x') ctx.arc(x, y, 6.5, 0, Math.PI * 2);
-      else ctx.roundRect(x - 6, y - 6, 12, 12, 2);
+      const radius = compact ? 4.2 : 6;
+      if (name !== 'h') ctx.arc(x, y, radius, 0, Math.PI * 2);
+      else ctx.roundRect(x - radius, y - radius, radius * 2, radius * 2, 1.5);
       ctx.fill(); ctx.stroke();
       ctx.shadowBlur = 0;
-      ctx.font = 'italic 16px Georgia, serif';
-      ctx.fillText(name.toUpperCase(), x + 12, y + (name === 'x' ? -10 : 20));
+      ctx.font = `italic ${compact ? 11 : 15}px Georgia, serif`;
+      ctx.fillText(name === 'fm' ? 'X' : name.toUpperCase(), x + (compact ? 7 : 11), y + (name !== 'h' ? -7 : compact ? 14 : 19));
     }
     ctx.restore();
     ctx.strokeStyle = '#dfe5e7';
     ctx.lineWidth = 1;
-    ctx.strokeRect(left, top, side, side);
+    ctx.strokeRect(px(-2), py(2), scale * 4, scale * 4);
   }
 
   function resize() {
@@ -196,12 +207,13 @@
   async function initialize() {
     try {
       if (!context) throw new Error('Canvas unavailable');
-      const response = await fetch('assets/checkerboard-trajectories.json');
+      const response = await fetch('assets/comparison-trajectories.json');
       if (!response.ok) throw new Error('Trajectory data unavailable');
       const data = await response.json();
       const pair = data.trajectories?.[0];
-      if (!pair || !validPath(pair.x) || !validPath(pair.h)) throw new Error('Invalid trajectories');
-      const extent = data.zoomBounds || data.bounds;
+      if (!pair || !['fm', 'x', 'h'].every(name => validPath(pair[name]))
+        || pair.fm.length !== pair.x.length || pair.h.length !== pair.x.length) throw new Error('Invalid trajectories');
+      const extent = data.bounds;
       if (!Array.isArray(extent) || extent.length !== 4 || !extent.every(Number.isFinite)
         || extent[1] <= extent[0] || extent[3] <= extent[2]) throw new Error('Invalid plot bounds');
       paths = pair;
@@ -209,6 +221,7 @@
       canvas.hidden = false;
       poster.hidden = true;
       controls.hidden = false;
+      headings.hidden = false;
       resize();
       new ResizeObserver(resize).observe(canvas.parentElement);
       elapsed = reducedMotion.matches ? duration : 0;
@@ -219,6 +232,7 @@
       canvas.hidden = true;
       poster.hidden = false;
       controls.hidden = true;
+      headings.hidden = true;
       document.getElementById('load-message').hidden = false;
     }
   }

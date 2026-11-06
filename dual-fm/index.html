@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Dual Flow Matching: learning coupled flows from paired views of a shared target. Explore two recorded trajectories on a checkerboard.">
+  <meta name="description" content="Dual Flow Matching: learning coupled flows from paired views of a shared target. Compare Flow Matching and Dual Flow Matching on a checkerboard.">
   <meta name="author" content="Han Peng, Jiabao Ai, Ruize Xu, Qiyu Kang">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="Dual Flow Matching">
   <meta property="og:description" content="One target. Two coupled flows.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="site.css">
-  <script src="site.js" defer></script>
+  <link rel="stylesheet" href="site.css?v=20261107-comparison">
+  <script src="site.js?v=20261107-comparison" defer></script>
   <title>Dual Flow Matching</title>
 </head>
 <body>
@@ -23,6 +23,7 @@
         <span>Han Peng<sup>*</sup></span><span>Jiabao Ai<sup>*</sup></span><span>Ruize Xu</span><span>Qiyu Kang</span>
       </div>
       <p class="equal-contribution">* Equal contribution</p>
+      <p class="publication-venue">Submitted to ICLR 2027</p>
     </header>
 
     <section id="demo" aria-labelledby="demo-title">
@@ -32,16 +33,22 @@
       </div>
       <figure class="demo-figure">
         <div class="demo-card">
-          <div class="plot-heading">
-            <span class="plot-title">Paired trajectories</span>
-            <div class="legend" aria-label="Trajectory legend">
-              <span><i class="legend-line x-line" aria-hidden="true"></i><b>X</b> flow</span>
-              <span><i class="legend-line h-line" aria-hidden="true"></i><b>H</b> flow</span>
+          <div class="comparison-headings" id="comparison-headings" hidden>
+            <div class="panel-heading">
+              <h3>Flow Matching</h3>
+              <div class="legend"><span><i class="legend-line fm-line" aria-hidden="true"></i>One trajectory</span></div>
+            </div>
+            <div class="panel-heading">
+              <h3>Dual Flow Matching</h3>
+              <div class="legend" aria-label="Dual trajectory legend">
+                <span><i class="legend-line x-line" aria-hidden="true"></i><b>X</b></span>
+                <span><i class="legend-line h-line" aria-hidden="true"></i><b>H</b></span>
+              </div>
             </div>
           </div>
           <div class="plot-stage">
-            <img id="poster" src="assets/dual-fm-checkerboard-poster.png" width="1200" height="900" alt="Recorded X and H flow trajectories over a checkerboard target." class="poster">
-            <canvas id="flow-canvas" hidden role="img" aria-label="A teal circle and coral square follow two coupled trajectories over a pale checkerboard target. Use the controls below to explore their progress."></canvas>
+            <img id="poster" src="assets/fm-vs-dual-fm.png" width="1440" height="900" alt="Side-by-side recorded trajectories: ordinary Flow Matching with one teal X trajectory, and Dual Flow Matching with teal X and coral H trajectories, on identical checkerboards." class="poster">
+            <canvas id="flow-canvas" hidden role="img" aria-label="Synchronized comparison on identical checkerboards: one Flow Matching trajectory on the left, and two coupled Dual Flow Matching trajectories on the right. Both X trajectories are teal circles; H is a coral square. The X starting point and coordinate scale are the same. Use the controls below to explore sampling progress."></canvas>
           </div>
           <div class="controls" id="animation-controls" hidden>
             <div class="playback-buttons">
@@ -61,9 +68,13 @@
           </div>
           <p id="load-message" class="load-message" role="status" hidden>Interactive preview unavailable. The GIF is available below.</p>
         </div>
-        <figcaption>Checkerboard · early coupled-flow experiment<span class="caption-detail">Recorded trajectories; H retains endpoint noise.</span></figcaption>
+        <figcaption>Same X initialization · 50 Heun steps<span class="caption-detail">Early checkerboard experiment; H retains endpoint noise.</span></figcaption>
       </figure>
-      <div class="page-links"><a href="assets/dual-fm-checkerboard.gif" download>Download GIF <span aria-hidden="true">↓</span></a><a href="../">Jiabao Ai’s homepage <span aria-hidden="true">↗</span></a></div>
+      <div class="page-links"><a href="assets/fm-vs-dual-fm.gif" download>Download GIF <span aria-hidden="true">↓</span></a><a href="../">Jiabao Ai’s homepage <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section class="abstract-section" id="abstract" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <p>Standard flow matching predicts velocity from a single noisy state, leaving the relationship between paths toward the same data target implicit. We introduce Dual Flow Matching (DualFM), which couples two independently corrupted views of a shared target within one backbone. The network observes both states and predicts both velocities in a single evaluation. Independent training clocks vary the information available in each view, while synchronized sampling evolves the two states jointly. Training remains simulation-free and requires no pretrained teacher. We prove that auxiliary conditioning weakly reduces irreducible regression risk and derive an exact common-task identity for comparing field-approximation errors. Our evaluation spans MNIST, CIFAR-10, ImageNet32, and ImageNet64, including class-conditional generation with SiT-XL/4 at the larger resolution. Our experiments show improved multi-step generation over I-CFM, with approximately 0.1% additional parameters and nearly unchanged large-batch sampling latency. Matched controls show gains beyond model capacity and observation information, while diagnostics show more accurate target estimates and learned use of instance-level correspondence. The gains also extend to minibatch optimal transport coupling. These results establish shared-target joint prediction as an effective way to improve flow matching while keeping the backbone size nearly unchanged.</p>
     </section>
   </main>
 </body>

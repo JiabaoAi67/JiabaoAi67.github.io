@@ -1,0 +1,54 @@
+{
+  "scope": "Archived noisy-endpoint IV-CFM precursor (sigma_h=0.1), not the final clean-endpoint DualFM recipe",
+  "selectedPair": 0,
+  "selection": "First recorded pair, as in the recent presentation",
+  "source": "https://github.com/JiabaoAi67/dualfm",
+  "sourceDirectory": "research_records/aijb/ivcfm_toy/runs/checkerboard",
+  "sourceSha256": {
+    "fm_seed_0_traj_x.npy": "4f96cf9f081c7658db7b7d1a5aaf644e0d33a60b3bfd7cfa725d47456ecde602",
+    "ivcfm_seed_0_traj_x.npy": "096d46dcc3b9b992de9602d32c48f4553e3fb94619a8aca87bae4efda880e8f6",
+    "ivcfm_seed_0_traj_h.npy": "af77812cab03891bf24ff25e4e71ba4aee0acc84c4cc4cd089b782b23eb6bf59"
+  },
+  "solver": "Heun",
+  "steps": 50,
+  "nfe": 100,
+  "seed": 0,
+  "evaluationSeed": 10000,
+  "trainingSteps": 50000,
+  "sameInitialX": true,
+  "sameCoordinateLimits": true,
+  "timeConvention": "0=noise; 1=data. This sampling-progress convention is opposite to the final paper.",
+  "comparisonLimits": "Same initial X and solver budget. Not identical minibatches or exactly matched parameters/FLOPs. No claim of superior sample quality.",
+  "display": "Source vertices preserved. Linear interpolation only between saved numerical states. No endpoint modification.",
+  "checkerboard": "Eight unit cells, origin [ix-2,iy-2], ix/iy 0..3 and (ix+iy)%2==0",
+  "loop": "Synchronized forward progress; final hold; fade/reset; no reversal",
+  "artifacts": [
+    {
+      "file": "fm-vs-dual-fm.gif",
+      "width": 1440,
+      "height": 900,
+      "frames": 146,
+      "duration_ms": 7630,
+      "bytes": 422673,
+      "sha256": "21c819ae53585182b9c0b79ed3888fba2278cf7787dc057c2b68aa8427fd1acc"
+    },
+    {
+      "file": "fm-vs-dual-fm-preview.gif",
+      "width": 1000,
+      "height": 761,
+      "frames": 146,
+      "duration_ms": 7630,
+      "bytes": 1606600,
+      "sha256": "cef09c9821cb01aafb7e2ac36526cedf3295a2be656ceb7b86e2257d07ceb4e4"
+    },
+    {
+      "file": "flow-matching-checkerboard.gif",
+      "width": 1200,
+      "height": 900,
+      "frames": 142,
+      "duration_ms": 7630,
+      "bytes": 244538,
+      "sha256": "daf42f2ea60bf7e3a62a73bd1d3774ccabc9dff5f70c80d9d3eb76fc8237e9bd"
+    }
+  ]
+}
