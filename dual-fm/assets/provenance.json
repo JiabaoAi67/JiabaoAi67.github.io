@@ -1,0 +1,46 @@
+{
+  "scope": "Archived noisy-endpoint IV-CFM precursor, not the final clean-endpoint DualFM recipe",
+  "pair": 0,
+  "selection": "First saved pair, same as the recent presentation",
+  "sourceShape": [
+    51,
+    200,
+    2
+  ],
+  "sourceSha256": {
+    "ivcfm_seed_0_traj_x.npy": "096d46dcc3b9b992de9602d32c48f4553e3fb94619a8aca87bae4efda880e8f6",
+    "ivcfm_seed_0_traj_h.npy": "af77812cab03891bf24ff25e4e71ba4aee0acc84c4cc4cd089b782b23eb6bf59",
+    "fm_seed_0_traj_x.npy": "4f96cf9f081c7658db7b7d1a5aaf644e0d33a60b3bfd7cfa725d47456ecde602"
+  },
+  "time": "0=noise, 1=data; the final paper uses the reverse time convention",
+  "geometry": "Original source vertices preserved; piecewise-linear interpolation for display only",
+  "noNewInference": true,
+  "noSmoothing": true,
+  "noEndpointModification": true,
+  "loop": "Forward playback, hold, fade, reset; no reverse-time dynamics",
+  "previewViewport": "Fixed [-2.5,2.5] square; a small number of early noise outliers are outside the view",
+  "initialPairDistance": 2.017443895339966,
+  "finalPairDistance": 0.14889970421791077,
+  "artifacts": [
+    {
+      "file": "dual-fm-checkerboard.gif",
+      "size": [
+        1200,
+        900
+      ],
+      "frames": 146,
+      "duration_ms": 7630,
+      "sha256": "8e68aed5dd48b3b63b22e9d88183ee3c098e009b181d123cb55883a7802f4de1"
+    },
+    {
+      "file": "dual-fm-preview.gif",
+      "size": [
+        1000,
+        761
+      ],
+      "frames": 146,
+      "duration_ms": 7630,
+      "sha256": "56c8561f394725296816f4cfeadc03e48235b6545db5b58bfee5b14dd6f4c637"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dual Flow Matching: learning coupled flows from paired views of a shared target. Explore two recorded trajectories on a checkerboard.">
+  <meta name="author" content="Han Peng, Jiabao Ai, Ruize Xu, Qiyu Kang">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="Dual Flow Matching">
+  <meta property="og:description" content="One target. Two coupled flows.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+  <title>Dual Flow Matching</title>
+</head>
+<body>
+  <a class="skip-link" href="#demo">Skip to demo</a>
+  <main class="container">
+    <header class="publication-header">
+      <h1>Dual Flow Matching</h1>
+      <p class="publication-subtitle">Learning Coupled Flows from Paired Views of a Shared Target</p>
+      <div class="publication-authors" aria-label="Authors">
+        <span>Han Peng<sup>*</sup></span><span>Jiabao Ai<sup>*</sup></span><span>Ruize Xu</span><span>Qiyu Kang</span>
+      </div>
+      <p class="equal-contribution">* Equal contribution</p>
+    </header>
+
+    <section id="demo" aria-labelledby="demo-title">
+      <div class="demo-intro">
+        <h2 id="demo-title">One target. Two coupled flows.</h2>
+        <p>Two noisy views of one target, evolved together by a shared network.</p>
+      </div>
+      <figure class="demo-figure">
+        <div class="demo-card">
+          <div class="plot-heading">
+            <span class="plot-title">Paired trajectories</span>
+            <div class="legend" aria-label="Trajectory legend">
+              <span><i class="legend-line x-line" aria-hidden="true"></i><b>X</b> flow</span>
+              <span><i class="legend-line h-line" aria-hidden="true"></i><b>H</b> flow</span>
+            </div>
+          </div>
+          <div class="plot-stage">
+            <img id="poster" src="assets/dual-fm-checkerboard-poster.png" width="1200" height="900" alt="Recorded X and H flow trajectories over a checkerboard target." class="poster">
+            <canvas id="flow-canvas" hidden role="img" aria-label="A teal circle and coral square follow two coupled trajectories over a pale checkerboard target. Use the controls below to explore their progress."></canvas>
+          </div>
+          <div class="controls" id="animation-controls" hidden>
+            <div class="playback-buttons">
+              <button id="play-toggle" type="button" aria-label="Play animation" aria-pressed="false">
+                <svg class="play-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5 3.2 12 8l-7 4.8Z" fill="currentColor"/></svg>
+                <svg class="pause-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" hidden><path d="M4 3h3v10H4zm5 0h3v10H9z" fill="currentColor"/></svg>
+                <span>Play</span>
+              </button>
+              <button id="replay" class="replay-button" type="button" aria-label="Replay animation from the beginning" title="Replay">
+                <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4.3 6.8A6 6 0 1 1 4 12M4 3.5v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="timeline">
+              <div class="timeline-label"><label for="progress">Sampling progress</label><output id="progress-value" for="progress">0%</output></div>
+              <input id="progress" type="range" min="0" max="1000" value="0" step="1" aria-valuetext="0 percent">
+            </div>
+          </div>
+          <p id="load-message" class="load-message" role="status" hidden>Interactive preview unavailable. The GIF is available below.</p>
+        </div>
+        <figcaption>Checkerboard · early coupled-flow experiment<span class="caption-detail">Recorded trajectories; H retains endpoint noise.</span></figcaption>
+      </figure>
+      <div class="page-links"><a href="assets/dual-fm-checkerboard.gif" download>Download GIF <span aria-hidden="true">↓</span></a><a href="../">Jiabao Ai’s homepage <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+</body>
+</html>
